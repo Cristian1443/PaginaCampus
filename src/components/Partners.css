@@ -97,7 +97,6 @@
   margin-bottom: 32px;
 }
 
-/* Animación de las líneas de flujo */
 .flow-line {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
@@ -109,7 +108,6 @@
   }
 }
 
-/* Animación del anillo central */
 .core-ring {
   transform-origin: center;
   animation: rotate-core 10s linear infinite;
@@ -161,7 +159,40 @@
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-  .partnership-panel { padding: 30px; }
-  .partnership-content { grid-template-columns: 1fr; }
-  .partner-logo { height: 40px; }
+  .partners-section {
+    padding: 60px 15px;
+  }
+  .partners-title {
+    font-size: 2.2rem;
+  }
+  .partners-subtitle {
+    font-size: 1rem;
+    margin-bottom: 40px;
+  }
+  .partnership-panel { 
+    padding: 24px; 
+  }
+  .partnership-logos {
+    gap: 16px;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+  }
+  .partner-logo { 
+    height: 36px; 
+    filter: none; /* Logos visibles en móvil */
+    opacity: 1;
+  }
+  .partnership-illustration {
+    display: none; /* Ocultar SVG complejo en móvil */
+  }
+  .partnership-content { 
+    grid-template-columns: 1fr; 
+    gap: 30px;
+  }
+  .partnership-column h4 {
+    font-size: 1.2rem;
+  }
+  .partnership-column p {
+    font-size: 0.95rem;
+  }
 }

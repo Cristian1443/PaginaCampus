@@ -113,15 +113,97 @@
   box-shadow: 0 12px 30px rgba(228, 2, 44, 0.35);
 }
 
+
 /* --- RESPONSIVE --- */
 @media (max-width: 992px) {
+  /* Mantenemos la grilla de una columna para tablets, pero el diseño de timeline se activa en 768px */
   .admisiones-steps-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 }
 
 @media (max-width: 768px) {
-  .admisiones-section { padding: 80px 20px; }
-  .admisiones-title-gradient { font-size: 2.2rem; }
-  .admisiones-desc { font-size: 1rem; }
+  .admisiones-section { 
+    padding: 60px 20px; 
+  }
+  .admisiones-title-gradient { 
+    font-size: 2.2rem; 
+  }
+  .admisiones-desc { 
+    font-size: 1rem; 
+    margin-bottom: 50px;
+  }
+  
+  /* --- ESTILOS DEL TIMELINE --- */
+  .admisiones-steps-grid {
+    gap: 0; /* Sin espacio entre tarjetas en el timeline */
+  }
+
+  .step-card {
+    background: none;
+    border: none;
+    padding: 0 0 40px 0; /* Espacio solo debajo de cada paso */
+    display: flex; /* Flexbox para alinear número y texto */
+    gap: 20px;
+    align-items: flex-start;
+    overflow: visible; /* Permitir que la línea se vea */
+  }
+
+  .step-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .step-number {
+    position: relative;
+    top: 0;
+    right: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #273474, #e4022c);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2; /* Por encima de la línea */
+  }
+
+  /* --- La línea del Timeline --- */
+  .step-number::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 64px; /* Altura de la línea (distancia al siguiente paso) */
+    background-color: rgba(255, 255, 255, 0.1);
+    z-index: 1;
+  }
+
+  /* Ocultar la línea del último elemento */
+  .admisiones-steps-grid .step-card:last-child .step-number::after {
+    display: none;
+  }
+  
+  .admisiones-steps-grid .step-card:last-child {
+      padding-bottom: 0; /* Quitar espacio extra al final */
+  }
+
+  .step-content h3 {
+    font-size: 1.15rem;
+  }
+
+  .step-content p {
+    font-size: 0.95rem;
+  }
+  
+  .admisiones-btn {
+    width: 100%; /* Botón de ancho completo */
+  }
 }

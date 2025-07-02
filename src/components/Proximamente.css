@@ -44,7 +44,6 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   
-  /* Animación de entrada */
   opacity: 0;
   transform: translateY(30px);
   animation: panel-fade-in 1s ease-out forwards;
@@ -61,7 +60,6 @@
   margin-bottom: 24px;
 }
 
-/* Animación para la estrella */
 .star-shape {
   transform-origin: center;
   animation: star-pulse 4s ease-in-out infinite;
@@ -115,13 +113,41 @@
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-  .proximamente-section { padding: 80px 20px; }
-  .proximamente-title { font-size: 2rem; }
-  .proximamente-desc { font-size: 1rem; }
-}
+  .proximamente-section { 
+    padding: 80px 15px; 
+    align-items: flex-start; /* Alinear arriba */
+    min-height: auto;
+  }
+  
+  .proximamente-spotlight {
+    width: 500px; /* Spotlight más pequeño */
+    height: 500px;
+    opacity: 0.5;
+  }
 
-@media (max-width: 576px) {
   .proximamente-panel {
-    padding: 30px 20px;
+    padding: 30px 24px;
+    background: rgba(15, 23, 42, 0.8); /* Fondo un poco más sólido */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+
+  .proximamente-title { 
+    font-size: clamp(1.8rem, 8vw, 2.2rem); /* Título fluido */
+  }
+
+  .proximamente-desc { 
+    font-size: 1rem; 
+  }
+
+  .proximamente-motivador {
+    font-size: 1.05rem;
+  }
+
+  .proximamente-btn {
+    display: block; /* Botón de ancho completo */
+    width: 100%;
+    padding: 16px;
+    font-size: 1.1rem;
   }
 }

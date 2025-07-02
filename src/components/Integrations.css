@@ -1,35 +1,26 @@
-/* --- NUEVOS ESTILOS PARA INTEGRATIONS.CSS --- */
-
+/* --- ESTILOS ORIGINALES PARA ESCRITORIO --- */
 .integrations-section {
   width: 100%;
-  padding: 30px 20px;
+  padding: 80px 20px;
   background-color: #0f172a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
   overflow: hidden;
 }
-
 .integrations-header {
   text-align: center;
   margin-bottom: 60px;
 }
-
 .integrations-title {
   font-size: 2.8rem;
   font-weight: 800;
   margin-bottom: 16px;
   color: #fff;
 }
-
 .integrations-title-yellow {
   background: linear-gradient(90deg, #394a9e 0%, #e4022c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
-
 .integrations-subtitle {
   color: #94a3b8;
   font-size: 1.15rem;
@@ -37,9 +28,7 @@
   margin: 0 auto;
   line-height: 1.7;
 }
-
-/* --- PANEL INTERACTIVO PRINCIPAL --- */
-.integrations-panel {
+.integrations-panel-desktop {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
@@ -48,8 +37,6 @@
   align-items: flex-start;
   min-height: 500px;
 }
-
-/* --- COLUMNA IZQUIERDA: VISUALIZACIÓN --- */
 .integrations-showcase {
   position: sticky;
   top: 120px;
@@ -58,21 +45,14 @@
   overflow: hidden;
   background-color: #1e293b;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
 }
-
 .showcase-background {
   position: absolute;
   inset: 0;
   background-image: radial-gradient(circle at center, rgba(39, 52, 116, 0.2), transparent 70%);
   animation: slow-spin 20s linear infinite;
 }
-
-@keyframes slow-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
+@keyframes slow-spin { to { transform: rotate(360deg); } }
 .showcase-visual {
   position: absolute;
   inset: 0;
@@ -85,45 +65,32 @@
   transform: scale(0.95);
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
-
 .showcase-visual.active {
   opacity: 1;
   transform: scale(1);
 }
-
-/* Fondos para cada visualización (puedes usar imágenes o SVG aquí) */
 .lms-visual { background: linear-gradient(45deg, #1d4ed8, #3b82f6); }
 .connectivity-visual { background: linear-gradient(45deg, #6d28d9, #8b5cf6); }
 .api-visual { background: linear-gradient(45deg, #15803d, #22c55e); }
-
-
-/* --- COLUMNA DERECHA: LISTA DE INTEGRACIONES --- */
 .integrations-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-
 .integration-item {
   display: flex;
   gap: 20px;
   padding: 24px;
-  background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-
-.integration-item:hover {
-  background-color: rgba(30, 41, 59, 0.5);
-}
-
+.integration-item:hover { background-color: rgba(30, 41, 59, 0.5); }
 .integration-item.active {
   background-color: #1e293b;
   border-color: #e4022c;
 }
-
 .integration-item-icon {
   font-size: 1.5rem;
   width: 48px;
@@ -136,18 +103,13 @@
   border-radius: 10px;
   transition: transform 0.3s ease;
 }
-
-.integration-item.active .integration-item-icon {
-  transform: scale(1.1);
-}
-
+.integration-item.active .integration-item-icon { transform: scale(1.1); }
 .integration-item-text h3 {
   margin: 0 0 8px 0;
   color: #f1f5f9;
   font-size: 1.2rem;
   font-weight: 600;
 }
-
 .integration-item-text p {
   margin: 0;
   color: #94a3b8;
@@ -155,22 +117,88 @@
   font-size: 0.95rem;
 }
 
-/* --- RESPONSIVE --- */
-@media(max-width: 992px){
-  .integrations-panel {
-    grid-template-columns: 1fr;
-  }
-  .integrations-showcase {
-    position: relative;
-    top: 0;
-    height: 300px;
-    margin-bottom: 40px;
-  }
+/* --- ESTILOS DEL ACORDEÓN PARA MÓVIL --- */
+.integrations-accordion-mobile {
+  display: none; /* Oculto por defecto */
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.accordion-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.accordion-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  cursor: pointer;
+}
+.accordion-title {
+  color: #f1f5f9;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+  flex-grow: 1;
+}
+.accordion-toggle-icon {
+  width: 14px;
+  height: 14px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.accordion-toggle-icon::before,
+.accordion-toggle-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #94a3b8;
+  transition: transform 0.3s ease;
+}
+.accordion-toggle-icon::after {
+  transform: rotate(90deg);
+}
+.accordion-item.active .accordion-toggle-icon {
+  transform: rotate(135deg);
 }
 
-@media(max-width: 576px){
-  .integration-item {
-    flex-direction: column;
-    align-items: flex-start;
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+}
+.accordion-item.active .accordion-body {
+  max-height: 500px; /* Altura máxima para la animación */
+}
+.accordion-content {
+  padding: 0 0 24px 0;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.accordion-content p {
+  margin: 0 0 20px 0;
+}
+.accordion-visual-placeholder {
+  position: relative;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* --- MEDIA QUERY PARA ACTIVAR EL DISEÑO MÓVIL --- */
+@media(max-width: 992px) {
+  .integrations-section { padding: 60px 15px; }
+  .integrations-title { font-size: 2rem; }
+  .integrations-subtitle { font-size: 1rem; }
+  
+  .integrations-panel-desktop {
+    display: none; /* Ocultar el layout de escritorio */
+  }
+  .integrations-accordion-mobile {
+    display: block; /* Mostrar el acordeón */
   }
 }

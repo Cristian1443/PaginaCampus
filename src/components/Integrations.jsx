@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './Integrations.css';
 
-// --- Array de datos para las integraciones ---
 const integrationsData = [
   {
     id: 'lms',
@@ -23,8 +22,28 @@ const integrationsData = [
   }
 ];
 
+// Componente para la visualización, para mantener el JSX más limpio
+const ShowcaseVisual = ({ type, isActive }) => {
+  const visualMap = {
+    lms: { class: 'lms-visual', text: 'Visualización del LMS' },
+    connectivity: { class: 'connectivity-visual', text: 'Visualización de Conectividad' },
+    api: { class: 'api-visual', text: 'Visualización de APIs' },
+  };
+  const visual = visualMap[type];
+  return (
+    <div className={`showcase-visual ${visual.class} ${isActive ? 'active' : ''}`}>
+      <p>{visual.text}</p>
+    </div>
+  );
+};
+
 export default function Integrations() {
   const [activeIntegration, setActiveIntegration] = useState('lms');
+
+  // Función para manejar el clic en el acordeón (permite abrir/cerrar)
+  const handleAccordionClick = (id) => {
+    setActiveIntegration(activeIntegration === id ? null : id);
+  };
 
   return (
     <section className="integrations-section" id="integrations">
@@ -38,24 +57,14 @@ export default function Integrations() {
           </p>
         </div>
         
-        <div className="integrations-panel">
-          {/* Columna Izquierda: Visualización */}
+        {/* --- Layout de Escritorio (se oculta en móvil) --- */}
+        <div className="integrations-panel-desktop">
           <div className="integrations-showcase">
             <div className="showcase-background"></div>
-            {/* Las visualizaciones cambian según el estado `activeIntegration` */}
-            <div className={`showcase-visual lms-visual ${activeIntegration === 'lms' ? 'active' : ''}`}>
-                {/* Aquí podrías poner una imagen o un SVG complejo para LMS */}
-                <p>Visualización del LMS</p>
-            </div>
-            <div className={`showcase-visual connectivity-visual ${activeIntegration === 'connectivity' ? 'active' : ''}`}>
-                <p>Visualización de Conectividad</p>
-            </div>
-            <div className={`showcase-visual api-visual ${activeIntegration === 'api' ? 'active' : ''}`}>
-                <p>Visualización de APIs</p>
-            </div>
+            <ShowcaseVisual type="lms" isActive={activeIntegration === 'lms'} />
+            <ShowcaseVisual type="connectivity" isActive={activeIntegration === 'connectivity'} />
+            <ShowcaseVisual type="api" isActive={activeIntegration === 'api'} />
           </div>
-
-          {/* Columna Derecha: Lista de Integraciones */}
           <div className="integrations-list">
             {integrationsData.map((item) => (
               <div 
@@ -71,6 +80,27 @@ export default function Integrations() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* --- NUEVO Acordeón para Móvil (se muestra solo en móvil) --- */}
+        <div className="integrations-accordion-mobile">
+          {integrationsData.map((item) => (
+            <div key={item.id} className={`accordion-item ${activeIntegration === item.id ? 'active' : ''}`}>
+              <div className="accordion-header" onClick={() => handleAccordionClick(item.id)}>
+                <div className="integration-item-icon">{item.icon}</div>
+                <h3 className="accordion-title">{item.title}</h3>
+                <div className="accordion-toggle-icon"></div>
+              </div>
+              <div className="accordion-body">
+                <div className="accordion-content">
+                  <p>{item.description}</p>
+                  <div className="accordion-visual-placeholder">
+                     <ShowcaseVisual type={item.id} isActive={true} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

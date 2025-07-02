@@ -61,7 +61,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Importante para que el contenido no se salga */
+  overflow: hidden;
 }
 
 .tour-card:hover {
@@ -97,7 +97,7 @@
   padding: 24px;
   display: flex;
   flex-direction: column;
-  flex-grow: 1; /* Permite que el contenido crezca y empuje el botón hacia abajo */
+  flex-grow: 1;
   text-align: left;
 }
 
@@ -119,7 +119,7 @@
   list-style: none;
   padding: 0;
   margin: 0 0 24px 0;
-  flex-grow: 1; /* Empuja el botón hacia el final */
+  flex-grow: 1;
 }
 
 .tour-list li {
@@ -139,7 +139,6 @@
   flex-shrink: 0;
 }
 
-/* --- ESTILO DE BOTONES UNIFICADO Y MODERNO --- */
 .tour-btn {
   padding: 12px 24px;
   border: none;
@@ -150,7 +149,7 @@
   transition: all 0.3s ease;
   color: #fff;
   text-align: center;
-  align-self: flex-start; /* Alinea el botón al inicio si el contenido no crece */
+  align-self: flex-start;
 }
 
 .tour-btn:hover {
@@ -158,24 +157,70 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Colores de los botones */
 .tour-btn-blue { background: #2563eb; }
-.tour-btn-blue:hover { background: #1d4ed8; }
-
 .tour-btn-yellow { background: #f59e0b; }
-.tour-btn-yellow:hover { background: #d97706; }
-
 .tour-btn-purple { background: #7c3aed; }
-.tour-btn-purple:hover { background: #6d28d9; }
-
 .tour-btn-orange { background: #f97316; }
-.tour-btn-orange:hover { background: #ea580c; }
-
 .tour-btn-green { background: #16a34a; }
-.tour-btn-green:hover { background: #15803d; }
 
-@media(max-width: 768px){
+/* --- REDISEÑO COMPLETO PARA MÓVIL --- */
+@media(max-width: 768px) {
+  .tour-section {
+    padding: 60px 15px;
+  }
+  .tour-title {
+    font-size: 2rem;
+  }
+  .tour-subtitle {
+    font-size: 1rem;
+    margin-bottom: 40px;
+  }
   .tour-grid {
     grid-template-columns: 1fr;
+    gap: 16px; /* Menos espacio entre tarjetas */
+  }
+
+  /* --- NUEVO DISEÑO DE TARJETA HORIZONTAL --- */
+  .tour-card {
+    flex-direction: row; /* Layout horizontal */
+    align-items: center; /* Centrar verticalmente */
+    gap: 16px;
+    padding: 20px;
+    background: #1e293b; /* Fondo sólido */
+    backdrop-filter: none; /* Quitar efecto de cristal */
+    border-radius: 12px;
+  }
+  
+  .tour-card-image {
+    /* Reemplazar la imagen superior por un icono circular */
+    height: 48px;
+    width: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #0f172a;
+  }
+  
+  .tour-card-icon {
+    font-size: 1.5rem; /* Icono más pequeño */
+  }
+
+  .tour-card-content {
+    padding: 0;
+    flex-grow: 1;
+  }
+
+  .tour-card-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+  }
+
+  .tour-card-content p {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  /* --- Ocultar elementos no esenciales en móvil --- */
+  .tour-list, .tour-btn {
+    display: none;
   }
 }

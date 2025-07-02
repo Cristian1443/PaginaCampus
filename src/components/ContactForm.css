@@ -127,7 +127,6 @@
   min-height: 100px;
 }
 
-/* Checkbox */
 .checkbox-group { margin-bottom: 30px; }
 .checkbox-label {
   display: flex;
@@ -149,7 +148,6 @@
 .privacy-link { color: #e4022c; text-decoration: none; }
 .privacy-link:hover { text-decoration: underline; }
 
-/* Botón */
 .contact-form-btn {
   width: 100%;
   padding: 15px;
@@ -170,23 +168,65 @@
 
 /* --- RESPONSIVE --- */
 @media (max-width: 992px) {
+  .contact-section {
+    padding: 60px 15px;
+    min-height: auto;
+  }
   .contact-container {
     grid-template-columns: 1fr;
     gap: 50px;
   }
-  .contact-info-panel {
+  .contact-info-panel, .contact-form-panel {
     text-align: center;
   }
+  .contact-title {
+    font-size: 2.2rem;
+  }
+  .contact-subtitle {
+    font-size: 1rem;
+  }
+  
+  /* --- NUEVO GRID PARA INFO CARDS --- */
   .contact-info-cards {
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .info-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 16px 8px;
+    gap: 8px;
+    background-color: #1e293b;
+  }
+  .info-card-content h4 {
+    font-size: 0.85rem;
+  }
+  .info-card-content p {
+    font-size: 0.8rem;
+  }
+  
+  .contact-form-panel { 
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+  .form-label {
+    text-align: left;
   }
 }
 
-@media (max-width: 576px) {
-  .contact-section { padding: 60px 15px; }
-  .contact-title { font-size: 2.2rem; }
-  .contact-info-cards { flex-direction: column; }
-  .contact-form-panel { padding: 30px; }
+@media (max-width: 500px) {
+  /* En pantallas muy pequeñas, volvemos a apilar las tarjetas de info */
+  .contact-info-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .info-card {
+    flex-direction: row;
+    text-align: left;
+    gap: 16px;
+    padding: 16px;
+  }
 }

@@ -75,20 +75,6 @@
   color: #fff;
 }
 
-/* Animaciones de entrada para el texto */
-.about-title, .about-description, .about-button {
-  opacity: 0;
-  animation: textFadeInUp 1s forwards;
-}
-.about-description { animation-delay: 0.2s; }
-.benefits-grid { animation-delay: 0.4s; }
-.about-button { animation-delay: 0.6s; }
-
-@keyframes textFadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 .about-title {
   font-size: 3.2rem;
   font-weight: 800;
@@ -111,7 +97,6 @@
   line-height: 1.7;
 }
 
-/* --- NUEVO GRID PARA TARJETAS DE BENEFICIOS --- */
 .benefits-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -128,8 +113,6 @@
   border-radius: 12px;
   border: 1px solid transparent;
   transition: all 0.3s ease;
-  opacity: 0;
-  animation: textFadeInUp 0.8s forwards;
 }
 
 .benefit-card:hover {
@@ -191,27 +174,83 @@
   transform: translateX(4px);
 }
 
-/* Responsive */
-@media (max-width: 992px) {
+/* --- REDISEÑO COMPLETO PARA MÓVIL --- */
+@media (max-width: 768px) {
+  .about-section {
+    padding: 60px 15px;
+  }
+
   .about-container {
     grid-template-columns: 1fr;
-    padding: 40px;
+    padding: 0;
+    background: none;
+    border: none;
+    backdrop-filter: none;
     text-align: center;
   }
+  
   .about-image-wrapper {
-    order: -1; /* Mueve la imagen arriba en móvil */
-    margin-bottom: 40px;
+    order: 0; /* Restaurar orden */
+    margin-bottom: 24px;
   }
-  .about-image { max-width: 280px; }
-  .about-text-content { text-align: center; }
-  .benefit-card { text-align: left; }
-  .about-button { margin: 0 auto; }
-}
+  
+  .about-image {
+    max-width: 200px; /* Robot más pequeño y centrado */
+    animation: none; /* Desactivar animación en móvil para simpleza */
+  }
 
-@media (max-width: 576px) {
-  .about-section { padding: 60px 15px; }
-  .about-container { padding: 30px 20px; }
-  .about-title { font-size: 2.5rem; }
-  .benefit-card { flex-direction: column; text-align: center; }
-  .benefit-text { margin-top: 10px; }
+  .about-text-content {
+    text-align: center;
+  }
+
+  .about-title {
+    font-size: clamp(2rem, 10vw, 2.5rem);
+  }
+
+  .about-description {
+    font-size: 1rem;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* --- Nuevo grid de tarjetas para beneficios --- */
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  .benefit-card {
+    flex-direction: column; /* Apilar icono y texto verticalmente */
+    background: rgba(30, 41, 59, 0.6);
+    padding: 24px;
+    gap: 12px;
+  }
+  
+  .benefit-card:hover {
+    transform: none; /* Desactivar hover en móvil */
+  }
+
+  .benefit-icon {
+    margin: 0;
+  }
+
+  .benefit-text {
+    text-align: center;
+  }
+  
+  .benefit-text h4 {
+    font-size: 1.1rem;
+  }
+
+  .benefit-text p {
+    font-size: 0.95rem;
+  }
+
+  .about-button {
+    width: 100%;
+    margin-top: 40px; /* Espacio antes del botón final */
+  }
 }

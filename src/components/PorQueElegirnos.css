@@ -82,7 +82,6 @@
   border: 1px solid transparent;
   transition: background-color 0.3s ease, border-color 0.3s ease;
   
-  /* Animación de entrada para las tarjetas */
   opacity: 0;
   animation: card-fade-in-up 0.6s ease-out forwards;
 }
@@ -130,28 +129,49 @@
 
 /* --- RESPONSIVE --- */
 @media (max-width: 992px) {
+  .elegir-section {
+    padding: 60px 15px;
+  }
   .elegir-container {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 40px;
   }
   .elegir-ilustracion-wrapper {
     order: -1; /* Mueve la ilustración arriba */
-    margin-bottom: 40px;
+    max-width: 300px;
+    margin: 0 auto 20px auto;
   }
   .elegir-motivos {
     text-align: center;
   }
+  .elegir-title-gradient {
+    font-size: 2.2rem;
+  }
   .elegir-subtitle {
+    font-size: 1rem;
     margin-left: auto;
     margin-right: auto;
   }
-  .elegir-motivo-card {
-    text-align: left;
+  .elegir-lista {
+    gap: 16px;
   }
-}
-
-@media (max-width: 576px) {
-  .elegir-section { padding: 80px 20px; }
-  .elegir-title-gradient { font-size: 2.2rem; }
-  .elegir-subtitle { font-size: 1rem; }
+  /* --- Nuevo diseño de tarjetas --- */
+  .elegir-motivo-card {
+    flex-direction: column; /* Apilar icono y texto */
+    align-items: center; /* Centrar todo */
+    background-color: rgba(30, 41, 59, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+    gap: 12px;
+    padding: 24px;
+  }
+  .elegir-motivo-text {
+    text-align: center;
+  }
+  .elegir-motivo-text h3 {
+    font-size: 1.1rem;
+  }
+  .elegir-motivo-text p {
+    font-size: 0.95rem;
+  }
 }
