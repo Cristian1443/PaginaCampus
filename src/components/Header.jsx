@@ -67,7 +67,7 @@ export default function Header() {
     <header className={`header-fixed ${isScrolled ? 'scrolled' : ''}`}>
       <nav className="header-nav">
         <a href="#hero" className="logo" onClick={closeMenu}>
-          <img src="/src/assets/img/logos/logo ue.png" alt="Logo Uniempresarial" className="logo-img" />
+          <img src="/src/assets/img/logos/logo-blanco_11zon-300x46.png" alt="Logo Uniempresarial" className="logo-img" />
         </a>
 
         {/* --- Menú de Escritorio --- */}

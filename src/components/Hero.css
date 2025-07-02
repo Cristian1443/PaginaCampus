@@ -66,7 +66,9 @@
   line-height: 1.1;
   margin: 0 0 24px 0;
   text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  min-height: 1.1em; /* Evita que el título salte de tamaño */
 }
+
 
 .hero-uniempresarial {
   display: block;
@@ -82,6 +84,19 @@
   background: linear-gradient(135deg, #fff 30%, #e4022c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* --- NUEVOS ESTILOS PARA LA ANIMACIÓN DE TECLEADO --- */
+.typing-effect {
+  border-right: 2px solid rgba(228, 2, 44, 0.75); /* El cursor */
+  animation: blink-caret 0.75s step-end infinite;
+  white-space: nowrap; /* Evita que el texto se parta durante la animación */
+}
+
+/* Animación del cursor parpadeante */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: rgba(228, 2, 44, 0.75); }
 }
 
 .hero-subtitle {
@@ -198,6 +213,7 @@
   
   .hero-title {
     font-size: clamp(2rem, 10vw, 3rem); /* Tipografía más adaptativa para móviles */
+    min-height: 2.2em; /* Altura mínima para dos líneas en móvil */
   }
 
   .hero-subtitle {
