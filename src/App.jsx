@@ -9,6 +9,7 @@ import Programas from './components/Programas';
 import PorQueElegirnos from './components/PorQueElegirnos';
 import Partners from './components/Partners';
 import Proximamente from './components/Proximamente';
+import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <PorQueElegirnos />
       <Partners />
       <Proximamente />
+      <ContactForm />
       <Footer />
     </>
   );

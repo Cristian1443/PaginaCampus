@@ -101,7 +101,7 @@
 }
 
 .about-title .about-title-yellow {
-  background: linear-gradient(90deg, #ffd600 60%, #fff59d 100%);
+  background: linear-gradient(90deg, #e4022c 60%, #273474 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -176,12 +176,12 @@
 }
 
 .about-benefits li:nth-child(1) .dot { background: #4fc3f7; }
-.about-benefits li:nth-child(2) .dot { background: #ffd600; }
+.about-benefits li:nth-child(2) .dot { background: #e4022c; }
 .about-benefits li:nth-child(3) .dot { background: #4caf50; }
 .about-benefits li:nth-child(4) .dot { background: #a259f7; }
 
 .about-button {
-  background: linear-gradient(135deg, #2563eb 0%, #4fc3f7 100%);
+  background: linear-gradient(135deg, #273474 0%, #e4022c 100%);
   color: #fff;
   border: none;
   border-radius: 32px;
@@ -227,7 +227,7 @@
 }
 
 .about-button:hover {
-  background: linear-gradient(135deg, #1a237e 0%, #2563eb 100%);
+  background: linear-gradient(135deg, #1a237e 0%, #e4022c 100%);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px 0 rgba(58,123,213,0.25);
 }

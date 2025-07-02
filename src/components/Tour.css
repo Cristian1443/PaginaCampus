@@ -18,7 +18,7 @@
   font-size: 2.5rem;
   font-weight: 900;
   margin-bottom: 10px;
-  background: linear-gradient(90deg, #4fc3f7 0%, #ffd600 100%);
+  background: linear-gradient(90deg, #273474 0%, #e4022c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -26,8 +26,8 @@
   display: inline-block;
 }
 .tour-title-yellow {
-  color: #ffd600;
-  -webkit-text-fill-color: #ffd600;
+  color: #e4022c;
+  -webkit-text-fill-color: #e4022c;
   background: none;
 }
 .tour-subtitle {
