@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import './Admisiones.css';
 
 // --- Array de datos para los pasos de admisión ---
@@ -20,6 +21,31 @@ const admissionSteps = [
 ];
 
 export default function Admisiones() {
+  const [isVisible, setIsVisible] = useState(false);
+  const stepsGridRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (stepsGridRef.current) {
+      observer.observe(stepsGridRef.current);
+    }
+
+    return () => {
+      if (stepsGridRef.current) {
+        observer.unobserve(stepsGridRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section className="admisiones-section" id="admisiones">
       <div className="admisiones-content">
@@ -28,8 +54,10 @@ export default function Admisiones() {
           Nuestro proceso de admisión es ágil, transparente y 100% digital. Únete a la nueva generación de líderes en solo 3 simples pasos.
         </p>
         
-        {/* --- NUEVA SECCIÓN DE PASOS --- */}
-        <div className="admisiones-steps-grid">
+        <div 
+          className={`admisiones-steps-grid ${isVisible ? 'is-visible' : ''}`}
+          ref={stepsGridRef}
+        >
           {admissionSteps.map((item, index) => (
             <div key={index} className="step-card">
               <div className="step-number">{item.step}</div>

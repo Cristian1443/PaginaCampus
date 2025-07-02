@@ -1,4 +1,4 @@
-/* --- ESTILOS MEJORADOS Y PROFESIONALES PARA HEADER.CSS --- */
+/* --- ESTILOS CORREGIDOS PARA HEADER.CSS (UNA SOLA LÍNEA) --- */
 
 .header-fixed {
   position: fixed;
@@ -38,6 +38,8 @@
 .logo-img {
   height: 40px;
   transition: height 0.3s ease-in-out;
+  /* Esta línea convierte el logo existente en blanco */
+  filter: brightness(0) invert(1);
 }
 
 .header-fixed.scrolled .logo-img {
@@ -88,8 +90,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  /* Animación */
   opacity: 0;
   visibility: hidden;
   transform: translateY(-20px);
@@ -139,7 +139,6 @@
 .nav-links-mobile-container.open li:nth-child(7) { animation-delay: 0.5s; }
 .nav-links-mobile-container.open li:nth-child(8) { animation-delay: 0.55s; }
 .nav-links-mobile-container.open li:nth-child(9) { animation-delay: 0.6s; }
-
 
 @keyframes menuItemFadeIn {
   to {

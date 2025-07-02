@@ -20,16 +20,15 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Manejar el estado de scroll
       setIsScrolled(window.scrollY > 20);
 
-      // Manejar la sección activa
       let current = 'hero';
+      const offset = 120; // Mayor offset por el alto del header
       for (const section of sections) {
         const el = document.getElementById(section.id);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 80 && rect.bottom > 80) {
+          if (rect.top <= offset && rect.bottom > offset) {
             current = section.id;
             break;
           }
@@ -42,35 +41,24 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Efecto para bloquear el scroll del body cuando el menú está abierto
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    // Cleanup function para re-habilitar el scroll si el componente se desmonta
+    document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
     return () => {
       document.body.style.overflow = 'auto';
     };
   }, [isMenuOpen]);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <header className={`header-fixed ${isScrolled ? 'scrolled' : ''}`}>
       <nav className="header-nav">
         <a href="#hero" className="logo" onClick={closeMenu}>
-          <img src="/src/assets/img/logos/logo-blanco_11zon-300x46.png" alt="Logo Uniempresarial" className="logo-img" />
+          {/* Se usa el logo original. El CSS se encargará del color. */}
+          <img src="/src/assets/img/logos/logo ue.png" alt="Logo Uniempresarial" className="logo-img" />
         </a>
 
-        {/* --- Menú de Escritorio --- */}
         <ul className="nav-links-desktop">
           {sections.map((section) => (
             <li key={section.id}>
@@ -81,7 +69,6 @@ export default function Header() {
           ))}
         </ul>
         
-        {/* --- Menú Móvil --- */}
         <div className={`nav-links-mobile-container ${isMenuOpen ? 'open' : ''}`}>
           <ul className="nav-links-mobile">
             {sections.map((section) => (
@@ -94,7 +81,6 @@ export default function Header() {
           </ul>
         </div>
         
-        {/* Botón de Hamburguesa */}
         <button 
           className={`hamburger ${isMenuOpen ? 'open' : ''}`}
           onClick={toggleMenu}

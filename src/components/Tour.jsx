@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import './Tour.css';
 
 // --- Array de datos para las tarjetas del Tour ---
@@ -44,8 +45,32 @@ const tourStops = [
   }
 ];
 
-
 export default function Tour() {
+  const [isVisible, setIsVisible] = useState(false);
+  const tourGridRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 } // Animar cuando el 10% sea visible
+    );
+
+    if (tourGridRef.current) {
+      observer.observe(tourGridRef.current);
+    }
+
+    return () => {
+      if (tourGridRef.current) {
+        observer.unobserve(tourGridRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section className="tour-section" id="tour">
       <div className="tour-content">
@@ -55,7 +80,10 @@ export default function Tour() {
         <p className="tour-subtitle">
           Explora cada rincón de nuestro campus y descubre espacios diseñados para potenciar tu experiencia educativa.
         </p>
-        <div className="tour-grid">
+        <div 
+          className={`tour-grid ${isVisible ? 'is-visible' : ''}`}
+          ref={tourGridRef}
+        >
           {tourStops.map((stop, index) => (
             <div key={index} className="tour-card">
               <div className="tour-card-image">

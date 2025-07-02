@@ -58,11 +58,29 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+
+  /* --- ESTILOS PARA LA NUEVA ANIMACIÓN --- */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
 }
+
+/* --- ESTADO VISIBLE PARA LA ANIMACIÓN --- */
+.tour-grid.is-visible .tour-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- RETRASOS ESCALONADOS PARA LAS TARJETAS --- */
+.tour-grid.is-visible .tour-card:nth-child(1) { transition-delay: 0.1s; }
+.tour-grid.is-visible .tour-card:nth-child(2) { transition-delay: 0.2s; }
+.tour-grid.is-visible .tour-card:nth-child(3) { transition-delay: 0.3s; }
+.tour-grid.is-visible .tour-card:nth-child(4) { transition-delay: 0.4s; }
+.tour-grid.is-visible .tour-card:nth-child(5) { transition-delay: 0.5s; }
+
 
 .tour-card:hover {
   transform: translateY(-10px);
@@ -180,19 +198,17 @@
     gap: 16px; /* Menos espacio entre tarjetas */
   }
 
-  /* --- NUEVO DISEÑO DE TARJETA HORIZONTAL --- */
   .tour-card {
-    flex-direction: row; /* Layout horizontal */
-    align-items: center; /* Centrar verticalmente */
+    flex-direction: row; 
+    align-items: center;
     gap: 16px;
     padding: 20px;
-    background: #1e293b; /* Fondo sólido */
-    backdrop-filter: none; /* Quitar efecto de cristal */
+    background: #1e293b; 
+    backdrop-filter: none; 
     border-radius: 12px;
   }
   
   .tour-card-image {
-    /* Reemplazar la imagen superior por un icono circular */
     height: 48px;
     width: 48px;
     border: none;
@@ -201,7 +217,7 @@
   }
   
   .tour-card-icon {
-    font-size: 1.5rem; /* Icono más pequeño */
+    font-size: 1.5rem; 
   }
 
   .tour-card-content {
@@ -219,7 +235,6 @@
     margin: 0;
   }
 
-  /* --- Ocultar elementos no esenciales en móvil --- */
   .tour-list, .tour-btn {
     display: none;
   }

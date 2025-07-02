@@ -38,7 +38,6 @@
   line-height: 1.7;
 }
 
-/* --- GRID PARA LOS PASOS --- */
 .admisiones-steps-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -46,7 +45,6 @@
   margin-bottom: 60px;
 }
 
-/* --- DISEÑO DE TARJETA PARA CADA PASO --- */
 .step-card {
   background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6));
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -55,12 +53,31 @@
   text-align: left;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  /* --- ESTILOS PARA LA NUEVA ANIMACIÓN --- */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out, box-shadow 0.3s ease;
 }
 
+/* --- ESTADO VISIBLE QUE ACTIVA LA ANIMACIÓN --- */
+.admisiones-steps-grid.is-visible .step-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- RETRASOS PARA LA ANIMACIÓN ESCALONADA --- */
+.admisiones-steps-grid.is-visible .step-card:nth-child(1) { transition-delay: 0.1s; }
+.admisiones-steps-grid.is-visible .step-card:nth-child(2) { transition-delay: 0.2s; }
+.admisiones-steps-grid.is-visible .step-card:nth-child(3) { transition-delay: 0.3s; }
+
 .step-card:hover {
-  transform: translateY(-10px);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* El efecto de hover solo se aplica cuando la tarjeta ya es visible */
+.admisiones-steps-grid.is-visible .step-card:hover {
+  transform: translateY(-10px);
 }
 
 .step-number {
@@ -94,7 +111,6 @@
   margin: 0;
 }
 
-/* --- BOTÓN DE LLAMADA A LA ACCIÓN (CTA) REFINADO --- */
 .admisiones-btn {
   display: inline-block;
   background: linear-gradient(135deg, #273474 0%, #e4022c 100%);
@@ -116,7 +132,6 @@
 
 /* --- RESPONSIVE --- */
 @media (max-width: 992px) {
-  /* Mantenemos la grilla de una columna para tablets, pero el diseño de timeline se activa en 768px */
   .admisiones-steps-grid {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -135,21 +150,21 @@
     margin-bottom: 50px;
   }
   
-  /* --- ESTILOS DEL TIMELINE --- */
   .admisiones-steps-grid {
-    gap: 0; /* Sin espacio entre tarjetas en el timeline */
+    gap: 0; 
   }
 
   .step-card {
     background: none;
     border: none;
-    padding: 0 0 40px 0; /* Espacio solo debajo de cada paso */
-    display: flex; /* Flexbox para alinear número y texto */
+    padding: 0 0 40px 0; 
+    display: flex; 
     gap: 20px;
     align-items: flex-start;
-    overflow: visible; /* Permitir que la línea se vea */
+    overflow: visible; 
   }
 
+  .admisiones-steps-grid.is-visible .step-card:hover,
   .step-card:hover {
     transform: none;
     box-shadow: none;
@@ -170,10 +185,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2; /* Por encima de la línea */
+    z-index: 2;
   }
 
-  /* --- La línea del Timeline --- */
   .step-number::after {
     content: '';
     position: absolute;
@@ -181,18 +195,17 @@
     left: 50%;
     transform: translateX(-50%);
     width: 2px;
-    height: 64px; /* Altura de la línea (distancia al siguiente paso) */
+    height: 64px; 
     background-color: rgba(255, 255, 255, 0.1);
     z-index: 1;
   }
 
-  /* Ocultar la línea del último elemento */
   .admisiones-steps-grid .step-card:last-child .step-number::after {
     display: none;
   }
   
   .admisiones-steps-grid .step-card:last-child {
-      padding-bottom: 0; /* Quitar espacio extra al final */
+      padding-bottom: 0;
   }
 
   .step-content h3 {
@@ -204,6 +217,6 @@
   }
   
   .admisiones-btn {
-    width: 100%; /* Botón de ancho completo */
+    width: 100%; 
   }
 }
