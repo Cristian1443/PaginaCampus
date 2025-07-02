@@ -5,43 +5,63 @@ export default function Partners() {
     <section className="partners-section" id="partners">
       <div className="partners-content">
         <h2 className="partners-title">
-          Colaboración <span className="partners-title-yellow">Estratégica</span>
+          Una Alianza <span className="partners-title-yellow">Estratégica</span>
         </h2>
         <p className="partners-subtitle">
-          Este proyecto ha sido prototipado en colaboración con la Fábrica de Soluciones FuSoft, líderes en innovación tecnológica
+          Este proyecto es el resultado de la sinergia entre la visión educativa de Uniempresarial y la experiencia en innovación de la Fábrica de Soluciones FuSoft.
         </p>
-        <div className="partners-logos" style={{display:'flex',justifyContent:'center',alignItems:'center',gap:'18px',marginBottom:'32px'}}>
-          <img src="/src/assets/img/logos/Logo uniempresarial rectangular CCB_Logo Completo Uniempresarial a color.png" alt="Uniempresarial" className="partner-logo" style={{height:'48px',background:'#fff',borderRadius:'8px',padding:'6px'}} />
-          <span className="plus" style={{fontSize:'2.2rem',color:'#fff',fontWeight:'700'}}>+</span>
-          <img src="/src/assets/img/logos/fUSoft extended 7.png" alt="FuSoft" className="partner-logo" style={{height:'48px',background:'#fff',borderRadius:'8px',padding:'6px'}} />
-        </div>
-        <div className="partners-main">
-          <div className="partners-image">
-            {/* Aquí puedes poner la imagen real cuando la tengas */}
-            <svg width="420" height="260" viewBox="0 0 420 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="420" height="260" rx="18" fill="#e3f2fd"/>
-              <rect x="30" y="40" width="90" height="50" rx="8" fill="#fff"/>
-              <rect x="140" y="30" width="60" height="30" rx="6" fill="#fff"/>
-              <rect x="210" y="60" width="70" height="40" rx="8" fill="#fff"/>
-              <rect x="60" y="110" width="200" height="20" rx="6" fill="#bbdefb"/>
-            </svg>
+
+        {/* --- PANEL PRINCIPAL DE LA ALIANZA --- */}
+        <div className="partnership-panel">
+          <div className="partnership-logos">
+            <img src="/src/assets/img/logos/Logo uniempresarial rectangular CCB_Logo Completo Uniempresarial a color.png" alt="Uniempresarial" className="partner-logo" />
+            <div className="partnership-icon">+</div>
+            <img src="/src/assets/img/logos/fUSoft extended 7.png" alt="FuSoft" className="partner-logo" />
           </div>
-          <div className="partners-cards">
-            <div className="partners-card">
-              <div className="partners-card-title">Innovación Conjunta</div>
-              <div className="partners-card-desc">
-                La alianza entre Uniempresarial y FuSoft representa la unión perfecta entre experiencia educativa e innovación tecnológica.
-                <ul className="partners-list">
-                  <li><span className="dot" style={{background:'#ffd600'}}></span>Desarrollo de prototipos avanzados</li>
-                  <li><span className="dot" style={{background:'#ffd600'}}></span>Soluciones tecnológicas personalizadas</li>
-                  <li><span className="dot" style={{background:'#ffd600'}}></span>Investigación y desarrollo continuo</li>
+
+          <div className="partnership-showcase">
+            <div className="partnership-illustration">
+              {/* --- NUEVA ILUSTRACIÓN SVG --- */}
+              <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" style={{width: '100%', height: '1%'}}>
+                <defs>
+                  <linearGradient id="p-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#273474" />
+                    <stop offset="100%" stopColor="#3b82f6" />
+                  </linearGradient> 
+                  <linearGradient id="p-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#e4022c" />
+                    <stop offset="100%" stopColor="#f59e0b" />
+                  </linearGradient>
+                </defs>
+                {/* Flujo izquierdo (Uniempresarial) */}
+                <path d="M0 150 C 150 50, 150 250, 300 150" stroke="url(#p-gradient-1)" strokeWidth="4" fill="none" className="flow-line" />
+                {/* Flujo derecho (FuSoft) */}
+                <path d="M600 150 C 450 50, 450 250, 300 150" stroke="url(#p-gradient-2)" strokeWidth="4" fill="none" className="flow-line" style={{animationDelay: '0.5s'}}/>
+                
+                {/* Núcleo central (El Proyecto) */}
+                <circle cx="300" cy="150" r="40" fill="#0f172a" stroke="#fff" strokeWidth="2" />
+                <circle cx="300" cy="150" r="30" fill="none" stroke="#fff" strokeOpacity="0.5" strokeDasharray="5" className="core-ring"/>
+                <text x="300" y="150" textAnchor="middle" dy=".3em" fill="#fff" fontSize="20">🚀</text>
+              </svg>
+            </div>
+            <div className="partnership-content">
+              <div className="partnership-column">
+                <h4>Innovación Conjunta</h4>
+                <p>La unión perfecta entre experiencia educativa e innovación tecnológica para crear la plataforma del futuro.</p>
+                <ul>
+                  <li>Desarrollo de prototipos avanzados</li>
+                  <li>Soluciones tecnológicas personalizadas</li>
+                  <li>Investigación y desarrollo continuo</li>
                 </ul>
               </div>
-            </div>
-            <div className="partners-card partners-card-yellow">
-              <div className="partners-card-title">Fábrica de Soluciones</div>
-              <div className="partners-card-desc">
-                FuSoft aporta su experiencia en el desarrollo de soluciones tecnológicas innovadoras para crear la plataforma educativa más avanzada del mercado.
+              <div className="partnership-column">
+                <h4>Fábrica de Soluciones</h4>
+                <p>FuSoft aporta su maestría en el desarrollo de software para garantizar una plataforma robusta, escalable y segura.</p>
+                <ul>
+                  <li>Metodologías ágiles</li>
+                  <li>Arquitectura de microservicios</li>
+                  <li>Experiencia de usuario de alto nivel</li>
+                </ul>
               </div>
             </div>
           </div>

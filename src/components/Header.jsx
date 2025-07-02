@@ -10,15 +10,20 @@ const sections = [
   { id: 'partners', label: 'FuSoft' },
   { id: 'admisiones', label: 'Admisiones' },
   { id: 'programas', label: 'Programas' },
-  { id: 'footer', label: 'Contacto' },
+  { id: 'contact', label: 'Contacto' },
 ];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
+      // Manejar el estado de scroll
+      setIsScrolled(window.scrollY > 20);
+
+      // Manejar la sección activa
       let current = 'hero';
       for (const section of sections) {
         const el = document.getElementById(section.id);
@@ -32,10 +37,23 @@ export default function Header() {
       }
       setActiveSection(current);
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Efecto para bloquear el scroll del body cuando el menú está abierto
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    // Cleanup function para re-habilitar el scroll si el componente se desmonta
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMenuOpen]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -46,26 +64,39 @@ export default function Header() {
   };
 
   return (
-    <header className="header-fixed">
+    <header className={`header-fixed ${isScrolled ? 'scrolled' : ''}`}>
       <nav className="header-nav">
-        <div className="logo">
-          <img src="/src/assets/img/logos/logo ue.png" alt="Logo" className="logo-placeholder" />
-        </div>
-        <ul className={`nav-links ${isMenuOpen ? 'nav-open' : ''}`}>
+        <a href="#hero" className="logo" onClick={closeMenu}>
+          <img src="/src/assets/img/logos/logo ue.png" alt="Logo Uniempresarial" className="logo-img" />
+        </a>
+
+        {/* --- Menú de Escritorio --- */}
+        <ul className="nav-links-desktop">
           {sections.map((section) => (
             <li key={section.id}>
-              <a
-                href={`#${section.id}`}
-                onClick={closeMenu}
-                className={activeSection === section.id ? 'active' : ''}
-              >
+              <a href={`#${section.id}`} className={activeSection === section.id ? 'active' : ''}>
                 {section.label}
               </a>
             </li>
           ))}
         </ul>
+        
+        {/* --- Menú Móvil --- */}
+        <div className={`nav-links-mobile-container ${isMenuOpen ? 'open' : ''}`}>
+          <ul className="nav-links-mobile">
+            {sections.map((section) => (
+              <li key={section.id}>
+                <a href={`#${section.id}`} onClick={closeMenu}>
+                  {section.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        {/* Botón de Hamburguesa */}
         <button 
-          className={`hamburger ${isMenuOpen ? 'hamburger-open' : ''}`}
+          className={`hamburger ${isMenuOpen ? 'open' : ''}`}
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >

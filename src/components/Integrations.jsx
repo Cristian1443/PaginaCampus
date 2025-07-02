@@ -1,65 +1,75 @@
+import { useState } from 'react';
 import './Integrations.css';
 
+// --- Array de datos para las integraciones ---
+const integrationsData = [
+  {
+    id: 'lms',
+    icon: '📚',
+    title: "LMS Avanzado",
+    description: "Gestión completa del aprendizaje con seguimiento personalizado y analíticas en tiempo real para potenciar el éxito estudiantil."
+  },
+  {
+    id: 'connectivity',
+    icon: '🔄',
+    title: "Conectividad Total",
+    description: "Sincronización automática entre dispositivos y plataformas para una experiencia de aprendizaje fluida y sin interrupciones."
+  },
+  {
+    id: 'api',
+    icon: '🔌',
+    title: "APIs Robustas",
+    description: "Nuestra arquitectura abierta permite una integración fluida con sistemas externos y herramientas educativas de terceros."
+  }
+];
+
 export default function Integrations() {
+  const [activeIntegration, setActiveIntegration] = useState('lms');
+
   return (
     <section className="integrations-section" id="integrations">
       <div className="integrations-content">
-        <h2 className="integrations-title">
-          Integración <span className="integrations-title-yellow">Tecnológica</span>
-        </h2>
-        <p className="integrations-subtitle">
-          El Uniempresarial Mega Campus del Futuro se integra perfectamente con nuestras plataformas académicas existentes
-        </p>
-        <div className="integrations-main">
-          <div className="integrations-image">
-            {/* Aquí puedes poner la imagen real cuando la tengas */}
-            <svg width="420" height="260" viewBox="0 0 420 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="420" height="260" rx="18" fill="#e3f2fd"/>
-              <rect x="30" y="40" width="90" height="50" rx="8" fill="#fff"/>
-              <rect x="140" y="30" width="60" height="30" rx="6" fill="#fff"/>
-              <rect x="210" y="60" width="70" height="40" rx="8" fill="#fff"/>
-              <rect x="60" y="110" width="200" height="20" rx="6" fill="#bbdefb"/>
-            </svg>
+        <div className="integrations-header">
+          <h2 className="integrations-title">
+            Ecosistema Tecnológico <span className="integrations-title-yellow">Unificado</span>
+          </h2>
+          <p className="integrations-subtitle">
+            El campus se integra perfectamente con nuestras plataformas académicas existentes, creando una experiencia educativa sin fisuras.
+          </p>
+        </div>
+        
+        <div className="integrations-panel">
+          {/* Columna Izquierda: Visualización */}
+          <div className="integrations-showcase">
+            <div className="showcase-background"></div>
+            {/* Las visualizaciones cambian según el estado `activeIntegration` */}
+            <div className={`showcase-visual lms-visual ${activeIntegration === 'lms' ? 'active' : ''}`}>
+                {/* Aquí podrías poner una imagen o un SVG complejo para LMS */}
+                <p>Visualización del LMS</p>
+            </div>
+            <div className={`showcase-visual connectivity-visual ${activeIntegration === 'connectivity' ? 'active' : ''}`}>
+                <p>Visualización de Conectividad</p>
+            </div>
+            <div className={`showcase-visual api-visual ${activeIntegration === 'api' ? 'active' : ''}`}>
+                <p>Visualización de APIs</p>
+            </div>
           </div>
-          <div className="integrations-cards">
-            <div className="integration-card integration-card-blue">
-              <div className="integration-icon">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="28" height="28" rx="8" fill="#2563eb"/>
-                  <path d="M8 14H20M14 8V20" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
+
+          {/* Columna Derecha: Lista de Integraciones */}
+          <div className="integrations-list">
+            {integrationsData.map((item) => (
+              <div 
+                key={item.id} 
+                className={`integration-item ${activeIntegration === item.id ? 'active' : ''}`}
+                onMouseEnter={() => setActiveIntegration(item.id)}
+              >
+                <div className="integration-item-icon">{item.icon}</div>
+                <div className="integration-item-text">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
               </div>
-              <div>
-                <div className="integration-title">LMS Avanzado</div>
-                <div className="integration-desc">Gestión completa del aprendizaje con seguimiento personalizado y analíticas en tiempo real.</div>
-              </div>
-            </div>
-            <div className="integration-card integration-card-yellow">
-              <div className="integration-icon">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="28" height="28" rx="8" fill="#ffd600"/>
-                  <path d="M8 14H20" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
-                  <circle cx="14" cy="14" r="3" fill="#fff"/>
-                </svg>
-              </div>
-              <div>
-                <div className="integration-title">Conectividad Total</div>
-                <div className="integration-desc">Sincronización automática entre dispositivos y plataformas para una experiencia sin interrupciones.</div>
-              </div>
-            </div>
-            <div className="integration-card integration-card-green">
-              <div className="integration-icon">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="28" height="28" rx="8" fill="#1de9b6"/>
-                  <path d="M8 14H20" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M14 8V20" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-              </div>
-              <div>
-                <div className="integration-title">APIs Robustas</div>
-                <div className="integration-desc">Integración fluida con sistemas externos y herramientas educativas de terceros.</div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

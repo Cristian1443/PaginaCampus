@@ -5,56 +5,60 @@ export default function Features() {
     <section className="features-section" id="features">
       <div className="features-content">
         <h2 className="features-title-gradient">
-          El Campus Virtual más <span className="features-title-yellow">Avanzado</span>
+          Un Campus Virtual <span className="features-title-yellow">Excepcional</span>
         </h2>
         <p className="features-subtitle">
-          Nuestro campus cuenta con espacios virtuales interactivos diseñados para simular la experiencia universitaria más realista posible, integrando tecnología de vanguardia con metodologías pedagógicas innovadoras.
+          Descubre un entorno educativo diseñado para el éxito. Cada herramienta y espacio virtual ha sido creado para ofrecerte una experiencia de aprendizaje inmersiva, interactiva y sin límites.
         </p>
         <div className="features-grid">
+          {/* --- TARJETA 1: Interacción Social --- */}
           <div className="feature-card">
             <div className="feature-icon feature-icon-blue">
-              <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="19" cy="19" r="19" fill="#2563eb"/>
-                <path d="M19 25C16.2386 25 14 22.7614 14 20C14 17.2386 16.2386 15 19 15C21.7614 15 24 17.2386 24 20C24 22.7614 21.7614 25 19 25Z" stroke="white" strokeWidth="2"/>
-                <path d="M19 19V20.5" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                <circle cx="19" cy="17" r="1" fill="white"/>
+              {/* Icono Mejorado: Representa comunicación y comunidad */}
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 00-12.234 0M12 15.75a3.75 3.75 0 100-7.5 3.75 3.75 0 000 7.5zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <h3>Interacción Social</h3>
-            <p>Espacios de encuentro y colaboración virtual</p>
+            <p>Conecta, colabora y crea en espacios de encuentro virtual diseñados para el networking.</p>
           </div>
+
+          {/* --- TARJETA 2: Recursos Digitales --- */}
           <div className="feature-card">
             <div className="feature-icon feature-icon-yellow">
-              <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="19" cy="19" r="19" fill="#ffd600"/>
-                <rect x="13" y="15" width="12" height="8" rx="2" stroke="white" strokeWidth="2"/>
-                <path d="M13 17L19 21L25 17" stroke="white" strokeWidth="2"/>
+              {/* Icono Mejorado: Representa una biblioteca o base de datos digital */}
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
               </svg>
             </div>
             <h3>Recursos Digitales</h3>
-            <p>Biblioteca y materiales de última generación</p>
+            <p>Accede a una biblioteca infinita de conocimiento con materiales de última generación.</p>
           </div>
+
+          {/* --- TARJETA 3: Simuladores Prácticos --- */}
           <div className="feature-card">
             <div className="feature-icon feature-icon-green">
-              <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="19" cy="19" r="19" fill="#1de9b6"/>
-                <path d="M19 13V25" stroke="white" strokeWidth="2"/>
-                <path d="M13 19H25" stroke="white" strokeWidth="2"/>
+              {/* Icono Mejorado: Representa un entorno de pruebas o simulación */}
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 6.087c0-1.732.86-3.322 2.25-4.337a3.75 3.75 0 115.253 5.253c-1.015 1.39-2.605 2.25-4.337 2.25H14.25v-3.163z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 18.75c-1.732 0-3.322-.86-4.337-2.25a3.75 3.75 0 115.253-5.253c1.39 1.015 2.25 2.605 2.25 4.337V18.75z" />
               </svg>
             </div>
-            <h3>Simuladores</h3>
-            <p>Práctica profesional en entornos realistas</p>
+            <h3>Simuladores Prácticos</h3>
+            <p>Aplica tus conocimientos en entornos profesionales realistas y sin riesgos.</p>
           </div>
+          
+          {/* --- TARJETA 4: Asistencia con IA --- */}
           <div className="feature-card">
             <div className="feature-icon feature-icon-purple">
-              <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="19" cy="19" r="19" fill="#a259f7"/>
-                <path d="M19 13L19 25" stroke="white" strokeWidth="2"/>
-                <path d="M15 19L23 19" stroke="white" strokeWidth="2"/>
+              {/* Icono Mejorado: Representa inteligencia y tecnología */}
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 3.75 3.75 0 00-7.467.495A3.75 3.75 0 0012 18z" />
               </svg>
             </div>
-            <h3>IA Avanzada</h3>
-            <p>Asistentes inteligentes personalizados</p>
+            <h3>Asistencia con IA</h3>
+            <p>Tu asistente inteligente personal, Stuttgart, está disponible 24/7 para guiarte.</p>
           </div>
         </div>
       </div>
