@@ -60,77 +60,42 @@
   gap: 28px;
 }
 
-/* --- DISEÑO DE TARJETA REFINADO (GLASSMORPHISM) --- */
+/* --- ESTILOS PARA LA TARJETA INCLINADA --- */
 .feature-card {
+  /* Contenedor principal de la tarjeta. Usamos perspective para el efecto 3D */
+  perspective: 800px;
   background: rgba(30, 41, 59, 0.6);
   border-radius: 18px;
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  
-  /* Posición relativa y overflow para el nuevo efecto de brillo */
-  position: relative;
-  overflow: hidden;
-
-  opacity: 0;
-  transform: translateY(30px);
-  /* Se añade box-shadow a la transición para el efecto de resplandor */
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 32px;
 }
 
-/* --- NUEVO EFECTO DE BRILLO (SHINE) --- */
-.feature-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%; /* Empieza fuera de la tarjeta */
+.feature-card-inner {
+  /* Contenedor interno que rota y se escala */
   width: 100%;
   height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.6s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transform-style: preserve-3d; /* Permite transformaciones 3D en los hijos */
+  will-change: transform;
 }
 
-.features-grid.is-visible .feature-card {
-  opacity: 1;
-  transform: translateY(0);
+.feature-icon, .feature-card h3, .feature-card p {
+  /* Evita que los eventos en los hijos interfieran con el cálculo de coordenadas */
+  pointer-events: none; 
 }
-
-.features-grid.is-visible .feature-card:nth-child(1) { transition-delay: 0.1s; }
-.features-grid.is-visible .feature-card:nth-child(2) { transition-delay: 0.2s; }
-.features-grid.is-visible .feature-card:nth-child(3) { transition-delay: 0.3s; }
-.features-grid.is-visible .feature-card:nth-child(4) { transition-delay: 0.4s; }
-
-
-/* --- ESTADO HOVER MEJORADO --- */
-.feature-card:hover {
-  transform: translateY(-10px);
-  background: rgba(30, 41, 59, 0.9);
-  border-color: rgba(228, 2, 44, 0.5);
-  /* NUEVO Efecto de resplandor */
-  box-shadow: 0 10px 50px rgba(228, 2, 44, 0.2);
-}
-
-/* Activa el efecto de brillo al pasar el cursor */
-.feature-card:hover::before {
-  left: 100%; /* Mueve el brillo a través de la tarjeta */
-}
-
 
 .feature-icon {
   width: 48px;
   height: 48px;
   margin-bottom: 24px;
-  transition: transform 0.3s ease;
-}
-
-.feature-card:hover .feature-icon {
-  transform: scale(1.15);
+  transform: translateZ(40px); /* Eleva el icono en el espacio 3D */
 }
 
 .feature-icon-blue svg { color: #3b82f6; }
@@ -143,6 +108,7 @@
   font-size: 1.25rem;
   font-weight: 600;
   margin: 0 0 8px 0;
+  transform: translateZ(30px); /* Eleva el título */
 }
 
 .feature-card p {
@@ -151,9 +117,19 @@
   font-weight: 400;
   margin: 0;
   line-height: 1.6;
+  transform: translateZ(20px); /* Eleva el párrafo */
 }
 
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
+  /* Desactivamos el efecto 3D en móvil por rendimiento y usabilidad */
+  .feature-card {
+    perspective: none;
+  }
+  .feature-card-inner, .feature-icon, .feature-card h3, .feature-card p {
+    transform: none;
+  }
+  
   .features-section { 
     padding: 60px 15px; 
   }
@@ -172,11 +148,6 @@
   .feature-card {
     background: rgba(30, 41, 59, 0.8);
     padding: 24px;
-    border-radius: 16px;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 0;
   }
 
   .feature-icon {

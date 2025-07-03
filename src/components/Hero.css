@@ -61,12 +61,12 @@
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 6vw, 4.5rem); /* Tipografía fluida */
+  font-size: clamp(2.5rem, 6vw, 4.5rem); 
   font-weight: 800;
   line-height: 1.1;
   margin: 0 0 24px 0;
   text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  min-height: 1.1em; /* Evita que el título salte de tamaño */
+  min-height: 1.1em; 
 }
 
 
@@ -86,14 +86,13 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* --- NUEVOS ESTILOS PARA LA ANIMACIÓN DE TECLEADO --- */
+/* --- ESTILOS PARA LA ANIMACIÓN DE TECLEADO --- */
 .typing-effect {
-  border-right: 2px solid rgba(228, 2, 44, 0.75); /* El cursor */
+  border-right: 2px solid rgba(228, 2, 44, 0.75);
   animation: blink-caret 0.75s step-end infinite;
-  white-space: nowrap; /* Evita que el texto se parta durante la animación */
+  white-space: nowrap; 
 }
 
-/* Animación del cursor parpadeante */
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: rgba(228, 2, 44, 0.75); }
@@ -129,7 +128,6 @@
   transition: all 0.3s ease;
 }
 
-/* Botón Primario */
 .hero-btn-primary {
   background: linear-gradient(135deg, #273474 0%, #e4022c 100%);
   color: #fff;
@@ -142,7 +140,6 @@
   box-shadow: 0 12px 30px rgba(228, 2, 44, 0.35);
 }
 
-/* Botón Secundario (Ghost) */
 .hero-btn-secondary {
   background: transparent;
   color: #fff;
@@ -174,10 +171,26 @@
   border-radius: 12px;
   padding: 20px 30px;
   min-width: 180px;
-  transition: all 0.3s ease;
+
+  /* --- NUEVOS ESTILOS PARA ANIMACIÓN DE ENTRADA --- */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease, opacity 0.5s ease, transform 0.5s ease;
 }
 
+/* Estado visible para la animación */
+.hero-stat-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Retraso escalonado */
+.hero-stat-card.is-visible:nth-child(1) { transition-delay: 0.2s; }
+.hero-stat-card.is-visible:nth-child(2) { transition-delay: 0.3s; }
+.hero-stat-card.is-visible:nth-child(3) { transition-delay: 0.4s; }
+
 .hero-stat-card:hover {
+  /* El hover se aplica después de la animación de entrada */
   transform: translateY(-5px);
   background: rgba(30, 41, 59, 0.8);
 }
@@ -201,7 +214,7 @@
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
   .hero-section {
-    padding-top: 64px; /* Ajuste para el header fijo */
+    padding-top: 64px; 
     height: auto;
     min-height: 100vh;
     align-items: flex-start;
@@ -212,8 +225,8 @@
   }
   
   .hero-title {
-    font-size: clamp(2rem, 10vw, 3rem); /* Tipografía más adaptativa para móviles */
-    min-height: 2.2em; /* Altura mínima para dos líneas en móvil */
+    font-size: clamp(2rem, 10vw, 3rem); 
+    min-height: 2.2em; 
   }
 
   .hero-subtitle {
