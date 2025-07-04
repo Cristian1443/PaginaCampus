@@ -1,4 +1,4 @@
-/* --- ESTILOS CORREGIDOS PARA HEADER.CSS (UNA SOLA LÍNEA) --- */
+/* --- ESTILOS MEJORADOS (UI/UX) PARA HEADER.CSS --- */
 
 html, body {
   height: 100%;
@@ -31,18 +31,17 @@ html, body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
-  height: 80px; /* Altura inicial */
+  height: 80px;
   transition: height 0.3s ease-in-out;
 }
 
 .header-fixed.scrolled .header-nav {
-  height: 70px; /* Altura reducida al hacer scroll */
+  height: 70px;
 }
 
 .logo-img {
   height: 40px;
   transition: height 0.3s ease-in-out;
-  /* Esta línea convierte el logo existente en blanco */
   filter: brightness(0) invert(1);
 }
 
@@ -81,33 +80,30 @@ html, body {
   background-color: rgba(228, 2, 44, 0.2);
 }
 
-/* --- MENÚ MÓVIL REDISEÑADO --- */
+/* --- MENÚ MÓVIL CON MEJORAS DE UI/UX --- */
 .nav-links-mobile-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  min-height: 100vh;
-  max-height: 100vh;
-  overflow-y: auto;
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(0.95);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 2000;
+  
+  /* --- MEJORA 1: Animación de "Cortina" --- */
+  visibility: hidden;
+  transform: translateY(-100%);
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1), visibility 0.5s;
 }
 
 .nav-links-mobile-container.open {
-  opacity: 1;
   visibility: visible;
-  transform: scale(1);
+  transform: translateY(0);
 }
 
 .nav-links-mobile {
@@ -120,7 +116,6 @@ html, body {
 }
 
 .nav-links-mobile li {
-  margin-bottom: 8px;
   opacity: 0;
   transform: translateY(30px);
   animation: menuItemFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -134,30 +129,20 @@ html, body {
   padding: 16px 24px;
   display: block;
   border-radius: 12px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
 
-.nav-links-mobile a::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(228, 2, 44, 0.1), transparent);
-  transition: left 0.5s ease;
+  /* --- MEJORA 2: Transición de Hover Refinada --- */
+  transition: background-color 0.3s ease, color 0.3s ease, letter-spacing 0.3s ease;
 }
 
 .nav-links-mobile a:hover {
+  background-color: rgba(255, 255, 255, 0.05);
   color: #fff;
-  background: rgba(228, 2, 44, 0.1);
-  transform: translateX(8px);
+  letter-spacing: 1px;
 }
 
-.nav-links-mobile a:hover::before {
-  left: 100%;
+/* Ocultamos el efecto de línea anterior */
+.nav-links-mobile a::before {
+  display: none;
 }
 
 /* Botón de cerrar del menú móvil */
@@ -192,7 +177,7 @@ html, body {
   height: 20px;
 }
 
-/* Animación escalonada para los ítems del menú */
+/* --- MEJORA 3: Animación escalonada (ya estaba bien, se mantiene) --- */
 .nav-links-mobile-container.open li:nth-child(1) { animation-delay: 0.2s; }
 .nav-links-mobile-container.open li:nth-child(2) { animation-delay: 0.25s; }
 .nav-links-mobile-container.open li:nth-child(3) { animation-delay: 0.3s; }
@@ -210,9 +195,9 @@ html, body {
   }
 }
 
-/* --- BOTÓN HAMBURGUESA REDISEÑADO --- */
+/* --- BOTÓN HAMBURGUESA --- */
 .hamburger {
-  display: none; /* Oculto en escritorio */
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -275,7 +260,6 @@ html, body {
   }
 }
 
-/* Media queries para el nuevo diseño */
 @media (max-width: 768px) {
   .header-nav {
     padding: 0 20px;

@@ -1,14 +1,20 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+import particleConfig from './particle-config'; // Importaremos la configuración desde un nuevo archivo
 import './Hero.css';
 
 export default function Hero() {
-  // --- Lógica para la animación de tecleado (existente) ---
   const [typedText, setTypedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const toRotate = ["Mega Campus del Futuro"];
   const period = 2000;
   const [delta, setDelta] = useState(150 - Math.random() * 100);
+
+  const particlesInit = useCallback(async (engine) => {
+    await loadFull(engine);
+  }, []);
 
   useEffect(() => {
     let ticker = setInterval(() => {
@@ -33,61 +39,16 @@ export default function Hero() {
     }
   }
 
-  // --- NUEVA LÓGICA PARA LA ANIMACIÓN DE CONTEO ---
-  const [studentCount, setStudentCount] = useState(0);
-  const [spaceCount, setSpaceCount] = useState(0);
-  const statsRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  // Función genérica para la animación de conteo
-  const countUp = (setter, target, duration = 2000) => {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      const currentVal = Math.floor(progress * target);
-      setter(currentVal);
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      } else {
-        setter(target); // Asegura que el valor final sea exacto
-      }
-    };
-    window.requestAnimationFrame(step);
-  };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          // Iniciar las animaciones de conteo
-          countUp(setStudentCount, 25000);
-          countUp(setSpaceCount, 150);
-          observer.unobserve(entry.target); // Animar solo una vez
-        }
-      },
-      { threshold: 0.5 } // Iniciar cuando el 50% de la sección sea visible
-    );
-
-    if (statsRef.current) {
-      observer.observe(statsRef.current);
-    }
-
-    return () => {
-      if (statsRef.current) {
-        observer.unobserve(statsRef.current);
-      }
-    };
-  }, []);
-
-
   return (
     <section className="hero-section" id="hero">
-      <div className="stars-bg"></div>
-      <div className="twinkling-bg"></div>
+      {/* El componente de partículas reemplaza el fondo CSS anterior */}
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={particleConfig}
+      />
       
-      <div className="hero-content">
+      <div className="hero-content" data-aos="fade-up">
         <h1 className="hero-title">
           <span className="hero-megacampus typing-effect">{typedText}</span>
         </h1>
@@ -103,16 +64,16 @@ export default function Hero() {
             Ver Demo
           </a>
         </div>
-        <div className="hero-stats" ref={statsRef}>
-          <div className={`hero-stat-card ${isVisible ? 'is-visible' : ''}`}>
-            <span className="stat-number stat-blue">+{studentCount.toLocaleString('es-CO')}</span>
+        <div className="hero-stats">
+          <div className="hero-stat-card" data-aos="fade-up" data-aos-delay="200">
+            <span className="stat-number stat-blue">+25.000</span>
             <span className="stat-label">Estudiantes</span>
           </div>
-          <div className={`hero-stat-card ${isVisible ? 'is-visible' : ''}`}>
-            <span className="stat-number stat-yellow">+{spaceCount.toLocaleString('es-CO')}</span>
+          <div className="hero-stat-card" data-aos="fade-up" data-aos-delay="300">
+            <span className="stat-number stat-yellow">+150</span>
             <span className="stat-label">Espacios Virtuales</span>
           </div>
-          <div className={`hero-stat-card ${isVisible ? 'is-visible' : ''}`}>
+          <div className="hero-stat-card" data-aos="fade-up" data-aos-delay="400">
             <span className="stat-number stat-green">24/7</span>
             <span className="stat-label">Acceso Total</span>
           </div>
