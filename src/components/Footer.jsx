@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="footer-top">
           <div className="footer-brand">
             <img 
-              src="/src/assets/img/logos/Logo uniempresarial rectangular CCB_Logo Completo Uniempresarial a color.png" 
+              src="../../public/assets/img/logos/Logo_uniempresarial_rectangular_CCB_Logo_Completo_Uniempresarial_a_color.png" 
               alt="Logo Uniempresarial" 
               className="footer-logo" 
             />
