@@ -56,7 +56,7 @@ export default function About() {
         </div>
         <div className="about-text-content">
           <h2 className="about-title">
-            Conoce a <span className="about-title-yellow">Stuttgart</span>
+            Conoce a Stuttgart
           </h2>
           <p className="about-description">
             "¡Hola! Soy tu guía en el Mega Campus del Futuro. Estoy aquí para potenciar tu aventura educativa y asegurar que aproveches al máximo cada recurso. ¡Empecemos!"

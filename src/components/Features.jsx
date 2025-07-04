@@ -129,7 +129,7 @@ export default function Features() {
     <section className="features-section" id="features">
       <div className="features-content">
         <h2 className="features-title-gradient">
-          Un Campus Virtual <span className="features-title-yellow">Excepcional</span>
+          Un Campus Virtual Excepcional
         </h2>
         <p className="features-subtitle">
           Descubre un entorno educativo diseñado para el éxito. Cada herramienta y espacio virtual ha sido creado para ofrecerte una experiencia de aprendizaje inmersiva, interactiva y sin límites.

@@ -1,41 +1,32 @@
 import { useState } from 'react';
 import './Integrations.css';
+import lmsImg from '../../public/assets/img/imagenes/LSM.png';
+import connectivityImg from '../../public/assets/img/imagenes/conectividad.png';
+import apiImg from '../../public/assets/img/imagenes/Apis.png';
 
 const integrationsData = [
   {
     id: 'lms',
     icon: '📚',
+    image: lmsImg,
     title: "LMS Avanzado",
     description: "Gestión completa del aprendizaje con seguimiento personalizado y analíticas en tiempo real para potenciar el éxito estudiantil."
   },
   {
     id: 'connectivity',
     icon: '🔄',
+    image: connectivityImg,
     title: "Conectividad Total",
     description: "Sincronización automática entre dispositivos y plataformas para una experiencia de aprendizaje fluida y sin interrupciones."
   },
   {
     id: 'api',
     icon: '🔌',
+    image: apiImg,
     title: "APIs Robustas",
     description: "Nuestra arquitectura abierta permite una integración fluida con sistemas externos y herramientas educativas de terceros."
   }
 ];
-
-// Componente para la visualización, para mantener el JSX más limpio
-const ShowcaseVisual = ({ type, isActive }) => {
-  const visualMap = {
-    lms: { class: 'lms-visual', text: 'Visualización del LMS' },
-    connectivity: { class: 'connectivity-visual', text: 'Visualización de Conectividad' },
-    api: { class: 'api-visual', text: 'Visualización de APIs' },
-  };
-  const visual = visualMap[type];
-  return (
-    <div className={`showcase-visual ${visual.class} ${isActive ? 'active' : ''}`}>
-      <p>{visual.text}</p>
-    </div>
-  );
-};
 
 export default function Integrations() {
   const [activeIntegration, setActiveIntegration] = useState('lms');
@@ -44,6 +35,8 @@ export default function Integrations() {
   const handleAccordionClick = (id) => {
     setActiveIntegration(activeIntegration === id ? null : id);
   };
+
+  const activeIntegrationData = integrationsData.find(item => item.id === activeIntegration);
 
   return (
     <section className="integrations-section" id="integrations">
@@ -61,9 +54,13 @@ export default function Integrations() {
         <div className="integrations-panel-desktop">
           <div className="integrations-showcase">
             <div className="showcase-background"></div>
-            <ShowcaseVisual type="lms" isActive={activeIntegration === 'lms'} />
-            <ShowcaseVisual type="connectivity" isActive={activeIntegration === 'connectivity'} />
-            <ShowcaseVisual type="api" isActive={activeIntegration === 'api'} />
+            {activeIntegrationData && (
+              <img
+                src={activeIntegrationData.image}
+                alt={activeIntegrationData.title}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '20px' }}
+              />
+            )}
           </div>
           <div className="integrations-list">
             {integrationsData.map((item) => (
@@ -95,7 +92,13 @@ export default function Integrations() {
                 <div className="accordion-content">
                   <p>{item.description}</p>
                   <div className="accordion-visual-placeholder">
-                     <ShowcaseVisual type={item.id} isActive={true} />
+                    {item.image && (
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        style={{ width: '100%', height: '180px', objectFit: 'cover', borderRadius: '12px' }}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
