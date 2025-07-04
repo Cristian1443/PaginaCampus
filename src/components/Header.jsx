@@ -22,13 +22,15 @@ export default function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
       let current = 'hero';
-      const offset = 80; // Ajuste: menor offset por el alto del header
+
       for (const section of sections) {
         const el = document.getElementById(section.id);
         if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= offset && rect.bottom > offset) {
+          const sectionTop = el.offsetTop;
+          const sectionHeight = el.offsetHeight;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
             current = section.id;
             break;
           }
@@ -38,7 +40,12 @@ export default function Header() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+    handleScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   useEffect(() => {

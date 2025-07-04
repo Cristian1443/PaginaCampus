@@ -75,26 +75,9 @@ html, body {
 }
 
 .nav-links-desktop a.active {
-  color: #e4022c;
-  font-weight: 700;
-  background: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 8px 16px;
-  position: relative;
-  transition: color 0.3s;
-}
-
-.nav-links-desktop a.active::after {
-  content: '';
-  display: block;
-  margin: 0 auto;
-  width: 60%;
-  height: 3px;
-  border-radius: 2px;
-  background: #e4022c;
-  margin-top: 2px;
-  transition: background 0.3s;
+  color: #fff;
+  font-weight: 600;
+  background-color: rgba(228, 2, 44, 0.2);
 }
 
 /* --- MENÚ MÓVIL CON MEJORAS DE UI/UX --- */
@@ -160,17 +143,6 @@ html, body {
 /* Ocultamos el efecto de línea anterior */
 .nav-links-mobile a::before {
   display: none;
-}
-
-.nav-links-mobile a.active {
-  color: #e4022c;
-  font-weight: 700;
-  background: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 12px 20px;
-  position: relative;
-  transition: color 0.3s;
 }
 
 /* Botón de cerrar del menú móvil */

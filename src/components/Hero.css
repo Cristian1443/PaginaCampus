@@ -225,9 +225,7 @@
     }
     
     .hero-title {
-      /* ANTES: font-size: clamp(2rem, 10vw, 3rem); */
-      /* DESPUÉS: Un clamp más grande para el título principal */
-      font-size: clamp(2.5rem, 10vw, 4.5rem); 
+      font-size: 3.5em;
       min-height: 2.2em; 
     }
 
