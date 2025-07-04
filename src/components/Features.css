@@ -37,7 +37,9 @@
 }
 
 .features-title-yellow {
-  background: linear-gradient(90deg, #394a9e 0%, #e4022c 100%);
+  font-size: 2.2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #273474, #e4022c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -134,7 +136,9 @@
     padding: 60px 15px; 
   }
   .features-title-gradient { 
-    font-size: clamp(2rem, 10vw, 2.2rem);
+    /* ANTES: font-size: clamp(2rem, 10vw, 2.2rem); */
+    /* DESPUÉS: Estandarizado */
+    font-size: clamp(2.2rem, 7vw, 2.8rem);
   }
   .features-subtitle { 
     font-size: 1rem; 
@@ -174,5 +178,8 @@
   .feature-card p {
     font-size: 0.95rem;
     max-width: 90%;
+  }
+  .features-title-yellow {
+    font-size: 2rem;
   }
 }

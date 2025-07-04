@@ -187,7 +187,8 @@
     padding: 60px 15px;
   }
   .tour-title {
-    font-size: 2rem;
+    /* ANTES: font-size: 2rem; */
+    font-size: clamp(2rem, 8vw, 2.5rem); /* DESPUÉS */
   }
   .tour-subtitle {
     font-size: 1rem;
@@ -195,7 +196,7 @@
   }
   .tour-grid {
     grid-template-columns: 1fr;
-    gap: 16px; /* Menos espacio entre tarjetas */
+    gap: 16px;
   }
 
   .tour-card {

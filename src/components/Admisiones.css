@@ -138,12 +138,20 @@
   }
 }
 
+@media (max-width: 992px) {
+  .admisiones-steps-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
 @media (max-width: 768px) {
   .admisiones-section { 
     padding: 60px 20px; 
   }
   .admisiones-title-gradient { 
-    font-size: 2.2rem; 
+    /* ANTES: font-size: 2.2rem; */
+    font-size: clamp(2rem, 8vw, 2.5rem); /* DESPUÉS */
   }
   .admisiones-desc { 
     font-size: 1rem; 

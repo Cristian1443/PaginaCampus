@@ -83,7 +83,9 @@
 }
 
 .about-title-yellow {
-  background: linear-gradient(90deg, #e4022c 0%, #f59e0b 100%);
+  font-size: 2.2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #273474, #e4022c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -252,5 +254,9 @@
   .about-button {
     width: 100%;
     margin-top: 40px; /* Espacio antes del botón final */
+  }
+
+  .about-title-yellow {
+    font-size: 2rem;
   }
 }

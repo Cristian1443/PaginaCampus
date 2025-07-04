@@ -17,9 +17,12 @@
   color: #fff;
 }
 .integrations-title-yellow {
-  background: linear-gradient(90deg, #394a9e 0%, #e4022c 100%);
+  font-size: 2.2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #273474, #e4022c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 .integrations-subtitle {
   color: #94a3b8;
@@ -190,9 +193,13 @@
 }
 
 /* --- MEDIA QUERY PARA ACTIVAR EL DISEÑO MÓVIL --- */
+/* --- MEDIA QUERY PARA ACTIVAR EL DISEÑO MÓVIL --- */
 @media(max-width: 992px) {
   .integrations-section { padding: 60px 15px; }
-  .integrations-title { font-size: 2rem; }
+  .integrations-title { 
+    /* ANTES: font-size: 2rem; */
+    font-size: clamp(2rem, 8vw, 2.5rem); /* DESPUÉS */
+  }
   .integrations-subtitle { font-size: 1rem; }
   
   .integrations-panel-desktop {
@@ -200,5 +207,11 @@
   }
   .integrations-accordion-mobile {
     display: block; /* Mostrar el acordeón */
+  }
+}
+
+@media (max-width: 768px) {
+  .integrations-title-yellow {
+    font-size: 2rem;
   }
 }

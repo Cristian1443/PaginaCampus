@@ -146,7 +146,8 @@
     text-align: center;
   }
   .elegir-title-gradient {
-    font-size: 2.2rem;
+    /* ANTES: font-size: 2.2rem; */
+    font-size: clamp(2rem, 8vw, 2.5rem); /* DESPUÉS */
   }
   .elegir-subtitle {
     font-size: 1rem;
