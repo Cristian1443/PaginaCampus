@@ -10,7 +10,7 @@ export default function Footer() {
             <img
               src="/assets/img/logos/LogouniempresarialrectangularCCBLogoCompletoUniempresarialacolor.png"
               alt="Logo Uniempresarial"
-              className="footer-logo"
+              className="footer-log"
             />
             <p className="footer-description">
               Transformando la educación superior con tecnología de vanguardia
