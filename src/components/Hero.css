@@ -11,7 +11,7 @@
   min-height: 100vh;
   overflow: hidden;
   background-color: #0c1021;
-  background-image: url('../assets/hero-background.jpg');
+  background-image: url('/public/assets/img/imagenes/hero.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -33,12 +33,15 @@
 
 /* Título principal (mejorado) */
 .hero-title {
-  font-size: clamp(2.8rem, 8vw, 4.5rem); /* Tamaño de fuente responsivo */
+  font-size: clamp(2.5rem, 6vw, 4.5rem); 
   font-weight: 800;
-  line-height: 1.2; /* Ligeramente más espaciado para la legibilidad */
-  margin: 0 auto 24px auto;
-  max-width: 90%; /* Asegura que no toque los bordes en pantallas muy pequeñas */
-  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.7); /* Sombra más pronunciada */
+  line-height: 1.1;
+  margin: 0 0 24px 0;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  min-height: 1.1em; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hero-megacampus {
