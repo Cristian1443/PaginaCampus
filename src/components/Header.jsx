@@ -23,7 +23,7 @@ export default function Header() {
       setIsScrolled(window.scrollY > 20);
 
       let current = 'hero';
-      const offset = 120; // Mayor offset por el alto del header
+      const offset = 80; // Ajuste: menor offset por el alto del header
       for (const section of sections) {
         const el = document.getElementById(section.id);
         if (el) {
@@ -62,7 +62,14 @@ export default function Header() {
         <ul className="nav-links-desktop">
           {sections.map((section) => (
             <li key={section.id}>
-              <a href={`#${section.id}`} className={activeSection === section.id ? 'active' : ''}>
+              <a 
+                href={`#${section.id}`}
+                className={activeSection === section.id ? 'active' : ''}
+                onClick={() => {
+                  setActiveSection(section.id);
+                  closeMenu();
+                }}
+              >
                 {section.label}
               </a>
             </li>
@@ -78,7 +85,14 @@ export default function Header() {
           <ul className="nav-links-mobile">
             {sections.map((section) => (
               <li key={section.id}>
-                <a href={`#${section.id}`} onClick={closeMenu}>
+                <a 
+                  href={`#${section.id}`}
+                  className={activeSection === section.id ? 'active' : ''}
+                  onClick={() => {
+                    setActiveSection(section.id);
+                    closeMenu();
+                  }}
+                >
                   {section.label}
                 </a>
               </li>
