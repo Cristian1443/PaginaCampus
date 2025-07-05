@@ -53,7 +53,12 @@ const featuresData = [
   }
 ];
 
-const springValues = { damping: 30, stiffness: 100, mass: 1.5 };
+// Ajustamos los valores para una sensación más natural y reactiva
+const springValues = {
+  stiffness: 150,
+  damping: 15,
+  mass: 1
+};
 
 // Componente individual para la tarjeta
 const TiltedFeatureCard = ({ feature, isVisible, index }) => {
@@ -68,11 +73,12 @@ const TiltedFeatureCard = ({ feature, isVisible, index }) => {
     const rect = ref.current.getBoundingClientRect();
     const offsetX = e.clientX - rect.left - rect.width / 2;
     const offsetY = e.clientY - rect.top - rect.height / 2;
-    const rotationX = (offsetY / (rect.height / 2)) * -14;
-    const rotationY = (offsetX / (rect.width / 2)) * 14;
+    // Reducimos un poco el ángulo para un efecto más sutil
+    const rotationX = (offsetY / (rect.height / 2)) * -10;
+    const rotationY = (offsetX / (rect.width / 2)) * 10;
     rotateX.set(rotationX);
     rotateY.set(rotationY);
-    scale.set(1.05);
+    scale.set(1.05); // Un poco menos de zoom
   }
 
   function handleMouseLeave() {
@@ -127,6 +133,13 @@ export default function Features() {
 
   return (
     <section className="features-section" id="features">
+      {/* --- NUEVO: CONTENEDOR DE FORMAS FLOTANTES --- */}
+      <div className="floating-shapes-container">
+        <div className="shape shape-1"></div>
+        <div className="shape shape-2"></div>
+        <div className="shape shape-3"></div>
+      </div>
+
       <div className="features-content">
         <h2 className="features-title-gradient">
           Un Campus Virtual Excepcional

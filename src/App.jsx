@@ -12,6 +12,8 @@ import Partners from './components/Partners';
 import Proximamente from './components/Proximamente';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
+import CursorOrb from './components/CursorOrb'; // Importamos el nuevo componente
+
 
 // 1. Importar la biblioteca AOS y sus estilos
 import AOS from 'aos';
@@ -29,6 +31,7 @@ function App() {
 
   return (
     <>
+      <CursorOrb />
       <Header />
       <Hero />
       <Features />

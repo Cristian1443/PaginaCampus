@@ -1,0 +1,26 @@
+/* src/components/CursorOrb.css */
+.cursor-orb {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(228, 2, 44, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none; /* Muy importante para no interferir con los clics */
+    z-index: 9999;
+    mix-blend-mode: screen; /* Efecto de mezcla de color interesante */
+    transition: transform 0.1s ease-out; /* Movimiento suave */
+    will-change: transform;
+    filter: blur(20px);
+    /* Centramos el orbe en el cursor */
+    margin-top: -200px;
+    margin-left: -200px;
+  }
+  
+  /* Ocultar en dispositivos móviles donde no hay cursor */
+  @media (max-width: 768px) {
+    .cursor-orb {
+      display: none;
+    }
+  }

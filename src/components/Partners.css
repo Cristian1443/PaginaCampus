@@ -100,12 +100,22 @@
   margin-bottom: 32px;
 }
 
+/* ANTES:
 .flow-line {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
   animation: draw-flow 3s ease-in-out infinite alternate;
 }
-@keyframes draw-flow {
+*/
+/* DESPUÉS: Animación más dinámica */
+.flow-line {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  /* Animar al entrar en la vista */
+  animation: draw-line 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes draw-line {
   to {
     stroke-dashoffset: 0;
   }
@@ -113,8 +123,21 @@
 
 .core-ring {
   transform-origin: center;
-  animation: rotate-core 10s linear infinite;
+  animation: rotate-core 20s linear infinite;
 }
+
+/* NUEVO: Animación para el cohete central */
+.partnership-illustration text {
+    transform-origin: center;
+    animation: rocket-pulse 2s ease-in-out infinite;
+}
+
+@keyframes rocket-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
 @keyframes rotate-core {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

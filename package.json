@@ -10,12 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.8.1",
     "@vitejs/plugin-react": "^4.6.0",
     "aos": "^2.3.4",
     "framer-motion": "^12.23.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-tsparticles": "^2.12.2",
     "tsparticles": "^3.8.1"
   },
   "devDependencies": {

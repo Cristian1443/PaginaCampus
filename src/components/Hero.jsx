@@ -1,36 +1,180 @@
 import { useState, useEffect, useRef } from 'react';
 import './Hero.css';
+import Particles, { initParticlesEngine } from "@tsparticles/react"; // Importar Particles
+import { loadSlim } from "@tsparticles/slim"; // Importar el preset slim (puedes elegir otros)
 
 export default function Hero() {
-  // --- Lógica para la animación de tecleado (existente) ---
+  const [init, setInit] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // --- DETECCIÓN DE DISPOSITIVO MÓVIL ---
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // --- LÓGICA DE PARTICLES (SOLO EN DESKTOP) ---
+  useEffect(() => {
+    if (!isMobile) {
+      initParticlesEngine(async (engine) => {
+        await loadSlim(engine);
+      }).then(() => {
+        setInit(true);
+      });
+    }
+  }, [isMobile]);
+
+  const particlesLoaded = (container) => {
+    console.log("Particles loaded", container);
+  };
+
+  const options = {
+      background: {
+          color: {
+              value: 'transparent',
+          },
+      },
+      fpsLimit: 30, // Aumentar FPS para mejor fluidez
+      interactivity: {
+          events: {
+              onHover: {
+                  enable: true,
+                  mode: 'repulse',
+              },
+              // AÑADIMOS EL EVENTO onClick
+              onClick: {
+                  enable: true,
+                  mode: "push", // El modo 'push' añade partículas, pero usaremos 'emitters' para más control
+              }
+          },
+          modes: {
+              repulse: {
+                  distance: 100,
+                  duration: 0.4,
+              },
+              push: {
+                quantity: 4 // Pequeña cantidad al hacer clic normal
+              }
+          },
+      },
+      particles: {
+          color: {
+              value: '#ffffff',
+          },
+          links: {
+              color: '#ffffff',
+              distance: 150,
+              enable: true,
+              opacity: 0.2, // Aumentar opacidad de las líneas
+              width: 1,
+          },
+          move: {
+              direction: 'none',
+              enable: true,
+              outModes: {
+                  default: 'bounce',
+              },
+              random: false,
+              speed: 0.8, // Aumentar velocidad
+              straight: false,
+          },
+          number: {
+              density: {
+                  enable: true,
+                  area: 800,
+              },
+              value: 50, // Más partículas
+          },
+          opacity: {
+              value: 0.3, // Aumentar opacidad de las partículas
+          },
+          shape: {
+              type: 'circle',
+          },
+          size: {
+              value: { min: 1, max: 4 }, // Aumentar tamaño máximo
+          },
+      },
+      // --- NUEVA CONFIGURACIÓN DE EMITTERS ---
+      emitters: {
+        direction: "top",
+        life: {
+          count: 0, // 0 = infinito
+          duration: 0.1,
+          delay: 0.1,
+        },
+        rate: {
+          delay: 0.15,
+          quantity: 2, // Cantidad de partículas por ráfaga
+        },
+        size: {
+          width: 100,
+          height: 0,
+        },
+        position: {
+          x: 50,
+          y: 100,
+        },
+        // Al hacer clic, se activará un emisor en esa posición
+        // Esta configuración se activa con el modo 'emitter' en los eventos de interactividad,
+        // pero `tsparticles` es lo suficientemente inteligente para usarlo con el click.
+      },
+      detectRetina: true,
+  }
+
+  // --- LÓGICA DE TYPING EFFECT (INDEPENDIENTE DE PARTÍCULAS) ---
   const [typedText, setTypedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
+  const [isTypingActive, setIsTypingActive] = useState(false);
   const toRotate = ["Mega Campus del Futuro"];
-  const period = 2000;
+  const period = 20000; // 10 segundos de pausa
   const [delta, setDelta] = useState(150 - Math.random() * 100);
 
   useEffect(() => {
+    // Activar el typing effect después de un pequeño delay
+    const typingTimer = setTimeout(() => {
+      setIsTypingActive(true);
+    }, 500);
+
+    return () => clearTimeout(typingTimer);
+  }, []);
+
+  useEffect(() => {
+    if (!isTypingActive) return;
+    
     let ticker = setInterval(() => {
       tick();
     }, delta);
     return () => { clearInterval(ticker) };
-  }, [typedText]);
+  }, [delta, isTypingActive]); // Solo depende de delta y isTypingActive
 
   const tick = () => {
-    let i = loopNum % toRotate.length;
-    let fullText = toRotate[i];
-    let updatedText = isDeleting ? fullText.substring(0, typedText.length - 1) : fullText.substring(0, typedText.length + 1);
-    setTypedText(updatedText);
-    if (isDeleting) { setDelta(prevDelta => prevDelta / 2); }
-    if (!isDeleting && updatedText === fullText) {
-      setIsDeleting(true);
-      setDelta(period);
-    } else if (isDeleting && updatedText === '') {
-      setIsDeleting(false);
-      setLoopNum(loopNum + 1);
-      setDelta(150 - Math.random() * 100);
-    }
+    setTypedText(currentText => {
+      const i = loopNum % toRotate.length;
+      const fullText = toRotate[i];
+      const updatedText = isDeleting ? fullText.substring(0, currentText.length - 1) : fullText.substring(0, currentText.length + 1);
+      
+      if (isDeleting) { 
+        setDelta(prevDelta => prevDelta / 2); 
+      }
+      if (!isDeleting && updatedText === fullText) {
+        setIsDeleting(true);
+        setDelta(period);
+      } else if (isDeleting && updatedText === '') {
+        setIsDeleting(false);
+        setLoopNum(prevLoop => prevLoop + 1);
+        setDelta(150 - Math.random() * 100);
+      }
+      
+      return updatedText;
+    });
   }
 
   // --- NUEVA LÓGICA PARA LA ANIMACIÓN DE CONTEO ---
@@ -84,8 +228,15 @@ export default function Hero() {
 
   return (
     <section className="hero-section" id="hero">
-      <div className="stars-bg"></div>
-      <div className="twinkling-bg"></div>
+        {/* --- COMPONENTE DE PARTÍCULAS (SOLO EN DESKTOP) --- */}
+        {init && !isMobile && (
+            <Particles
+                id="tsparticles"
+                particlesLoaded={particlesLoaded}
+                options={options}
+                className="particles-bg"
+            />
+        )}
       
       <div className="hero-content">
         <h1 className="hero-title">
