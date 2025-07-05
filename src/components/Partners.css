@@ -64,20 +64,24 @@
 
 .partnership-logos {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
-  gap: 24px;
-  margin-bottom: 40px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  justify-content: center;
+  gap: 48px; /* Espacio entre los logos */
+  min-height: 80px;
+  position: relative;
+  z-index: 2;
 }
 
 .partner-logo {
-  height: 48px;
-  max-width: 200px;
-  filter: grayscale(100%) brightness(5);
-  opacity: 0.8;
-  transition: filter 0.3s ease, opacity 0.3s ease;
+  max-height: 60px;
+  max-width: 220px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: filter 0.3s;
+  background: transparent;
+  display: block;
 }
 .partnership-logos:hover .partner-logo {
   filter: none;
