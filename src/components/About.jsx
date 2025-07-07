@@ -1,4 +1,5 @@
 import './About.css';
+import { useState } from 'react';
 // Removemos la importación de la imagen del robot ya que usaremos el video
 
 // Array de beneficios para mapear y crear tarjetas
@@ -21,6 +22,9 @@ const benefits = [
 ];
 
 export default function About() {
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+
   // Función para manejar el hover del mouse en toda la sección
   const handleMouseEnter = (e) => {
     const video = e.currentTarget.querySelector('video');
@@ -36,6 +40,34 @@ export default function About() {
     }
   };
 
+  // Función para manejar errores del video
+  const handleVideoError = (e) => {
+    console.error('Error cargando video:', e);
+    setVideoError(true);
+    // Si el video falla, mostramos la imagen del robot
+    const videoContainer = e.target.parentElement;
+    if (videoContainer) {
+      videoContainer.innerHTML = `
+        <img 
+          src="/assets/img/imagenes/robot.jpeg" 
+          alt="Stuttgart Robot" 
+          style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px; animation: float 6s ease-in-out infinite;"
+        />
+      `;
+    }
+  };
+
+  // Función para manejar cuando el video se carga correctamente
+  const handleVideoLoad = () => {
+    console.log('Video cargado correctamente');
+    setVideoLoaded(true);
+  };
+
+  // Función para intentar cargar el video con diferentes rutas
+  const handleVideoLoadStart = () => {
+    console.log('Iniciando carga del video...');
+  };
+
   return (
     <section 
       className="about-section" 
@@ -47,16 +79,41 @@ export default function About() {
         <div className="about-image-wrapper">
           {/* REEMPLAZAMOS LA IMAGEN POR EL VIDEO DE MINISOFT */}
           <div className="about-image">
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            >
-              <source src="/assets/video/minisoft.mp4" type="video/mp4" />
-              Tu navegador no soporta el elemento de video.
-            </video>
+            {!videoError ? (
+              <video 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                preload="metadata"
+                onError={handleVideoError}
+                onLoadedData={handleVideoLoad}
+                onLoadStart={handleVideoLoadStart}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              >
+                {/* Ruta simplificada */}
+                <source src="assets/video/minisoft.mp4" type="video/mp4" />
+                Tu navegador no soporta el elemento de video.
+              </video>
+            ) : (
+              <img 
+                src="/assets/img/imagenes/robot.jpeg" 
+                alt="Stuttgart Robot" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            )}
+            {!videoLoaded && !videoError && (
+              <div style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                color: '#fff',
+                fontSize: '14px'
+              }}>
+                Cargando video...
+              </div>
+            )}
           </div>
         </div>
         <div className="about-text-content">

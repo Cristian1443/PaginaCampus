@@ -1,0 +1,16 @@
+# Configuración de headers para Netlify
+# Permitir streaming de video
+/assets/video/*
+  Content-Type: video/mp4
+  Cache-Control: public, max-age=31536000
+  Access-Control-Allow-Origin: *
+
+# Configuración general para assets
+/assets/*
+  Cache-Control: public, max-age=31536000
+  Access-Control-Allow-Origin: *
+
+# Configuración para archivos de imagen
+/assets/img/*
+  Cache-Control: public, max-age=31536000
+  Access-Control-Allow-Origin: * 

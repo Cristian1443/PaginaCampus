@@ -188,12 +188,12 @@
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-  /* Desactivamos el efecto 3D en móvil por rendimiento y usabilidad */
+  /* Efecto 3D optimizado para móvil */
   .feature-card {
-    perspective: none;
+    perspective: 400px; /* Perspectiva reducida para móvil */
   }
   .feature-card-inner, .feature-icon, .feature-card h3, .feature-card p {
-    transform: none;
+    transform: translateZ(10px); /* Elevación reducida para móvil */
   }
   
   .features-section { 

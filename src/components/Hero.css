@@ -11,6 +11,8 @@
   pointer-events: none; /* Evitar que interfiera con otros elementos */
 }
 
+/* --- IMAGEN DE FONDO HERO (AHORA EN CSS BACKGROUND) --- */
+
 .hero-section {
   position: relative;
   color: white;
@@ -22,10 +24,13 @@
   min-height: 100vh;
   overflow: hidden;
   background-color: #0f172a; /* Fallback cuando no hay partículas */
-  background-image: radial-gradient(circle at 50% 50%, rgba(39, 52, 116, 0.1) 0%, transparent 70%);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(39, 52, 116, 0.1) 0%, transparent 70%),
+    linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)),
+    url('/assets/img/imagenes/hero.png');
+  background-size: cover, cover, cover;
+  background-position: center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat;
 }
 
 /* Capa de superposición oscura (mejorada para mayor legibilidad) */
@@ -34,7 +39,7 @@
   position: absolute;
   inset: 0;
   /* Un gradiente sutil es mejor que un color sólido */
-  background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.8) 100%);
+  background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.2) 0%, rgba(15, 23, 42, 0.5) 100%);
   z-index: 1;
 }
 

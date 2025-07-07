@@ -214,7 +214,8 @@
     opacity: 1;
   }
   .partnership-illustration {
-    display: none; /* Ocultar SVG complejo en móvil */
+    display: block; /* Mostrar SVG en móvil */
+    margin-bottom: 20px; /* Reducir margen */
   }
   .partnership-content { 
     grid-template-columns: 1fr; 

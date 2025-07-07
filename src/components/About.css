@@ -212,7 +212,7 @@
   
   .about-image {
     max-width: 200px; /* Robot más pequeño y centrado */
-    animation: none; /* Desactivar animación en móvil para simpleza */
+    animation: float 8s ease-in-out infinite, fadeIn 1.5s ease-out; /* Animación más lenta para móvil */
   }
 
   .about-text-content {

@@ -19,38 +19,36 @@ export default function Hero() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // --- LÓGICA DE PARTICLES (SOLO EN DESKTOP) ---
+  // --- LÓGICA DE PARTICLES (OPTIMIZADA PARA MÓVIL) ---
   useEffect(() => {
-    if (!isMobile) {
-      initParticlesEngine(async (engine) => {
-        await loadSlim(engine);
-      }).then(() => {
-        setInit(true);
-      });
-    }
-  }, [isMobile]);
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []); // Removemos la dependencia de isMobile para que funcione en todos los dispositivos
 
   const particlesLoaded = (container) => {
     console.log("Particles loaded", container);
   };
 
+  // Configuración optimizada para móviles
   const options = {
       background: {
           color: {
               value: 'transparent',
           },
       },
-      fpsLimit: 30, // Aumentar FPS para mejor fluidez
+      fpsLimit: isMobile ? 20 : 30, // FPS más bajo en móvil para mejor rendimiento
       interactivity: {
           events: {
               onHover: {
-                  enable: true,
+                  enable: !isMobile, // Solo hover en desktop
                   mode: 'repulse',
               },
-              // AÑADIMOS EL EVENTO onClick
               onClick: {
-                  enable: true,
-                  mode: "push", // El modo 'push' añade partículas, pero usaremos 'emitters' para más control
+                  enable: true, // Click funciona en ambos
+                  mode: "push",
               }
           },
           modes: {
@@ -59,7 +57,7 @@ export default function Hero() {
                   duration: 0.4,
               },
               push: {
-                quantity: 4 // Pequeña cantidad al hacer clic normal
+                quantity: isMobile ? 2 : 4 // Menos partículas en móvil
               }
           },
       },
@@ -67,12 +65,21 @@ export default function Hero() {
           color: {
               value: '#ffffff',
           },
+          shadow: {
+              enable: true,
+              color: '#ffffff',
+              blur: 5,
+              offset: {
+                  x: 0,
+                  y: 0
+              }
+          },
           links: {
               color: '#ffffff',
-              distance: 150,
+              distance: isMobile ? 100 : 150, // Distancia menor en móvil
               enable: true,
-              opacity: 0.2, // Aumentar opacidad de las líneas
-              width: 1,
+              opacity: 0.4, // Mayor opacidad de las líneas para que se vean sobre la imagen
+              width: 1.5, // Líneas más gruesas
           },
           move: {
               direction: 'none',
@@ -81,37 +88,36 @@ export default function Hero() {
                   default: 'bounce',
               },
               random: false,
-              speed: 0.8, // Aumentar velocidad
+              speed: isMobile ? 0.5 : 0.8, // Velocidad menor en móvil
               straight: false,
           },
           number: {
               density: {
                   enable: true,
-                  area: 800,
+                  area: isMobile ? 600 : 800, // Área menor en móvil
               },
-              value: 50, // Más partículas
+              value: isMobile ? 35 : 70, // Más partículas para compensar la imagen
           },
           opacity: {
-              value: 0.3, // Aumentar opacidad de las partículas
+              value: isMobile ? 0.5 : 0.7, // Mayor opacidad para que se vean sobre la imagen
           },
           shape: {
               type: 'circle',
           },
           size: {
-              value: { min: 1, max: 4 }, // Aumentar tamaño máximo
+              value: { min: 2, max: isMobile ? 4 : 6 }, // Partículas más grandes
           },
       },
-      // --- NUEVA CONFIGURACIÓN DE EMITTERS ---
       emitters: {
         direction: "top",
         life: {
-          count: 0, // 0 = infinito
+          count: 0,
           duration: 0.1,
           delay: 0.1,
         },
         rate: {
-          delay: 0.15,
-          quantity: 2, // Cantidad de partículas por ráfaga
+          delay: isMobile ? 0.2 : 0.15, // Delay mayor en móvil
+          quantity: isMobile ? 1 : 2, // Menos partículas por ráfaga en móvil
         },
         size: {
           width: 100,
@@ -121,9 +127,6 @@ export default function Hero() {
           x: 50,
           y: 100,
         },
-        // Al hacer clic, se activará un emisor en esa posición
-        // Esta configuración se activa con el modo 'emitter' en los eventos de interactividad,
-        // pero `tsparticles` es lo suficientemente inteligente para usarlo con el click.
       },
       detectRetina: true,
   }
@@ -228,8 +231,10 @@ export default function Hero() {
 
   return (
     <section className="hero-section" id="hero">
-        {/* --- COMPONENTE DE PARTÍCULAS (SOLO EN DESKTOP) --- */}
-        {init && !isMobile && (
+        {/* --- IMAGEN DE FONDO HERO (USANDO CSS BACKGROUND) --- */}
+
+        {/* --- COMPONENTE DE PARTÍCULAS (OPTIMIZADO PARA MÓVIL) --- */}
+        {init && (
             <Particles
                 id="tsparticles"
                 particlesLoaded={particlesLoaded}

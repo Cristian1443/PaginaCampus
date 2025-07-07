@@ -18,9 +18,14 @@
     margin-left: -200px;
   }
   
-  /* Ocultar en dispositivos móviles donde no hay cursor */
+  /* Versión optimizada para móviles */
   @media (max-width: 768px) {
     .cursor-orb {
-      display: none;
+      width: 300px; /* Tamaño reducido para móvil */
+      height: 300px;
+      margin-top: -150px;
+      margin-left: -150px;
+      filter: blur(15px); /* Blur reducido para mejor rendimiento */
+      opacity: 0.8; /* Opacidad reducida */
     }
   }
