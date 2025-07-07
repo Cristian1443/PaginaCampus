@@ -5,11 +5,11 @@
     left: 0;
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(228, 2, 44, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(228, 2, 44, 0.08) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none; /* Muy importante para no interferir con los clics */
-    z-index: 9999;
-    mix-blend-mode: screen; /* Efecto de mezcla de color interesante */
+    z-index: -1;
+    mix-blend-mode: multiply; /* Efecto de mezcla de color para fondo */
     transition: transform 0.1s ease-out; /* Movimiento suave */
     will-change: transform;
     filter: blur(20px);

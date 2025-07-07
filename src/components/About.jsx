@@ -1,8 +1,6 @@
 import './About.css';
-import { useState } from 'react';
-// Removemos la importación de la imagen del robot ya que usaremos el video
+import { useRef, useEffect, useState } from 'react';
 
-// Array de beneficios para mapear y crear tarjetas
 const benefits = [
   {
     icon: '🧠',
@@ -22,98 +20,48 @@ const benefits = [
 ];
 
 export default function About() {
-  const [videoLoaded, setVideoLoaded] = useState(false);
-  const [videoError, setVideoError] = useState(false);
+  const aboutRef = useRef(null);
+  const videoRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(true);
 
-  // Función para manejar el hover del mouse en toda la sección
-  const handleMouseEnter = (e) => {
-    const video = e.currentTarget.querySelector('video');
-    if (video) {
-      video.muted = false;
-    }
-  };
-
-  const handleMouseLeave = (e) => {
-    const video = e.currentTarget.querySelector('video');
-    if (video) {
-      video.muted = true;
-    }
-  };
-
-  // Función para manejar errores del video
-  const handleVideoError = (e) => {
-    console.error('Error cargando video:', e);
-    setVideoError(true);
-    // Si el video falla, mostramos la imagen del robot
-    const videoContainer = e.target.parentElement;
-    if (videoContainer) {
-      videoContainer.innerHTML = `
-        <img 
-          src="/assets/img/imagenes/robot.jpeg" 
-          alt="Stuttgart Robot" 
-          style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px; animation: float 6s ease-in-out infinite;"
-        />
-      `;
-    }
-  };
-
-  // Función para manejar cuando el video se carga correctamente
-  const handleVideoLoad = () => {
-    console.log('Video cargado correctamente');
-    setVideoLoaded(true);
-  };
-
-  // Función para intentar cargar el video con diferentes rutas
-  const handleVideoLoadStart = () => {
-    console.log('Iniciando carga del video...');
-  };
+  useEffect(() => {
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (videoRef.current) {
+          if (entry.isIntersecting) {
+            setIsMuted(false);
+            videoRef.current.play();
+          } else {
+            setIsMuted(true);
+            videoRef.current.pause();
+          }
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (aboutRef.current) observer.observe(aboutRef.current);
+    return () => {
+      if (aboutRef.current) observer.unobserve(aboutRef.current);
+    };
+  }, []);
 
   return (
-    <section 
-      className="about-section" 
-      id="about"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <section className="about-section" id="about" ref={aboutRef}>
       <div className="about-container">
         <div className="about-image-wrapper">
-          {/* REEMPLAZAMOS LA IMAGEN POR EL VIDEO DE MINISOFT */}
           <div className="about-image">
-            {!videoError ? (
-              <video 
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-                preload="metadata"
-                onError={handleVideoError}
-                onLoadedData={handleVideoLoad}
-                onLoadStart={handleVideoLoadStart}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              >
-                {/* Ruta simplificada */}
-                <source src="assets/video/minisoft.mp4" type="video/mp4" />
-                Tu navegador no soporta el elemento de video.
-              </video>
-            ) : (
-              <img 
-                src="/assets/img/imagenes/robot.jpeg" 
-                alt="Stuttgart Robot" 
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-            )}
-            {!videoLoaded && !videoError && (
-              <div style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                color: '#fff',
-                fontSize: '14px'
-              }}>
-                Cargando video...
-              </div>
-            )}
+            <video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted={isMuted}
+              playsInline
+              preload="auto"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            >
+              <source src="/assets/video/minisoft_web.mp4" type="video/mp4" />
+              Tu navegador no soporta el elemento de video.
+            </video>
           </div>
         </div>
         <div className="about-text-content">
@@ -123,8 +71,6 @@ export default function About() {
           <p className="about-description">
             "¡Hola! Soy tu guía en el Mega Campus del Futuro. Estoy aquí para potenciar tu aventura educativa y asegurar que aproveches al máximo cada recurso. ¡Empecemos!"
           </p>
-          
-          {/* --- NUEVAS TARJETAS DE BENEFICIOS --- */}
           <div className="benefits-grid">
             {benefits.map((benefit, index) => (
               <div key={index} className="benefit-card" style={{ animationDelay: `${index * 0.15}s` }}>
@@ -136,7 +82,6 @@ export default function About() {
               </div>
             ))}
           </div>
-
           <button className="about-button">
             Chatear con Stuttgart <span className="about-btn-icon">→</span>
           </button>

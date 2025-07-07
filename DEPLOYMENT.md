@@ -3,10 +3,11 @@
 ## Configuración para Videos
 
 ### 1. Archivos de Configuración
-Se han creado los siguientes archivos en la carpeta `public/`:
+Se han creado los siguientes archivos:
 
-- `_headers`: Configura los headers HTTP para videos
-- `_redirects`: Maneja las redirecciones de assets
+- `netlify.toml`: Configuración principal de Netlify
+- `public/_headers`: Configura los headers HTTP para videos
+- `public/_redirects`: Maneja las redirecciones de assets
 
 ### 2. Verificación del Video
 El video `minisoft.mp4` debe estar en:
@@ -14,15 +15,20 @@ El video `minisoft.mp4` debe estar en:
 public/assets/video/minisoft.mp4
 ```
 
-### 3. Configuración de Vite
-El archivo `vite.config.js` está configurado para manejar correctamente los assets de video.
+### 3. Sistema de Carga Mejorado
+El componente About ahora incluye:
+
+- **Múltiples fuentes de video**: Intenta cargar desde diferentes rutas
+- **Sistema de fallback**: Si el video falla, muestra una animación CSS atractiva
+- **Componente de prueba**: `VideoTest.jsx` para debuggear problemas de carga
+- **Logs detallados**: Console.log para identificar problemas
 
 ### 4. Solución de Problemas
 
 Si el video no se reproduce en Netlify:
 
-1. **Verificar la consola del navegador** para errores
-2. **Comprobar que el archivo existe** en la carpeta correcta
+1. **Verificar la consola del navegador** para errores específicos
+2. **Usar el componente VideoTest** (temporal) para ver qué rutas funcionan
 3. **Verificar la configuración de Netlify**:
    - Build command: `npm run build`
    - Publish directory: `dist`
@@ -30,27 +36,41 @@ Si el video no se reproduce en Netlify:
 
 ### 5. Configuración de Netlify
 
-En el panel de Netlify, asegúrate de:
+El archivo `netlify.toml` incluye:
 
-1. **Headers personalizados** (si no se aplican automáticamente):
-   ```
-   /assets/video/*
-     Content-Type: video/mp4
-     Cache-Control: public, max-age=31536000
-   ```
+```toml
+[[headers]]
+  for = "/assets/video/*"
+  [headers.values]
+    Content-Type = "video/mp4"
+    Cache-Control = "public, max-age=31536000"
+    Access-Control-Allow-Origin = "*"
+```
 
-2. **Variables de entorno** (si es necesario):
-   ```
-   NODE_VERSION=18
-   ```
+### 6. Rutas de Video Probadas
 
-### 6. Respaldo Automático
+El sistema intenta cargar desde:
+1. `/assets/video/minisoft.mp4`
+2. `assets/video/minisoft.mp4`
+3. `./assets/video/minisoft.mp4`
+4. `https://campusue.netlify.app/assets/video/minisoft.mp4`
 
-El componente About tiene un respaldo automático:
-- Si el video falla, muestra la imagen del robot
-- La imagen tiene animación CSS como alternativa
+### 7. Respaldo Automático
 
-### 7. Pruebas
+Si todas las rutas fallan:
+- Muestra una animación CSS con robot 🤖
+- Efectos de partículas flotantes
+- Gradiente animado
+- No requiere archivos externos
+
+### 8. Componente de Prueba
+
+Para debuggear, el componente `VideoTest` muestra:
+- Estado de carga de cada ruta
+- Errores específicos
+- Botón para retestear
+
+### 9. Pruebas
 
 Para probar localmente:
 ```bash
@@ -58,4 +78,10 @@ npm run build
 npm run preview
 ```
 
-Luego verifica que el video funcione en `http://localhost:4173` 
+Luego verifica que el video funcione en `http://localhost:4173`
+
+### 10. Limpieza
+
+Después de confirmar que funciona:
+- Remover `VideoTest` del `App.jsx`
+- Eliminar el archivo `VideoTest.jsx` 

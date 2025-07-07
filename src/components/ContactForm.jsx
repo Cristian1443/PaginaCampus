@@ -1,9 +1,78 @@
 import './ContactForm.css';
+import { useState, useEffect } from 'react';
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 
 export default function ContactForm() {
+  const [init, setInit] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
+
+  const options = {
+    background: { color: { value: 'transparent' } },
+    fpsLimit: isMobile ? 20 : 30,
+    interactivity: {
+      events: {
+        onHover: { enable: false },
+        onClick: { enable: false }
+      }
+    },
+    particles: {
+      color: { value: '#ffffff' },
+      links: {
+        color: '#ffffff',
+        distance: isMobile ? 100 : 150,
+        enable: true,
+        opacity: 0.2,
+        width: 1,
+      },
+      move: {
+        direction: 'none',
+        enable: true,
+        outModes: { default: 'bounce' },
+        random: false,
+        speed: isMobile ? 0.3 : 0.5,
+        straight: false,
+      },
+      number: {
+        density: { enable: true, area: isMobile ? 600 : 800 },
+        value: isMobile ? 15 : 30,
+      },
+      opacity: { value: 0.2 },
+      shape: { type: 'circle' },
+      size: { value: { min: 1, max: isMobile ? 2 : 3 } },
+    },
+    detectRetina: true,
+  };
+
   return (
-    <section className="contact-section" id="contact">
-      <div className="contact-container">
+    <section className="contact-section" id="contact" style={{position: 'relative', overflow: 'hidden'}}>
+      {/* Partículas de fondo */}
+      {init && (
+        <Particles
+          id="tsparticles-contact"
+          options={options}
+          className="particles-bg"
+          style={{position: 'absolute', inset: 0, zIndex: 0}}
+        />
+      )}
+      <div className="contact-container" style={{position: 'relative', zIndex: 1}}>
         {/* --- COLUMNA IZQUIERDA: INFORMACIÓN --- */}
         <div className="contact-info-panel">
           <h2 className="contact-title">

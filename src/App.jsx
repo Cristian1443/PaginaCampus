@@ -13,6 +13,7 @@ import Proximamente from './components/Proximamente';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import CursorOrb from './components/CursorOrb'; // Importamos el nuevo componente
+import VideoTest from './components/VideoTest'; // Componente de prueba temporal
 
 
 // 1. Importar la biblioteca AOS y sus estilos
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <>
+      {/* <VideoTest /> */} {/* Componente de prueba temporal quitado */}
       <CursorOrb />
       <Header />
       <Hero />
