@@ -1,5 +1,5 @@
 import './About.css';
-import robotImage from '../../public/assets/img/imagenes/robot.jpeg'; // Importamos la imagen
+// Removemos la importación de la imagen del robot ya que usaremos el video
 
 // Array de beneficios para mapear y crear tarjetas
 const benefits = [
@@ -21,13 +21,42 @@ const benefits = [
 ];
 
 export default function About() {
+  // Función para manejar el hover del mouse en toda la sección
+  const handleMouseEnter = (e) => {
+    const video = e.currentTarget.querySelector('video');
+    if (video) {
+      video.muted = false;
+    }
+  };
+
+  const handleMouseLeave = (e) => {
+    const video = e.currentTarget.querySelector('video');
+    if (video) {
+      video.muted = true;
+    }
+  };
+
   return (
-    <section className="about-section" id="about">
+    <section 
+      className="about-section" 
+      id="about"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="about-container">
         <div className="about-image-wrapper">
-          {/* REEMPLAZAMOS EL SVG POR LA IMAGEN */}
+          {/* REEMPLAZAMOS LA IMAGEN POR EL VIDEO DE MINISOFT */}
           <div className="about-image">
-            <img src={robotImage} alt="Stuttgart Robot" />
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            >
+              <source src="/assets/video/minisoft.mp4" type="video/mp4" />
+              Tu navegador no soporta el elemento de video.
+            </video>
           </div>
         </div>
         <div className="about-text-content">
