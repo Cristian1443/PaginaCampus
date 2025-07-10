@@ -83,6 +83,7 @@
 .tour-grid.is-visible .tour-card:nth-child(3) { transition-delay: 0.3s; }
 .tour-grid.is-visible .tour-card:nth-child(4) { transition-delay: 0.4s; }
 .tour-grid.is-visible .tour-card:nth-child(5) { transition-delay: 0.5s; }
+.tour-grid.is-visible .tour-card:nth-child(6) { transition-delay: 0.6s; }
 
 .tour-card:hover {
   /* ANTES: transform: translateY(-10px); */
@@ -184,6 +185,227 @@
 .tour-btn-purple { background: #7c3aed; }
 .tour-btn-orange { background: #f97316; }
 .tour-btn-green { background: #16a34a; }
+.tour-btn-red { background: #dc2626; }
+
+/* --- MODAL DE BIENESTAR UNIVERSITARIO --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 24px 16px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h2 {
+  color: #f1f5f9;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.modal-description {
+  color: #cbd5e1;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.psicologos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.psicologo-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.psicologo-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(228, 2, 44, 0.3);
+  transform: translateY(-2px);
+}
+
+.psicologo-header {
+  margin-bottom: 16px;
+}
+
+.psicologo-header h3 {
+  color: #f1f5f9;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.psicologo-cargo {
+  color: #e4022c;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.psicologo-email {
+  margin-bottom: 16px;
+}
+
+.psicologo-email strong {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
+.psicologo-email a {
+  color: #60a5fa;
+  text-decoration: none;
+  margin-left: 8px;
+  transition: color 0.3s ease;
+}
+
+.psicologo-email a:hover {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+.psicologo-programas {
+  margin-top: 16px;
+}
+
+.psicologo-programas strong {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.psicologo-programas ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.psicologo-programas li {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  padding: 4px 0;
+  position: relative;
+  padding-left: 16px;
+}
+
+.psicologo-programas li::before {
+  content: "•";
+  color: #e4022c;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.modal-benefits {
+  margin: 18px 0 18px 0;
+  padding-left: 0;
+  list-style: none;
+}
+.modal-benefits li {
+  color: #94a3b8;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+.modal-benefits li::before {
+  content: "•";
+  color: #e4022c;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.modal-action-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #273474 0%, #e4022c 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.08rem;
+  padding: 12px 36px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(39,52,116,0.10);
+  transition: all 0.22s;
+  margin-top: 8px;
+}
+.modal-action-btn:hover, .modal-action-btn:focus {
+  background: linear-gradient(90deg, #e4022c 0%, #273474 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(228,2,44,0.13);
+}
 
 /* --- REDISEÑO COMPLETO PARA MÓVIL --- */
 @media(max-width: 768px) {
@@ -242,5 +464,31 @@
 
   .tour-list, .tour-btn {
     display: none;
+  }
+
+  /* Estilos móviles para el modal */
+  .modal-overlay {
+    padding: 10px;
+  }
+
+  .modal-content {
+    max-height: 95vh;
+  }
+
+  .modal-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .psicologos-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .psicologo-card {
+    padding: 16px;
+  }
+
+  .psicologo-header h3 {
+    font-size: 1.1rem;
   }
 }

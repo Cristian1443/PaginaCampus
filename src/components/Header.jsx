@@ -3,10 +3,9 @@ import './Header.css';
 
 const sections = [
   { id: 'hero', label: 'Inicio' },
-  { id: 'features', label: 'Campus' },
+  { id: 'features', label: 'Mi Aula' },
   { id: 'about', label: 'Stuttgart' },
-  { id: 'tour', label: 'Espacios' },
-  { id: 'integrations', label: 'Tecnología' },
+  { id: 'tour', label: 'Bienestar' },
   { id: 'partners', label: 'FuSoft' },
   { id: 'admisiones', label: 'Admisiones' },
   { id: 'programas', label: 'Programas' },

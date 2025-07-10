@@ -19,22 +19,92 @@
   max-width: 1100px;
   margin: 0 auto;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .admisiones-title-gradient {
   font-size: 2.8rem;
   font-weight: 800;
   margin-bottom: 16px;
-  background: linear-gradient(90deg, #fff 0%, #94a3b8 100%);
+  background: linear-gradient(90deg, #fff 0%, #273474 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* --- HERO SECTION CON IMAGEN --- */
+.admisiones-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.admisiones-hero-content {
+  text-align: left;
+}
+
+.admisiones-hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image-placeholder {
+  background: linear-gradient(135deg, rgba(39, 52, 116, 0.3), rgba(228, 2, 44, 0.3));
+  border-radius: 24px;
+  padding: 60px 40px;
+  text-align: center;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-image-placeholder::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.hero-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-image-placeholder p {
+  color: #f1f5f9;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+  position: relative;
+  z-index: 2;
 }
 
 .admisiones-desc {
   color: #94a3b8;
   font-size: 1.15rem;
-  max-width: 700px;
-  margin: 0 auto 60px auto;
+  max-width: 600px;
+  margin: 0 0 0 0;
   line-height: 1.7;
 }
 
@@ -123,7 +193,9 @@
   font-size: 1.1rem;
   padding: 15px 40px;
   border-radius: 12px;
+  border: none;
   text-decoration: none;
+  cursor: pointer;
   box-shadow: 0 8px 25px rgba(228, 2, 44, 0.25);
   transition: all 0.3s ease;
 }
@@ -131,6 +203,98 @@
 .admisiones-btn:hover {
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 12px 30px rgba(228, 2, 44, 0.35);
+}
+
+.admisiones-btn:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+.admisiones-btn:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* Contenedor del botón para asegurar que sea clickeable */
+.admisiones-content > button {
+  position: relative;
+  z-index: 10;
+}
+
+/* --- ALERTA DE CONFIRMACIÓN --- */
+.alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.alert-content {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  max-width: 500px;
+  width: 100%;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: alertSlideIn 0.3s ease-out;
+}
+
+@keyframes alertSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.alert-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.alert-content h3 {
+  color: #f1f5f9;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+}
+
+.alert-content p {
+  color: #cbd5e1;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 0 30px 0;
+}
+
+.alert-close {
+  background: linear-gradient(135deg, #273474 0%, #e4022c 100%);
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.alert-close:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(228, 2, 44, 0.3);
 }
 
 
@@ -153,13 +317,37 @@
   .admisiones-section { 
     padding: 60px 20px; 
   }
+  
+  .admisiones-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+  
+  .admisiones-hero-content {
+    text-align: center;
+  }
+  
+  .hero-image-placeholder {
+    padding: 40px 20px;
+    min-height: 200px;
+  }
+  
+  .hero-icon {
+    font-size: 3rem;
+  }
+  
+  .hero-image-placeholder p {
+    font-size: 1.1rem;
+  }
+  
   .admisiones-title-gradient { 
     /* ANTES: font-size: 2.2rem; */
     font-size: clamp(2rem, 8vw, 2.5rem); /* DESPUÉS */
   }
   .admisiones-desc { 
     font-size: 1rem; 
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
   
   .admisiones-steps-grid {
@@ -230,5 +418,283 @@
   
   .admisiones-btn {
     width: 100%; 
+  }
+  
+  /* Estilos móviles para la alerta */
+  .alert-overlay {
+    padding: 15px;
+  }
+  
+  .alert-content {
+    padding: 30px 20px;
+  }
+  
+  .alert-content h3 {
+    font-size: 1.5rem;
+  }
+  
+  .alert-content p {
+    font-size: 1rem;
+  }
+}
+
+/* --- HERO REDISEÑADO --- */
+.admisiones-hero-redesign {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.admisiones-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.55) blur(0px);
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1;
+}
+
+.admisiones-hero-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, rgba(39,52,116,0.7) 0%, rgba(228,2,44,0.5) 100%);
+  z-index: 2;
+}
+
+.admisiones-hero-content-redesign {
+  position: relative;
+  z-index: 3;
+  color: #fff;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.admisiones-hero-title {
+  font-size: 2.7rem;
+  font-weight: 800;
+  margin-bottom: 18px;
+  background: linear-gradient(90deg, #fff 0%, #e4022c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.admisiones-hero-title span {
+  color: #2563eb;
+  background: none;
+  -webkit-text-fill-color: #2563eb;
+}
+
+.admisiones-hero-subtitle {
+  color: #f1f5f9;
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 0;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+/* --- CONTENIDO Y CARDS DE PASOS --- */
+.admisiones-content-redesign {
+  max-width: 1100px;
+  margin: 0 auto 0 auto;
+  background: rgba(15,23,42,0.95);
+  border-radius: 24px;
+  box-shadow: 0 8px 40px rgba(39,52,116,0.10);
+  padding: 56px 32px 56px 32px;
+  position: relative;
+  z-index: 5;
+  text-align: center;
+}
+
+.admisiones-steps-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 36px;
+  letter-spacing: -1px;
+}
+
+.admisiones-steps-grid-redesign {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  margin-bottom: 48px;
+}
+
+.step-card-redesign {
+  background: linear-gradient(135deg, rgba(39,52,116,0.13), rgba(228,2,44,0.10));
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(39,52,116,0.08);
+  padding: 36px 24px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1.5px solid rgba(255,255,255,0.08);
+  position: relative;
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+}
+.admisiones-steps-grid-redesign.is-visible .step-card-redesign {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.1s;
+}
+.step-card-redesign:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(228,2,44,0.13);
+  border-color: #2563eb;
+}
+.step-icon {
+  font-size: 2.7rem;
+  margin-bottom: 18px;
+  color: #273474;
+  background: #fff;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(39,52,116,0.10);
+}
+.step-number-redesign {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #e4022c;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+.step-content-redesign h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.step-content-redesign p {
+  color: #cbd5e1;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* --- BOTÓN DESTACADO --- */
+.admisiones-btn-redesign {
+  display: inline-block;
+  background: linear-gradient(135deg, #273474 0%, #e4022c 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.15rem;
+  padding: 18px 48px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(39,52,116,0.13);
+  transition: all 0.25s;
+  margin-top: 12px;
+}
+.admisiones-btn-redesign:hover {
+  background: linear-gradient(90deg, #e4022c 0%, #273474 100%);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 32px rgba(228,2,44,0.18);
+}
+.admisiones-btn-redesign:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* --- MODAL DE CONFIRMACIÓN --- */
+.admisiones-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15,23,42,0.85);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.admisiones-modal-content {
+  background: linear-gradient(135deg, #fff 60%, #f1f5f9 100%);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(39,52,116,0.18);
+  padding: 48px 36px 36px 36px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  animation: modalSlideIn 0.3s ease;
+}
+@keyframes modalSlideIn {
+  from { opacity: 0; transform: translateY(-40px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.admisiones-modal-icon {
+  font-size: 3rem;
+  color: #273474;
+  margin-bottom: 18px;
+}
+.admisiones-modal-content h3 {
+  color: #273474;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.admisiones-modal-content p {
+  color: #334155;
+  font-size: 1.05rem;
+  margin-bottom: 24px;
+}
+.admisiones-modal-close {
+  background: linear-gradient(135deg, #273474 0%, #e4022c 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.admisiones-modal-close:hover {
+  background: linear-gradient(90deg, #e4022c 0%, #273474 100%);
+  transform: scale(1.04);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+  .admisiones-steps-grid-redesign {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .admisiones-content-redesign {
+    padding: 32px 10px 40px 10px;
+  }
+}
+@media (max-width: 768px) {
+  .admisiones-hero-redesign {
+    height: 300px;
+  }
+  .admisiones-hero-title {
+    font-size: 1.5rem;
+  }
+  .admisiones-hero-content-redesign {
+    max-width: 95vw;
+    padding: 0 10px;
+  }
+  .admisiones-content-redesign {
+    margin: 0 auto 0 auto;
+    padding: 24px 2vw 24px 2vw;
+  }
+  .step-card-redesign {
+    padding: 24px 10px 20px 10px;
+  }
+  .admisiones-modal-content {
+    padding: 28px 10px 18px 10px;
   }
 }

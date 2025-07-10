@@ -3,6 +3,6 @@
 /assets/* /assets/:splat 200
 /assets/video/* /assets/video/:splat 200
 /assets/img/* /assets/img/:splat 200
-
+ 
 # Fallback para SPA
 /*    /index.html   200 

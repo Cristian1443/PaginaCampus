@@ -136,7 +136,7 @@ export default function Hero() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const [isTypingActive, setIsTypingActive] = useState(false);
-  const toRotate = ["Mega Campus del Futuro"];
+  const toRotate = ["UE Virtual"];
   const period = 20000; // 10 segundos de pausa
   const [delta, setDelta] = useState(150 - Math.random() * 100);
 

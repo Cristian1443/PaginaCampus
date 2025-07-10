@@ -39,7 +39,6 @@ function App() {
       <Features />
       <About />
       <Tour />
-      <Integrations />
       <Admisiones />
       <Programas />
       <PorQueElegirnos />

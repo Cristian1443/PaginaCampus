@@ -1,4 +1,5 @@
 import "./Footer.css";
+import { FaFacebookF, FaXTwitter, FaInstagram, FaYoutube } from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -36,13 +37,13 @@ export default function Footer() {
             <h5>Programas</h5>
             <ul>
               <li>
-                <a href="#">Ingeniería de Software</a>
+                <a href="#programas">Ingeniería de Software</a>
               </li>
               <li>
-                <a href="#">Administración de Empresas</a>
+                <a href="#programas">Administración de Empresas</a>
               </li>
               <li>
-                <a href="#">Marketing Digital</a>
+                <a href="#programas">Marketing Digital</a>
               </li>
             </ul>
           </div>
@@ -50,39 +51,44 @@ export default function Footer() {
             <h5>Servicios</h5>
             <ul>
               <li>
-                <a href="#">Admisiones</a>
+                <a href="#admisiones">Admisiones</a>
               </li>
               <li>
-                <a href="#">Biblioteca Virtual</a>
+                <a href="https://bibliotecadigital.ccb.org.co/communities/61cb3250-7a4f-4f87-8642-fa5805134131" target="_blank" rel="noopener noreferrer">Biblioteca Virtual</a>
               </li>
               <li>
-                <a href="#">Bienestar Universitario</a>
+                <a href="#" >Bienestar Universitario</a>
+              </li>
+              <li>
+                <a href="https://login.intelproxy.com/v2/inicio?cuenta=hKppPLXejG2C4JkM&url=" target="_blank" rel="noopener noreferrer">Bases de Datos</a>
+              </li>
+              <li>
+                <a href="https://login.microsoftonline.com/" target="_blank" rel="noopener noreferrer">Suite Office 365</a>
               </li>
             </ul>
           </div>
           <div className="footer-links-column">
             <h5>Contacto</h5>
             <ul>
-              <li>+57 (1) 742 1940</li>
-              <li>info@uniempresarial.edu.co</li>
-              <li>Calle 67 # 5-27, Bogotá</li>
+              <li>(+601) 3808000</li>
+              <li>admisines@uniempresarial.edu.co</li>
+              <li>Cra 33a #30-20, Bogotá D.C.</li>
             </ul>
           </div>
           <div className="footer-social-column">
             <h5>Síguenos</h5>
             <div className="social-links">
-              {/* Aquí puedes agregar tus SVGs de redes sociales */}
-              <a href="#" aria-label="Facebook">
-                FB
+              <a href="https://www.facebook.com/uniempresarial/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <FaFacebookF size={24} color="#fff" />
               </a>
-              <a href="#" aria-label="Twitter">
-                TW
+              <a href="https://x.com/i/flow/login?redirect_after_login=%2Fuempresarial" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                <FaXTwitter size={24} color="#fff" />
               </a>
-              <a href="#" aria-label="LinkedIn">
-                IN
+              <a href="https://www.instagram.com/uniempresarial/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <FaInstagram size={24} color="#fff" />
               </a>
-              <a href="#" aria-label="Instagram">
-                IG
+              <a href="https://www.youtube.com/channel/UC7Gal38pmeQ2QxrH0VJwOzg" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <FaYoutube size={24} color="#fff" />
               </a>
             </div>
           </div>
