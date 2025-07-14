@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="footer-top">
           <div className="footer-brand">
             <img
-              src="/assets/img/logos/LogouniempresarialrectangularCCBLogoCompletoUniempresarialacolor.png"
+              src="/public/assets/img/logos/virtuempresarialblanco.png"
               alt="Logo Uniempresarial"
               className="footer-logo"
             />
@@ -74,6 +74,18 @@ export default function Footer() {
               <li>admisines@uniempresarial.edu.co</li>
               <li>Cra 33a #30-20, Bogotá D.C.</li>
             </ul>
+            <div className="footer-map">
+              <iframe
+                title="Mapa Cra 33a #30-20, Bogotá D.C."
+                src="https://www.google.com/maps?q=Cra+33a+%2330-20,+Bogotá+D.C.&output=embed"
+                width="100%"
+                height="180"
+                style={{ border: 0, borderRadius: '10px', marginTop: '12px' }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
           </div>
           <div className="footer-social-column">
             <h5>Síguenos</h5>

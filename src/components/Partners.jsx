@@ -14,8 +14,12 @@ export default function Partners() {
         {/* --- PANEL PRINCIPAL DE LA ALIANZA --- */}
         <div className="partnership-panel">
           <div className="partnership-logos">
-          <img src="/assets/img/logos/LogouniempresarialrectangularCCBLogoCompletoUniempresarialacolor.png" alt="Uniempresarial" className="partner-logo" />
-          <img src="/assets/img/logos/fUSoftcomplete7.png" alt="FuSoft" className="partner-logo" />
+            <div className="partner-logo-box">
+              <img src="/assets/img/logos/Logo-VirtuEmpresarial_color.png" alt="Uniempresarial" className="partner-logo" />
+            </div>
+            <div className="partner-logo2-box">
+              <img src="/assets/img/logos/fUSoftcomplete7.png" alt="FuSoft" className="partner-logo2" />
+            </div>
           </div>
 
           <div className="partnership-showcase">

@@ -62,7 +62,7 @@ export default function Header() {
       <nav className="header-nav">
         <a href="#hero" className="logo" onClick={closeMenu}>
           {/* Se usa el logo original. El CSS se encargará del color. */}
-          <img src="/assets/img/logos/logo.png" alt="Logo Uniempresarial" className="logo-img" />
+          <img src="/public/assets/img/logos/virtuempresarialblanco.png" alt="Logo Uniempresarial" className="logo-img" />
         </a>
 
         <ul className="nav-links-desktop">

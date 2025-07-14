@@ -31,6 +31,7 @@
   background-size: cover, cover, cover;
   background-position: center, center, center;
   background-repeat: no-repeat, no-repeat, no-repeat;
+  background-attachment: fixed;
 }
 
 /* Capa de superposición oscura (mejorada para mayor legibilidad) */

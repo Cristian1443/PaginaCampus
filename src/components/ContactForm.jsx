@@ -39,7 +39,7 @@ export default function ContactForm() {
         color: '#ffffff',
         distance: isMobile ? 100 : 150,
         enable: true,
-        opacity: 0.2,
+        opacity: 0.08,
         width: 1,
       },
       move: {
@@ -54,7 +54,7 @@ export default function ContactForm() {
         density: { enable: true, area: isMobile ? 600 : 800 },
         value: isMobile ? 15 : 30,
       },
-      opacity: { value: 0.2 },
+      opacity: { value: 0.08 },
       shape: { type: 'circle' },
       size: { value: { min: 1, max: isMobile ? 2 : 3 } },
     },
@@ -88,7 +88,7 @@ export default function ContactForm() {
               </div>
               <div className="info-card-content">
                 <h4>Línea directa</h4>
-                <p>+57 (1) 742 1940</p>
+                <p>(+601) 3808000</p>
               </div>
             </div>
             <div className="info-card">
@@ -97,7 +97,7 @@ export default function ContactForm() {
               </div>
               <div className="info-card-content">
                 <h4>Email de contacto</h4>
-                <p>info@uniempresarial.edu.co</p>
+                <p>admisines@uniempresarial.edu.co</p>
               </div>
             </div>
             <div className="info-card">
@@ -106,9 +106,21 @@ export default function ContactForm() {
               </div>
               <div className="info-card-content">
                 <h4>Ubicación</h4>
-                <p>Calle 67 # 5-27, Bogotá</p>
+                <p>Cra 33a #30-20, Bogotá D.C.</p>
               </div>
             </div>
+          </div>
+          <div className="contact-map">
+            <iframe
+              title="Mapa Cra 33a #30-20, Bogotá D.C."
+              src="https://www.google.com/maps?q=Cra+33a+%2330-20,+Bogotá+D.C.&output=embed"
+              width="100%"
+              height="180"
+              style={{ border: 0, borderRadius: '10px', marginTop: '12px' }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
 

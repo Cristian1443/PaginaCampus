@@ -1,219 +1,263 @@
-/* --- ESTILOS MEJORADOS PARA FOOTER.CSS --- */
-
+/* --- FOOTER MEJORADO --- */
 .footer-section {
-  width: 100%;
-  padding: 80px 20px 0 20px;
-  background-color: #0f172a;
-  color: #94a3b8;
-  position: relative;
+  background: #131b2b;
+  color: #cbd5e1;
+  padding: 0;
+  margin-top: 48px;
 }
-
-.footer-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-}
-
 .footer-container {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
+  padding: 0 32px;
 }
-
-/* --- SECCIÓN SUPERIOR --- */
 .footer-top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 40px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  align-items: flex-start;
+  gap: 48px;
+  padding: 48px 0 32px 0;
 }
-
 .footer-brand {
-  max-width: 400px;
+  flex: 1 1 320px;
 }
-
 .footer-logo {
-  height: 50px;
-  margin-bottom: 16px;
+  max-width: 210px;
+  margin-bottom: 18px;
 }
-
 .footer-description {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin: 0;
+  font-size: 1.08rem;
+  color: #94a3b8;
+  margin-bottom: 0;
 }
-
-.footer-subscribe h4 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #fff;
-  margin: 0 0 8px 0;
+.footer-subscribe {
+  flex: 1 1 320px;
+  background: #19213a;
+  border-radius: 14px;
+  padding: 28px 24px;
+  box-shadow: 0 2px 12px rgba(39,52,116,0.06);
 }
-
-.footer-subscribe p {
-  margin: 0 0 16px 0;
-  max-width: 400px;
-}
-
 .subscribe-form {
   display: flex;
-  height: 48px;
+  gap: 8px;
+  margin-top: 10px;
 }
-
 .subscribe-form input {
-  flex-grow: 1;
-  border: 1px solid #334155;
-  background-color: #1e293b;
-  padding: 0 16px;
-  color: #fff;
-  font-size: 1rem;
-  border-radius: 8px 0 0 8px;
-  transition: border-color 0.3s ease;
-}
-
-.subscribe-form input:focus {
-  outline: none;
-  border-color: #e4022c;
-}
-
-.subscribe-form button {
+  flex: 1;
+  border-radius: 8px;
   border: none;
-  background: linear-gradient(135deg, #273474 0%, #e4022c 100%);
-  color: #fff;
-  padding: 0 24px;
+  padding: 10px 14px;
   font-size: 1rem;
+}
+.subscribe-form button {
+  background: linear-gradient(90deg, #273474 0%, #e4022c 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
   font-weight: 600;
   cursor: pointer;
-  border-radius: 0 8px 8px 0;
-  transition: opacity 0.3s ease;
+  transition: background 0.2s;
 }
-
 .subscribe-form button:hover {
-  opacity: 0.9;
+  background: linear-gradient(90deg, #e4022c 0%, #273474 100%);
 }
 
-/* --- SECCIÓN INFERIOR --- */
 .footer-bottom {
-  padding: 40px 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 0 0 0;
+  border-top: 1.5px solid #222b3a;
+  margin-top: 0;
 }
-
-.footer-links-column h5 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #fff;
-  margin: 0 0 16px 0;
+.footer-links-column, .footer-social-column {
+  flex: 1 1 220px;
+  min-width: 220px;
+  max-width: 320px;
+  margin-bottom: 0;
+  text-align: left;
+  word-break: break-word;
+  padding: 36px 32px 32px 32px;
+  background: none;
 }
-
+.footer-links-column:not(:last-child) {
+  border-right: 1.5px solid #222b3a;
+}
+.footer-links-column h5, .footer-social-column h5 {
+  font-size: 1.18rem;
+  color: #e4022c;
+  font-weight: 700;
+  margin-bottom: 18px;
+  letter-spacing: -0.5px;
+}
 .footer-links-column ul {
   list-style: none;
-  padding: 0;
+  padding-left: 0;
   margin: 0;
 }
-
-.footer-links-column li {
-  margin-bottom: 12px;
-}
-
-.footer-links-column a {
-  color: #94a3b8;
+.footer-links-column li, .footer-links-column a {
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+  color: #cbd5e1;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.18s;
 }
-
 .footer-links-column a:hover {
   color: #e4022c;
 }
-
+.footer-social-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 36px 32px 32px 32px;
+}
 .social-links {
   display: flex;
-  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 18px;
 }
-
 .social-links a {
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #222b3a;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background 0.2s, transform 0.2s;
 }
-
 .social-links a:hover {
-  background-color: #e4022c;
-  transform: translateY(-3px);
+  background: #273474;
+  transform: scale(1.10);
+}
+.social-links svg {
+  width: 26px;
+  height: 26px;
+}
+.footer-map {
+  margin-top: 18px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(39,52,116,0.10);
 }
 
-/* --- BARRA LEGAL --- */
 .footer-legal-bar {
-  padding: 24px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.9rem;
+  gap: 12px;
+  font-size: 0.98rem;
+  color: #94a3b8;
+  background: #19213a;
+  padding: 12px 24px;
+  border-top: 1.5px solid #222b3a;
+  margin-top: 0;
 }
 
-.footer-legal-bar p {
-  margin: 0;
+@media (max-width: 1100px) {
+  .footer-container {
+    padding: 0 8px;
+  }
+  .footer-links-column, .footer-social-column {
+    padding: 28px 10px 24px 10px;
+  }
 }
-
-.footer-legal-bar strong {
-  color: #e4022c;
-  font-weight: 500;
-}
-
-/* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-  .footer-section {
-    padding: 60px 15px 0 15px;
-  }
-  .footer-top {
-    flex-direction: column;
-    text-align: center;
-    gap: 30px;
-  }
-  .footer-logo {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .subscribe-form {
-    flex-direction: column;
-    height: auto;
-    gap: 10px;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  .subscribe-form input,
-  .subscribe-form button {
-    border-radius: 8px;
-    height: 48px;
-  }
+@media (max-width: 900px) {
   .footer-bottom {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+  }
+  .footer-links-column, .footer-social-column {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
     text-align: center;
+    border-right: none;
+    border-bottom: 1.5px solid #222b3a;
+    padding: 28px 10px 24px 10px;
+  }
+  .footer-links-column:last-child, .footer-social-column {
+    border-bottom: none;
+  }
+  .footer-social-column {
+    align-items: center;
+    margin-top: 0;
   }
   .social-links {
     justify-content: center;
+    gap: 18px;
+    margin-top: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .footer-section {
+    padding: 24px 0 0 0;
+  }
+  .footer-container {
+    padding: 0 2vw;
+  }
+  .footer-top {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    text-align: center;
+    padding: 32px 0 18px 0;
+  }
+  .footer-brand, .footer-subscribe {
+    width: 100%;
+    max-width: 100%;
+  }
+  .footer-logo {
+    max-width: 120px;
+    margin-bottom: 10px;
+  }
+  .footer-description {
+    font-size: 0.98rem;
+  }
+  .footer-bottom {
+    gap: 0;
+    padding: 0;
+  }
+  .footer-links-column h5, .footer-social-column h5 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  .footer-links-column ul {
+    padding-left: 0;
+  }
+  .footer-links-column li, .footer-links-column a {
+    font-size: 0.98rem;
+    margin-bottom: 5px;
+  }
+  .footer-social-column {
+    margin-top: 0;
+    padding: 18px 2vw 12px 2vw;
+  }
+  .social-links {
+    gap: 10px;
+  }
+  .social-links a {
+    width: 36px;
+    height: 36px;
+  }
+  .social-links svg {
+    width: 18px;
+    height: 18px;
+  }
+  .footer-map iframe {
+    height: 120px !important;
   }
   .footer-legal-bar {
     flex-direction: column;
-    gap: 12px;
-    text-align: center;
-    padding: 20px 0;
+    gap: 4px;
+    font-size: 0.92rem;
+    padding: 8px 0;
   }
 }
