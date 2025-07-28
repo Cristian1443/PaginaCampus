@@ -3,12 +3,8 @@ import './Header.css';
 
 const sections = [
   { id: 'hero', label: 'Inicio' },
-  { id: 'features', label: 'Mi Aula' },
-  { id: 'about', label: 'Stuttgart' },
-  { id: 'tour', label: 'Bienestar' },
-  { id: 'partners', label: 'FuSoft' },
+  { id: 'tour', label: 'Mi Aula' },
   { id: 'admisiones', label: 'Admisiones' },
-  { id: 'programas', label: 'Programas' },
   { id: 'contact', label: 'Contacto' },
 ];
 
@@ -62,7 +58,7 @@ export default function Header() {
       <nav className="header-nav">
         <a href="#hero" className="logo" onClick={closeMenu}>
           {/* Se usa el logo original. El CSS se encargará del color. */}
-          <img src="/public/assets/img/logos/virtuempresarialblanco.png" alt="Logo Uniempresarial" className="logo-img" />
+          <img src="/public/assets/img/logos/logo-blanco_11zon-300x46.png" alt="Logo Uniempresarial" className="logo-img" />
         </a>
 
         <ul className="nav-links-desktop">

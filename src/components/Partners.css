@@ -1,277 +1,229 @@
-/* --- ESTILOS MEJORADOS PARA PARTNERS.CSS --- */
-
+/* --- ESTILOS GENERALES DE LA SECCIÓN (Sin cambios mayores) --- */
 .partners-section {
   width: 100%;
-  padding: 120px 20px;
+  padding: 100px 20px;
   background-color: #0f172a;
   position: relative;
   overflow: hidden;
 }
-
 .partners-section::before {
   content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  max-width: 1800px;
-  max-height: 1800px;
-  transform: translate(-50%, -50%);
-  background-image: radial-gradient(circle, rgba(228, 2, 44, 0.08), transparent 60%);
+  position: absolute; top: 50%; left: 50%; width: 100%; height: 100%;
+  max-width: 1800px; max-height: 1800px; transform: translate(-50%, -50%);
+  background-image: radial-gradient(circle, rgba(39, 52, 116, 0.1), transparent 60%);
 }
-
-.partners-content {
-  max-width: 1100px;
-  margin: 0 auto;
-  text-align: center;
+.partners-container {
+  max-width: 1100px; margin: 0 auto; text-align: center; position: relative;
 }
-
 .partners-title {
-  font-size: 2.8rem;
-  font-weight: 800;
-  margin-bottom: 16px;
-  color: #fff;
+  font-size: clamp(2.2rem, 5vw, 2.8rem); font-weight: 800; margin-bottom: 16px; color: #fff;
 }
-
-.partners-title-yellow {
-  font-size: 2.2rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, #273474, #e4022c);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.partners-title-highlight {
+  background: linear-gradient(135deg, #273474, #273474);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
-
 .partners-subtitle {
-  color: #94a3b8;
-  font-size: 1.15rem;
-  max-width: 700px;
-  margin: 0 auto 60px auto;
-  line-height: 1.7;
+  color: #94a3b8; font-size: clamp(1rem, 2.5vw, 1.15rem); max-width: 700px;
+  margin: 0 auto 60px auto; line-height: 1.7;
 }
 
-/* --- PANEL PRINCIPAL DE LA ALIANZA --- */
+/* --- PANEL PRINCIPAL DE LA ALIANZA (UI/UX Mejorado) --- */
 .partnership-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* Espacio entre la fila de logos y el contenido de texto */
   background: rgba(30, 41, 59, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 24px;
   padding: 40px;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-}
-
-.partnership-logos {
-  display: flex;
-  flex-direction: row;
-  align-items: center; /* Clave para la alineación vertical */
-  justify-content: center;
-  gap: 60px; /* Aumentamos el espacio para mejor visibilidad */
-  min-height: 90px; /* Asegura un espacio vertical consistente */
-  position: relative;
-  z-index: 2;
-}
-
-/* Estilo UNIFICADO para todos los logos de partners */
-.partner-logo-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border-radius: 16px;
-  padding: 8px 16px;
-  min-width: 120px;
-  min-height: 80px;
-}
-
-.partner-logo2-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border-radius: 16px;
-  padding: 12px 20px;
-  min-width: 150px;
-  min-height: 90px;
-}
-
-.partner-logo {
-  max-height: 75px;
-  max-width: 130px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  transition: transform 0.3s;
-}
-
-.partner-logo2 {
-  max-height: 70px;
-  max-width: 190px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  transition: transform 0.3s;
-}
-
-.partner-logo:hover,
-.partner-logo2:hover {
-  transform: scale(1.05);
-}
-
-.partnership-icon {
-  font-size: 2rem;
-  font-weight: 300;
-  color: #94a3b8;
-}
-
-/* --- VITRINA DE LA COLABORACIÓN --- */
-.partnership-showcase {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   text-align: left;
 }
 
-.partnership-illustration {
-  width: 100%;
-  margin-bottom: 32px;
+/* --- 1. FLUJO DE LOGOS Y CONEXIÓN --- */
+.alliance-flow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
 }
 
-/* ANTES:
-.flow-line {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: draw-flow 3s ease-in-out infinite alternate;
+/* Contenedor unificado para los logos */
+.partner-logo-wrapper {
+  flex-shrink: 0; /* Evita que los logos se encojan */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  height: 90px;
+  transition: transform 0.3s ease;
+  /* Animación */
+  opacity: 0;
+  transform: translateY(20px);
 }
-*/
-/* DESPUÉS: Animación más dinámica */
+.partner-logo-wrapper:hover {
+  transform: scale(1.05);
+}
+.partner-logo-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* CLAVE: Ajusta sin deformar */
+}
+
+/* Contenedor y estilo del SVG central */
+.alliance-icon-wrapper {
+  flex-grow: 1; /* Permite que ocupe el espacio disponible */
+  min-width: 100px;
+}
+.alliance-svg {
+  width: 100%;
+  height: auto;
+}
 .flow-line {
   stroke-dasharray: 500;
   stroke-dashoffset: 500;
-  /* Animar al entrar en la vista */
-  animation: draw-line 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.core-circle, .core-emoji {
+  opacity: 0;
+  transform: scale(0.5);
 }
 
-@keyframes draw-line {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.core-ring {
-  transform-origin: center;
-  animation: rotate-core 20s linear infinite;
-}
-
-/* NUEVO: Animación para el cohete central */
-.partnership-illustration text {
-    transform-origin: center;
-    animation: rocket-pulse 2s ease-in-out infinite;
-}
-
-@keyframes rocket-pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
-
-@keyframes rotate-core {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
+/* --- 2. CONTENIDO DESCRIPTIVO (COLUMNAS) --- */
 .partnership-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
 }
-
+.partnership-column {
+  /* Animación */
+  opacity: 0;
+  transform: translateY(20px);
+}
 .partnership-column h4 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #f1f5f9;
-  margin: 0 0 12px 0;
+  font-size: 1.3rem; font-weight: 600; color: #f1f5f9; margin: 0 0 12px 0;
 }
-
 .partnership-column p {
-  color: #94a3b8;
-  line-height: 1.6;
-  margin: 0 0 20px 0;
+  color: #94a3b8; line-height: 1.6; margin: 0 0 20px 0;
 }
-
 .partnership-column ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  list-style: none; padding: 0; margin: 0;
 }
-
 .partnership-column li {
-  color: #cbd5e1;
-  padding-left: 20px;
-  position: relative;
-  margin-bottom: 10px;
+  color: #cbd5e1; padding-left: 20px; position: relative; margin-bottom: 10px;
 }
-
 .partnership-column li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: #e4022c;
-  font-weight: bold;
+  content: '✓'; position: absolute; left: 0; color: #273474; font-weight: bold;
 }
 
+/* --- 🚀 ANIMACIONES COREOGRAFIADAS --- */
+/* Cuando el panel es visible, se activan las animaciones en cascada */
+.partnership-panel.is-visible .partner-logo-wrapper {
+  animation: fadeInUp 0.5s 0.1s ease forwards;
+}
+.partnership-panel.is-visible .flow-line.line-1 {
+  animation: draw-line 1s 0.4s ease forwards;
+}
+.partnership-panel.is-visible .flow-line.line-2 {
+  animation: draw-line 1s 0.4s ease forwards;
+}
+.partnership-panel.is-visible .core-circle,
+.partnership-panel.is-visible .core-emoji {
+  animation: popIn 0.5s 1.2s ease forwards;
+}
+.partnership-panel.is-visible .partnership-column {
+  animation: fadeInUp 0.5s 1.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes draw-line {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes popIn {
+  to { opacity: 1; transform: scale(1); }
+}
 
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-  .partners-section {
-    padding: 60px 15px;
+  .partnership-panel {
+    padding: 24px;
   }
-  .partners-title {
-    /* ANTES: font-size: 2.2rem; */
-    font-size: clamp(2rem, 8vw, 2.5rem); /* DESPUÉS */
-  }
-  .partners-subtitle {
-    font-size: 1rem;
-    margin-bottom: 40px;
-  }
-  .partnership-panel { 
-    padding: 24px; 
-  }
-  .partnership-logos {
+
+  /* 1. Logos como Pestañas (Tabs) */
+  .alliance-flow {
+    flex-direction: row; /* Vuelven a estar en fila */
+    justify-content: center; /* Centrados */
     gap: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador visual */
+    padding-bottom: 20px;
+    margin-bottom: -20px; /* Compensa el gap del panel principal */
   }
-  .partner-logo-box {
-    min-width: 80px;
-    min-height: 50px;
-    padding: 4px 8px;
+
+  .partner-logo-wrapper {
+    width: 130px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
   }
-  .partner-logo2-box {
-    min-width: 90px;
-    min-height: 55px;
-    padding: 6px 10px;
+
+  /* El logo inactivo se ve atenuado */
+  .partner-logo-img {
+    filter: grayscale(100%) opacity(0.6);
+    transition: filter 0.3s ease;
   }
-  .partner-logo {
-    max-height: 40px;
-    max-width: 90px;
+
+  /* El logo activo recupera su color y resalta */
+  .partner-logo-wrapper.active .partner-logo-img {
+    filter: grayscale(0%) opacity(1);
   }
-  .partner-logo2 {
-    max-height: 32px;
-    max-width: 70px;
+  .partner-logo-wrapper.active {
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: scale(1.05);
   }
-  .partnership-illustration {
-    display: block; /* Mostrar SVG en móvil */
-    margin-bottom: 20px; /* Reducir margen */
+
+  /* 2. El SVG conector se oculta en móvil para una UI más limpia */
+  .alliance-icon-wrapper {
+    display: none;
   }
-  .partnership-content { 
-    grid-template-columns: 1fr; 
-    gap: 30px;
+
+  /* 3. Contenedor para el contenido dinámico */
+  .partnership-content {
+    /* Ya no es un grid, es un contenedor para las capas de texto */
+    display: block;
+    position: relative;
+    min-height: 280px; /* Altura fija para evitar saltos de layout */
+    margin-top: 40px;
   }
-  .partnership-column h4 {
-    font-size: 1.2rem;
+  
+  .partner-details {
+    /* Posicionamos las capas una encima de otra */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Transición suave para el cambio de contenido */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    pointer-events: none; /* Evita interacciones cuando está oculto */
   }
-  .partnership-column p {
-    font-size: 0.95rem;
+
+  .partner-details.is-active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
-  .partners-title-yellow {
-    font-size: 2rem;
+
+  /* Las columnas dentro ya no necesitan grid, son un bloque normal */
+  .partnership-column {
+    /* Quitamos la animación de entrada, ahora se usa la del contenedor */
+    animation: none !important;
+    opacity: 1;
+    transform: none;
   }
 }
