@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import './Header.css';
 
 const sections = [
-  { id: 'hero', label: 'Inicio' },
+  { id: 'admisiones', label: 'Inicio' },
   { id: 'tour', label: 'Mi Aula' },
-  { id: 'admisiones', label: 'Admisiones' },
+  { id: 'admission-process', label: 'Admisiones' },
   { id: 'contact', label: 'Contacto' },
 ];
 
@@ -15,10 +15,12 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
+      // Determina si el usuario ha hecho scroll
       setIsScrolled(window.scrollY > 20);
 
+      // Lógica para resaltar la sección activa en el menú
       const scrollPosition = window.scrollY + window.innerHeight / 2;
-      let current = 'hero';
+      let currentSectionId = 'hero';
 
       for (const section of sections) {
         const el = document.getElementById(section.id);
@@ -26,51 +28,57 @@ export default function Header() {
           const sectionTop = el.offsetTop;
           const sectionHeight = el.offsetHeight;
           if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            current = section.id;
+            currentSectionId = section.id;
             break;
           }
         }
       }
-      setActiveSection(current);
+      setActiveSection(currentSectionId);
     };
 
+    // Añadir listeners y ejecutar una vez para el estado inicial
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
     handleScroll();
+
+    // Limpiar listeners al desmontar el componente
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
     };
   }, []);
 
+  // Bloquear el scroll del body cuando el menú móvil está abierto
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
   }, [isMenuOpen]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
+  // Función para manejar el clic en los enlaces y cerrar el menú
+  const handleLinkClick = (sectionId) => {
+    setActiveSection(sectionId);
+    closeMenu();
+  };
+
   return (
     <header className={`header-fixed ${isScrolled ? 'scrolled' : ''}`}>
       <nav className="header-nav">
         <a href="#hero" className="logo" onClick={closeMenu}>
-          {/* Se usa el logo original. El CSS se encargará del color. */}
-          <img src="/public/assets/img/logos/logo-blanco_11zon-300x46.png" alt="Logo Uniempresarial" className="logo-img" />
+          <img 
+            src="/assets/img/logos/logo-blanco_11zon-300x46.png" 
+            alt="Logo Uniempresarial" 
+            className="logo-img" 
+          />
         </a>
 
+        {/* Menú para Escritorio */}
         <ul className="nav-links-desktop">
           {sections.map((section) => (
             <li key={section.id}>
               <a 
                 href={`#${section.id}`}
                 className={activeSection === section.id ? 'active' : ''}
-                onClick={() => {
-                  setActiveSection(section.id);
-                  closeMenu();
-                }}
+                onClick={() => handleLinkClick(section.id)}
               >
                 {section.label}
               </a>
@@ -78,8 +86,13 @@ export default function Header() {
           ))}
         </ul>
         
+        {/* Contenedor del Menú Móvil */}
         <div className={`nav-links-mobile-container ${isMenuOpen ? 'open' : ''}`}>
-          <button className="mobile-close-btn" onClick={closeMenu} aria-label="Cerrar menú">
+          <button 
+            className="mobile-close-btn" 
+            onClick={closeMenu} 
+            aria-label="Cerrar menú de navegación"
+          >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
@@ -90,10 +103,7 @@ export default function Header() {
                 <a 
                   href={`#${section.id}`}
                   className={activeSection === section.id ? 'active' : ''}
-                  onClick={() => {
-                    setActiveSection(section.id);
-                    closeMenu();
-                  }}
+                  onClick={() => handleLinkClick(section.id)}
                 >
                   {section.label}
                 </a>
@@ -102,10 +112,12 @@ export default function Header() {
           </ul>
         </div>
         
+        {/* Botón de Hamburguesa */}
         <button 
           className={`hamburger ${isMenuOpen ? 'open' : ''}`}
           onClick={toggleMenu}
-          aria-label="Toggle menu"
+          aria-label="Abrir menú de navegación"
+          aria-expanded={isMenuOpen}
         >
           <span className="hamburger-line"></span>
           <span className="hamburger-line"></span>

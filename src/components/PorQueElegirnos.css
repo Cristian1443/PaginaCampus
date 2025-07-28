@@ -1,178 +1,178 @@
-/* --- ESTILOS MEJORADOS PARA PORQUEELEGIRNOS.CSS --- */
+  /* --- ESTILOS MEJORADOS PARA PORQUEELEGIRNOS.CSS --- */
 
-.elegir-section {
-  width: 100%;
-  padding: 10px 20px;
-  background-color: #0f172a;
-  position: relative;
-  overflow: hidden;
-}
-
-.elegir-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  align-items: center;
-  gap: 60px;
-}
-
-/* --- ILUSTRACIÓN PRINCIPAL Y SU CONTENEDOR --- */
-.elegir-ilustracion-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.elegir-main-svg {
-  width: 100%;
-  max-width: 450px;
-  height: auto;
-  opacity: 0;
-  animation: svg-fade-in 1.5s ease-out forwards;
-}
-
-@keyframes svg-fade-in {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* --- COLUMNA DE MOTIVOS Y TEXTO --- */
-.elegir-motivos {
-  text-align: left;
-}
-
-.elegir-title-gradient {
-  font-size: 2.8rem;
-  font-weight: 800;
-  margin-bottom: 16px;
-  background: linear-gradient(90deg, #fff 0%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.elegir-subtitle {
-  color: #94a3b8;
-  font-size: 1.15rem;
-  max-width: 550px;
-  margin: 0 0 40px 0;
-  line-height: 1.7;
-}
-
-.elegir-lista {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-/* --- DISEÑO DE TARJETA DE MOTIVO REFINADO --- */
-.elegir-motivo-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  padding: 20px;
-  border-radius: 12px;
-  background-color: transparent;
-  border: 1px solid transparent;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-  
-  opacity: 0;
-  animation: card-fade-in-up 0.6s ease-out forwards;
-}
-
-@keyframes card-fade-in-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.elegir-motivo-card:hover {
-  background-color: rgba(30, 41, 59, 0.5);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.elegir-motivo-icon {
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #273474, #ff012f);
-  color: #fff;
-}
-
-.elegir-motivo-icon svg {
-  width: 24px;
-  height: 24px;
-}
-
-.elegir-motivo-text h3 {
-  color: #f1f5f9;
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin: 0 0 8px 0;
-}
-
-.elegir-motivo-text p {
-  color: #94a3b8;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin: 0;
-}
-
-/* --- RESPONSIVE --- */
-@media (max-width: 992px) {
   .elegir-section {
-    padding: 60px 15px;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #0f172a;
+    position: relative;
+    overflow: hidden;
   }
+
   .elegir-container {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    align-items: center;
+    gap: 60px;
   }
+
+  /* --- ILUSTRACIÓN PRINCIPAL Y SU CONTENEDOR --- */
   .elegir-ilustracion-wrapper {
-    order: -1; /* Mueve la ilustración arriba */
-    max-width: 300px;
-    margin: 0 auto 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
   }
+
+  .elegir-main-svg {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    opacity: 0;
+    animation: svg-fade-in 1.5s ease-out forwards;
+  }
+
+  @keyframes svg-fade-in {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* --- COLUMNA DE MOTIVOS Y TEXTO --- */
   .elegir-motivos {
-    text-align: center;
+    text-align: left;
   }
+
   .elegir-title-gradient {
-    /* ANTES: font-size: 2.2rem; */
-    font-size: clamp(2rem, 8vw, 2.5rem); /* DESPUÉS */
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    background: linear-gradient(90deg, #fff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
+
   .elegir-subtitle {
-    font-size: 1rem;
-    margin-left: auto;
-    margin-right: auto;
+    color: #94a3b8;
+    font-size: 1.15rem;
+    max-width: 550px;
+    margin: 0 0 40px 0;
+    line-height: 1.7;
   }
+
   .elegir-lista {
-    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
-  /* --- Nuevo diseño de tarjetas --- */
+
+  /* --- DISEÑO DE TARJETA DE MOTIVO REFINADO --- */
   .elegir-motivo-card {
-    flex-direction: column; /* Apilar icono y texto */
-    align-items: center; /* Centrar todo */
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    
+    opacity: 0;
+    animation: card-fade-in-up 0.6s ease-out forwards;
+  }
+
+  @keyframes card-fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .elegir-motivo-card:hover {
     background-color: rgba(30, 41, 59, 0.5);
     border-color: rgba(255, 255, 255, 0.1);
-    gap: 12px;
-    padding: 24px;
   }
-  .elegir-motivo-text {
-    text-align: center;
+
+  .elegir-motivo-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #273474, #ff012f);
+    color: #fff;
   }
+
+  .elegir-motivo-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
   .elegir-motivo-text h3 {
-    font-size: 1.1rem;
+    color: #f1f5f9;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
   }
+
   .elegir-motivo-text p {
-    font-size: 0.95rem;
+    color: #94a3b8;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
   }
-}
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 992px) {
+    .elegir-section {
+      padding: 60px 15px;
+    }
+    .elegir-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 40px;
+    }
+    .elegir-ilustracion-wrapper {
+      order: -1; /* Mueve la ilustración arriba */
+      max-width: 300px;
+      margin: 0 auto 20px auto;
+    }
+    .elegir-motivos {
+      text-align: center;
+    }
+    .elegir-title-gradient {
+      /* ANTES: font-size: 2.2rem; */
+      font-size: clamp(2rem, 8vw, 2.5rem); /* DESPUÉS */
+    }
+    .elegir-subtitle {
+      font-size: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .elegir-lista {
+      gap: 16px;
+    }
+    /* --- Nuevo diseño de tarjetas --- */
+    .elegir-motivo-card {
+      flex-direction: column; /* Apilar icono y texto */
+      align-items: center; /* Centrar todo */
+      background-color: rgba(30, 41, 59, 0.5);
+      border-color: rgba(255, 255, 255, 0.1);
+      gap: 12px;
+      padding: 24px;
+    }
+    .elegir-motivo-text {
+      text-align: center;
+    }
+    .elegir-motivo-text h3 {
+      font-size: 1.1rem;
+    }
+    .elegir-motivo-text p {
+      font-size: 0.95rem;
+    }
+  }

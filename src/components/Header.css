@@ -1,9 +1,5 @@
 /* --- ESTILOS MEJORADOS (UI/UX) PARA HEADER.CSS --- */
 
-html, body {
-  height: 100%;
-}
-
 .header-fixed {
   position: fixed;
   top: 0;
@@ -14,7 +10,7 @@ html, body {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
-  transition: background-color 0.4s ease, border-bottom-color 0.4s ease, box-shadow 0.4s ease, height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.4s ease, border-bottom-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 /* --- HEADER ADAPTATIVO AL SCROLL --- */
@@ -41,7 +37,7 @@ html, body {
 
 .logo-img {
   height: 40px;
-  transition: height 0.3s ease-in-out;
+  transition: height 0.3s ease-in-out, filter 0.3s ease;
   filter: brightness(0) invert(1);
 }
 
@@ -56,7 +52,6 @@ html, body {
   margin: 0;
   padding: 0; 
   gap: 32px;
-  margin-left: auto;
 }
 
 .nav-links-desktop a {
@@ -65,20 +60,36 @@ html, body {
   font-weight: 500;
   font-size: 1rem;
   padding: 8px 4px;
-  border-radius: 4px;
   position: relative;
-  transition: color 0.3s ease, background-color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.nav-links-desktop a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #e4022c;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 }
 
 .nav-links-desktop a:hover {
   color: #fff;
-  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-links-desktop a:hover::after,
+.nav-links-desktop a.active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 .nav-links-desktop a.active {
   color: #fff;
   font-weight: 600;
-  background-color: rgba(228, 2, 44, 0.2);
 }
 
 /* --- MENÚ MÓVIL CON MEJORAS DE UI/UX --- */
@@ -112,8 +123,6 @@ html, body {
   padding: 0;
   margin: 0;
   text-align: center;
-  width: 100%;
-  max-width: 400px;
 }
 
 .nav-links-mobile li {
@@ -130,20 +139,14 @@ html, body {
   padding: 16px 24px;
   display: block;
   border-radius: 12px;
-
-  /* --- MEJORA 2: Transición de Hover Refinada --- */
   transition: background-color 0.3s ease, color 0.3s ease, letter-spacing 0.3s ease;
 }
 
-.nav-links-mobile a:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+.nav-links-mobile a:hover,
+.nav-links-mobile a.active {
+  background-color: rgba(228, 2, 44, 0.2);
   color: #fff;
   letter-spacing: 1px;
-}
-
-/* Ocultamos el efecto de línea anterior */
-.nav-links-mobile a::before {
-  display: none;
 }
 
 /* Botón de cerrar del menú móvil */
@@ -162,32 +165,19 @@ html, body {
   justify-content: center;
   color: #fff;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  z-index: 1002;
+  z-index: 2001;
 }
 
 .mobile-close-btn:hover {
-  background: rgba(228, 2, 44, 0.2);
-  border-color: rgba(228, 2, 44, 0.3);
-  transform: scale(1.1);
+  background: rgba(228, 2, 44, 0.3);
+  transform: scale(1.1) rotate(90deg);
 }
 
-.mobile-close-btn svg {
-  width: 20px;
-  height: 20px;
-}
-
-/* --- MEJORA 3: Animación escalonada (ya estaba bien, se mantiene) --- */
+/* --- MEJORA 3: Animación escalonada --- */
 .nav-links-mobile-container.open li:nth-child(1) { animation-delay: 0.2s; }
 .nav-links-mobile-container.open li:nth-child(2) { animation-delay: 0.25s; }
 .nav-links-mobile-container.open li:nth-child(3) { animation-delay: 0.3s; }
 .nav-links-mobile-container.open li:nth-child(4) { animation-delay: 0.35s; }
-.nav-links-mobile-container.open li:nth-child(5) { animation-delay: 0.4s; }
-.nav-links-mobile-container.open li:nth-child(6) { animation-delay: 0.45s; }
-.nav-links-mobile-container.open li:nth-child(7) { animation-delay: 0.5s; }
-.nav-links-mobile-container.open li:nth-child(8) { animation-delay: 0.55s; }
-.nav-links-mobile-container.open li:nth-child(9) { animation-delay: 0.6s; }
 
 @keyframes menuItemFadeIn {
   to {
@@ -202,39 +192,22 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 1001;
-  position: relative;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.hamburger:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: scale(1.05);
+  z-index: 2001;
 }
 
 .hamburger-line {
-  width: 20px;
+  width: 24px;
   height: 2px;
   background: #fff;
   border-radius: 1px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  margin: 2px 0;
-  position: relative;
-}
-
-.hamburger.open {
-  background: rgba(228, 2, 44, 0.2);
-  border-color: rgba(228, 2, 44, 0.3);
+  margin: 3px 0;
 }
 
 .hamburger.open .hamburger-line:nth-child(1) {
@@ -243,7 +216,6 @@ html, body {
 
 .hamburger.open .hamburger-line:nth-child(2) {
   opacity: 0;
-  transform: scale(0);
 }
 
 .hamburger.open .hamburger-line:nth-child(3) {
@@ -258,45 +230,5 @@ html, body {
   }
   .hamburger {
     display: flex;
-  }
-}
-
-@media (max-width: 768px) {
-  .header-nav {
-    padding: 0 20px;
-  }
-  
-  .hamburger {
-    display: flex;
-  }
-  
-  .nav-links-mobile a {
-    font-size: 1.4rem;
-    padding: 14px 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .header-nav {
-    padding: 0 15px;
-  }
-  
-  .logo-img {
-    height: 35px;
-  }
-  
-  .hamburger {
-    width: 36px;
-    height: 36px;
-  }
-  
-  .hamburger-line {
-    width: 18px;
-    height: 2px;
-  }
-  
-  .nav-links-mobile a {
-    font-size: 1.2rem;
-    padding: 12px 16px;
   }
 }
