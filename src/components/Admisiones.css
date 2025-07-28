@@ -2,7 +2,7 @@
 
 .admisiones-section-pro {
   width: 100%;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background: linear-gradient(135deg, var(--color-background-dark) 0%, var(--color-background-light) 50%, var(--color-background-dark) 100%);
   position: relative;
   overflow: hidden;
   padding: 0;
@@ -77,7 +77,7 @@
 }
 
 .hero-title .highlight {
-  background: linear-gradient(45deg, #e4022c, #f59e0b, #e4022c);
+  background: linear-gradient(45deg, var(--color-primary), var(--color-accent), var(--color-primary));
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -134,7 +134,7 @@
 .programs-grid-pro {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: var(--space-md);
   max-width: 1400px;
   margin: 0 auto;
   flex-wrap: wrap;
@@ -143,14 +143,14 @@
 .program-card-pro {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 1.5rem;
-  padding: 2.5rem 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-lg) var(--space-md);
   text-align: center;
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: var(--transition-smooth);
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -384,7 +384,7 @@
     justify-content: center;
     gap: 1.5rem;
   }
-  
+
   .program-card-pro {
     min-width: 240px;
     max-width: 260px;
@@ -410,7 +410,7 @@
     padding: 3rem 1rem 4rem;
     margin-top: -1rem;
   }
-  
+
   .programs-grid-pro { 
     flex-direction: column;
     align-items: center;
@@ -446,7 +446,7 @@
   .programs-section-integrated {
     padding: 2rem 0.5rem 3rem;
   }
-  
+
   .program-card-pro {
     padding: 1.5rem 1rem;
   }
@@ -462,4 +462,4 @@
   .program-card-description {
     font-size: 0.9rem;
   }
-} 
+}

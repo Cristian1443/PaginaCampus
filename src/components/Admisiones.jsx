@@ -16,7 +16,7 @@ const programsData = [
     link: "#contact"
   },
   {
-    title: "Marketing Digital",
+    title: "Marketing",
     description: "Domina las estrategias y herramientas digitales para posicionar marcas en el competitivo mercado actual.",
     icon: "📈",
     link: "#contact"
