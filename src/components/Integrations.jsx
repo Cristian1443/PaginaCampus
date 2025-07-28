@@ -1,28 +1,26 @@
 import { useState } from 'react';
 import './Integrations.css';
-import lmsImg from '../../public/assets/img/imagenes/LSM.png';
-import connectivityImg from '../../public/assets/img/imagenes/conectividad.png';
-import apiImg from '../../public/assets/img/imagenes/Apis.png';
 
+// RUTAS CORREGIDAS: Ahora son strings directos, no imports
 const integrationsData = [
   {
     id: 'lms',
     icon: '📚',
-    image: lmsImg,
+    image: '/assets/img/imagenes/LSM.png',
     title: "LMS Avanzado",
     description: "Gestión completa del aprendizaje con seguimiento personalizado y analíticas en tiempo real para potenciar el éxito estudiantil."
   },
   {
     id: 'connectivity',
     icon: '🔄',
-    image: connectivityImg,
+    image: '/assets/img/imagenes/conectividad.png',
     title: "Conectividad Total",
     description: "Sincronización automática entre dispositivos y plataformas para una experiencia de aprendizaje fluida y sin interrupciones."
   },
   {
     id: 'api',
     icon: '🔌',
-    image: apiImg,
+    image: '/assets/img/imagenes/Apis.png',
     title: "APIs Robustas",
     description: "Nuestra arquitectura abierta permite una integración fluida con sistemas externos y herramientas educativas de terceros."
   }
@@ -31,7 +29,6 @@ const integrationsData = [
 export default function Integrations() {
   const [activeIntegration, setActiveIntegration] = useState('lms');
 
-  // Función para manejar el clic en el acordeón (permite abrir/cerrar)
   const handleAccordionClick = (id) => {
     setActiveIntegration(activeIntegration === id ? null : id);
   };
@@ -50,7 +47,6 @@ export default function Integrations() {
           </p>
         </div>
         
-        {/* --- Layout de Escritorio (se oculta en móvil) --- */}
         <div className="integrations-panel-desktop">
           <div className="integrations-showcase">
             <div className="showcase-background"></div>
@@ -79,7 +75,6 @@ export default function Integrations() {
           </div>
         </div>
 
-        {/* --- NUEVO Acordeón para Móvil (se muestra solo en móvil) --- */}
         <div className="integrations-accordion-mobile">
           {integrationsData.map((item) => (
             <div key={item.id} className={`accordion-item ${activeIntegration === item.id ? 'active' : ''}`}>

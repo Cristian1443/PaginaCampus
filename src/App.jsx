@@ -6,35 +6,32 @@ import About from './components/About';
 import Tour from './components/Tour';
 import Integrations from './components/Integrations';
 import Admisiones from './components/Admisiones';
+import AdmisionesProcess from './components/AdmisionesProcess'; // <-- 1. IMPORTAR
 import PorQueElegirnos from './components/PorQueElegirnos';
 import Partners from './components/Partners';
 import Proximamente from './components/Proximamente';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
-import CursorOrb from './components/CursorOrb'; // Importamos el nuevo componente
-import VideoTest from './components/VideoTest'; // Componente de prueba temporal
+import CursorOrb from './components/CursorOrb';
 
-
-// 1. Importar la biblioteca AOS y sus estilos
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 function App() {
-  // 2. Inicializar AOS cuando el componente se monte
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Duración de la animación en ms
-      once: true,      // La animación solo ocurre una vez
-      offset: 100,     // Margen antes de que la animación inicie
+      duration: 1000,
+      once: true,
+      offset: 100,
     });
   }, []);
 
   return (
     <>
-      {/* <VideoTest /> */} {/* Componente de prueba temporal quitado */}
       <CursorOrb />
       <Header />
       <Admisiones />
+      <AdmisionesProcess /> {/* <-- 2. AÑADIR EL COMPONENTE */}
       <Features />
       <About />
       <Tour />

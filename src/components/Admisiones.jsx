@@ -85,7 +85,8 @@ export default function Admisiones() {
         <div className="hero-content">
           {/* Logo en el hero */}
           <img 
-            src="/public/assets/img/logos/virtuempresarialblanco.png"
+            /* RUTA CORREGIDA: Se quitó "/public" del inicio */
+            src="/assets/img/logos/virtuempresarialblanco.png"
             alt="Logo VirtuEmpresarial"
             className="hero-logo-pro"
           />
