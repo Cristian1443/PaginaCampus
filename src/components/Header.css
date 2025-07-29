@@ -52,6 +52,7 @@
   margin: 0;
   padding: 0; 
   gap: 32px;
+  align-items: center;
 }
 
 .nav-links-desktop a {
@@ -90,6 +91,103 @@
 .nav-links-desktop a.active {
   color: #fff;
   font-weight: 600;
+}
+
+/* --- MENÚ DESPLEGABLE DE SOPORTE --- */
+.support-dropdown {
+  position: relative;
+}
+
+.support-dropdown-btn {
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 8px 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.support-dropdown-btn:hover,
+.support-dropdown-btn.active {
+  color: #fff;
+}
+
+.support-dropdown-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #e4022c;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+.support-dropdown-btn:hover::after,
+.support-dropdown-btn.active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.dropdown-arrow {
+  transition: transform 0.3s ease;
+}
+
+.support-dropdown-btn.active .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.support-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px 0;
+  margin-top: 8px;
+  min-width: 150px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  animation: dropdownFadeIn 0.3s ease;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.support-dropdown-menu li {
+  list-style: none;
+}
+
+.support-dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.support-dropdown-menu a:hover {
+  background-color: rgba(228, 2, 44, 0.2);
+  color: #fff;
 }
 
 /* --- MENÚ MÓVIL CON MEJORAS DE UI/UX --- */
@@ -149,6 +247,37 @@
   letter-spacing: 1px;
 }
 
+/* --- SECCIÓN DE SOPORTE EN MÓVIL --- */
+.mobile-support-section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-support-title {
+  display: block;
+  color: #94a3b8;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mobile-support-link {
+  color: #cbd5e1 !important;
+  font-size: 1.2rem !important;
+  padding: 12px 24px !important;
+  margin: 4px 0;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.mobile-support-link:hover {
+  background-color: rgba(228, 2, 44, 0.2) !important;
+  color: #fff !important;
+}
+
 /* Botón de cerrar del menú móvil */
 .mobile-close-btn {
   position: absolute;
@@ -178,6 +307,7 @@
 .nav-links-mobile-container.open li:nth-child(2) { animation-delay: 0.25s; }
 .nav-links-mobile-container.open li:nth-child(3) { animation-delay: 0.3s; }
 .nav-links-mobile-container.open li:nth-child(4) { animation-delay: 0.35s; }
+.nav-links-mobile-container.open li:nth-child(5) { animation-delay: 0.4s; }
 
 @keyframes menuItemFadeIn {
   to {
@@ -222,12 +352,12 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-
 /* --- MEDIA QUERIES PARA RESPONSIVE --- */
 @media (max-width: 992px) {
   .nav-links-desktop {
     display: none;
   }
+  
   .hamburger {
     display: flex;
   }

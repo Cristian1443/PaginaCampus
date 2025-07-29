@@ -82,9 +82,9 @@ export default function About() {
               </div>
             ))}
           </div>
-          <button className="about-button">
+         {/* <button className="about-button">
             Chatear con Stuttgart <span className="about-btn-icon">→</span>
-          </button>
+          </button> */}
         </div>
       </div>
     </section>

@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="footer-section" id="footer">
       <div className="footer-container">
-        {/* --- SECCIÓN SUPERIOR: MARCA Y CTA --- */}
+        {/* --- SECCIÓN SUPERIOR: MARCA --- */}
         <div className="footer-top">
           <div className="footer-brand">
             <img
@@ -17,17 +17,6 @@ export default function Footer() {
               Transformando la educación superior con tecnología de vanguardia
               para los líderes del mañana.
             </p>
-          </div>
-          <div className="footer-subscribe">
-            <h4>Mantente Actualizado</h4>
-            <p>
-              Recibe las últimas noticias, eventos y novedades académicas
-              directamente en tu correo.
-            </p>
-            <form className="subscribe-form">
-              <input type="email" placeholder="Ingresa tu email" required />
-              <button type="submit">Suscribirse</button>
-            </form>
           </div>
         </div>
 
@@ -71,13 +60,13 @@ export default function Footer() {
             <h5>Contacto</h5>
             <ul>
               <li>(+601) 3808000</li>
-              <li>admisines@uniempresarial.edu.co</li>
+              <li>admisiones@uniempresarial.edu.co</li>
               <li>Cra 33a #30-20, Bogotá D.C.</li>
             </ul>
             <div className="footer-map">
               <iframe
                 title="Mapa Cra 33a #30-20, Bogotá D.C."
-                src="https://www.google.com/maps?q=Cra+33a+%2330-20,+Bogotá+D.C.&output=embed"
+                src="https://maps.google.com/maps?q=Cra%2033a%20%2330-20,%20Bogot%C3%A1%20D.C.&t=&z=13&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="180"
                 style={{ border: 0, borderRadius: '10px', marginTop: '12px' }}
@@ -99,7 +88,7 @@ export default function Footer() {
               <a href="https://www.instagram.com/uniempresarial/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <FaInstagram size={24} color="#fff" />
               </a>
-              <a href="https://www.youtube.com/channel/UC7Gal38pmeQ2QxrH0VJwOzg" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <a href="https://www.youtube.com/user/uempresarial" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                 <FaYoutube size={24} color="#fff" />
               </a>
             </div>

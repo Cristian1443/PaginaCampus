@@ -31,7 +31,7 @@ const tourStops = [
     title: "Espacios de Coformación",
     subtitle: "Interacción social y apoyo estudiantil.",
     features: ["Salones virtuales para networking", "Eventos culturales y deportivos", "Comunidades de interés dinámicas"],
-    buttonText: "Unirme a Grupos",
+    buttonText: "Mas Informacion",
     icon: "🤝",
     className: "tour-btn-orange"
   },
@@ -273,35 +273,61 @@ export default function Tour() {
       {/* Modal de Espacios de Coformación */}
       {showModalCoformacion && (
         <div className="modal-overlay" onClick={closeModalCoformacion}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <div className="modal-header" style={{flexDirection: 'column', alignItems: 'center', gap: '8px'}}>
-              <div style={{fontSize: '2.7rem', marginBottom: '6px'}}>🤝</div>
-              <h2 style={{marginBottom: '4px'}}>¡Bienvenido a los Espacios de Coformación!</h2>
-              <div style={{color: '#2563eb', fontWeight: 500, fontSize: '1.08rem', marginBottom: '8px', textAlign: 'center'}}>
-                Conecta, comparte y crece junto a otros estudiantes.
+          <div className="modal-content coformacion-modal" onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeModalCoformacion} style={{position: 'absolute', top: 18, right: 18, zIndex: 10}}>×</button>
+            
+            <div className="coformacion-header">
+              <div className="coformacion-logo-section">
+                <div className="coformacion-logo">
+                  <div className="logo-graphic">
+                    <div className="logo-u">U</div>
+                    <div className="logo-dot"></div>
+                  </div>
+                  <div className="logo-text">
+                    <h3>Uniempresarial</h3>
+                    <p>Fundación Universitaria Empresarial</p>
+                  </div>
+                </div>
               </div>
-              <button className="modal-close" onClick={closeModalCoformacion} style={{position: 'absolute', top: 18, right: 18}}>×</button>
             </div>
-            <div className="modal-body">
-              <p className="modal-description">
-                En UE Virtual creemos en el poder de la comunidad. Aquí podrás:
-              </p>
-              <ul className="modal-benefits">
-                <li>Unirte a grupos de interés y networking.</li>
-                <li>Participar en eventos culturales, deportivos y académicos.</li>
-                <li>Crear lazos con otros estudiantes y potenciar tu experiencia universitaria.</li>
-              </ul>
-              <p className="modal-description">
-                ¿Quieres ser parte de una comunidad activa y colaborativa?<br/>
-                ¡Pronto te contactaremos para que vivas la experiencia UE Virtual al máximo!
-              </p>
-              <button 
-                className="modal-action-btn"
-                onClick={closeModalCoformacion}
-                style={{marginTop: '18px'}}
-              >
-                Quiero participar
-              </button>
+
+            <div className="coformacion-content">
+              <div className="coformacion-section">
+                <h2 className="coformacion-title">Modelo Dual</h2>
+                <p className="coformacion-description">
+                  Modelo pedagógico que combina el aprendizaje en aula con el aprendizaje en entornos empresariales reales.
+                </p>
+                <div className="coformacion-highlight">
+                  APRENDER HACIENDO EN EL CONTEXTO EMPRESARIAL
+                </div>
+              </div>
+
+              <div className="coformacion-section">
+                <h2 className="coformacion-title">¿Qué es la Coformación?</h2>
+                <p className="coformacion-description">
+                  Es un espacio académico del plan de estudios (práctica) que realiza el estudiante matriculado en programas académicos virtual dual. La formación se desarrolla en un ambiente de aprendizaje empresarial, articulada por un eje de conocimiento definido en la ruta formativa.
+                </p>
+              </div>
+
+              <div className="coformacion-partnership">
+                <span className="partnership-label">Una filial de:</span>
+                <div className="partnership-logos">
+                  <div className="partnership-logo">
+                    <div className="logo-graphic">
+                      <div className="logo-u">U</div>
+                      <div className="logo-dot"></div>
+                    </div>
+                    <span>Uniempresarial</span>
+                  </div>
+                  <div className="partnership-logo">
+                    <div className="ccb-logo">
+                      <span className="ccb-c">C</span>
+                      <span className="ccb-c">C</span>
+                    </div>
+                    <span>Cámara de Comercio de Bogotá</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

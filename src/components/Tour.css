@@ -98,86 +98,88 @@
   height: 160px;
   width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(39, 52, 116, 0.3), rgba(228, 2, 44, 0.3));
+  position: relative;
+  overflow: hidden;
 }
 
 .tour-card-icon {
-  font-size: 4rem;
-  opacity: 0.8;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  font-size: 3.5rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
 }
 
 .tour-card:hover .tour-card-icon {
-  transform: scale(1.2);
-  opacity: 1;
+  transform: scale(1.1) rotate(5deg);
 }
 
-/* --- CONTENIDO DE TARJETA --- */
 .tour-card-content {
   padding: 24px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  text-align: left;
+  justify-content: space-between;
 }
 
 .tour-card-content h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: #f1f5f9;
-  margin: 0 0 8px 0;
+  margin-bottom: 12px;
+  line-height: 1.3;
 }
 
 .tour-card-content p {
-  font-size: 1rem;
-  color: #94a3b8;
+  color: #cbd5e1;
+  font-size: 0.95rem;
   line-height: 1.6;
-  margin: 0 0 20px 0;
+  margin-bottom: 20px;
+  flex-grow: 1;
 }
 
 .tour-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 24px 0;
-  flex-grow: 1;
+  margin: 0 0 20px 0;
 }
 
 .tour-list li {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: #cbd5e1;
-  margin-bottom: 10px;
-  font-size: 0.95rem;
+  gap: 8px;
 }
 
 .tour-list li .dot {
   width: 6px;
   height: 6px;
+  background: #e4022c;
   border-radius: 50%;
-  background-color: #e4022c;
   flex-shrink: 0;
 }
 
 .tour-btn {
-  padding: 12px 24px;
+  background: linear-gradient(135deg, #e4022c, #dc2626);
+  color: white;
   border: none;
-  border-radius: 10px;
-  font-size: 1rem;
+  padding: 12px 24px;
+  border-radius: 8px;
   font-weight: 600;
+  font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: #fff;
+  text-decoration: none;
+  display: inline-block;
   text-align: center;
-  align-self: flex-start;
 }
 
 .tour-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(228, 2, 44, 0.3);
 }
 
 .tour-btn-blue { background: #2563eb; }
@@ -187,33 +189,36 @@
 .tour-btn-green { background: #16a34a; }
 .tour-btn-red { background: #dc2626; }
 
-/* --- MODAL DE BIENESTAR UNIVERSITARIO --- */
+/* --- MODAL ESTILOS --- */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  padding: 20px;
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .modal-content {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
-  border-radius: 20px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  max-width: 900px;
-  width: 100%;
-  max-height: 90vh;
+  max-width: 90%;
+  max-height: 90%;
   overflow-y: auto;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  animation: modalSlideIn 0.3s ease-out;
+  position: relative;
+  animation: modalSlideIn 0.4s ease;
 }
 
 @keyframes modalSlideIn {
@@ -228,39 +233,42 @@
 }
 
 .modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 24px 16px 24px;
+  padding: 24px 24px 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
 }
 
 .modal-header h2 {
   color: #f1f5f9;
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 700;
   margin: 0;
+  text-align: center;
 }
 
 .modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
   background: none;
   border: none;
   color: #94a3b8;
-  font-size: 2rem;
+  font-size: 24px;
   cursor: pointer;
-  padding: 0;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   transition: all 0.3s ease;
+  z-index: 10;
 }
 
 .modal-close:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #f1f5f9;
+  background: rgba(228, 2, 44, 0.2);
+  color: #e4022c;
+  transform: scale(1.1);
 }
 
 .modal-body {
@@ -269,28 +277,29 @@
 
 .modal-description {
   color: #cbd5e1;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.6;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
 .psicologos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
 }
 
 .psicologo-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  padding: 20px;
+  background: rgba(30, 41, 59, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
   transition: all 0.3s ease;
 }
 
 .psicologo-card:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(30, 41, 59, 0.8);
   border-color: rgba(228, 2, 44, 0.3);
   transform: translateY(-2px);
 }
@@ -313,32 +322,34 @@
 }
 
 .psicologo-email {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .psicologo-email strong {
-  color: #cbd5e1;
+  color: #94a3b8;
   font-size: 0.9rem;
+  display: block;
+  margin-bottom: 4px;
 }
 
 .psicologo-email a {
-  color: #60a5fa;
+  color: #3b82f6;
   text-decoration: none;
-  margin-left: 8px;
+  font-size: 0.9rem;
   transition: color 0.3s ease;
 }
 
 .psicologo-email a:hover {
-  color: #93c5fd;
+  color: #60a5fa;
   text-decoration: underline;
 }
 
 .psicologo-programas {
-  margin-top: 16px;
+  margin-top: 12px;
 }
 
 .psicologo-programas strong {
-  color: #cbd5e1;
+  color: #94a3b8;
   font-size: 0.9rem;
   display: block;
   margin-bottom: 8px;
@@ -351,15 +362,15 @@
 }
 
 .psicologo-programas li {
-  color: #94a3b8;
-  font-size: 0.9rem;
-  padding: 4px 0;
-  position: relative;
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
   padding-left: 16px;
+  position: relative;
 }
 
 .psicologo-programas li::before {
-  content: "•";
+  content: '•';
   color: #e4022c;
   position: absolute;
   left: 0;
@@ -367,127 +378,394 @@
 }
 
 .modal-benefits {
-  margin: 18px 0 18px 0;
-  padding-left: 0;
   list-style: none;
+  padding: 0;
+  margin: 20px 0;
 }
+
 .modal-benefits li {
-  color: #94a3b8;
+  color: #cbd5e1;
   font-size: 1rem;
-  margin-bottom: 10px;
-  padding-left: 20px;
+  margin-bottom: 12px;
+  padding-left: 24px;
   position: relative;
 }
+
 .modal-benefits li::before {
-  content: "•";
-  color: #e4022c;
+  content: '✓';
+  color: #16a34a;
   position: absolute;
   left: 0;
   font-weight: bold;
 }
 
 .modal-action-btn {
-  display: inline-block;
-  background: linear-gradient(90deg, #273474 0%, #e4022c 100%);
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.08rem;
-  padding: 12px 36px;
-  border-radius: 12px;
+  background: linear-gradient(135deg, #e4022c, #dc2626);
+  color: white;
   border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(39,52,116,0.10);
-  transition: all 0.22s;
-  margin-top: 8px;
-}
-.modal-action-btn:hover, .modal-action-btn:focus {
-  background: linear-gradient(90deg, #e4022c 0%, #273474 100%);
-  color: #fff;
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 8px 24px rgba(228,2,44,0.13);
+  transition: all 0.3s ease;
+  display: block;
+  margin: 0 auto;
 }
 
-/* --- REDISEÑO COMPLETO PARA MÓVIL --- */
+.modal-action-btn:hover, .modal-action-btn:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(228, 2, 44, 0.3);
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+/* --- ESTILOS PARA EL MODAL DE COFORMACIÓN --- */
+.coformacion-modal {
+  max-width: 800px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: none;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  position: relative;
+}
+
+.coformacion-modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #273474, #e4022c);
+}
+
+.coformacion-header {
+  background: linear-gradient(135deg, #273474 0%, #1e40af 100%);
+  padding: 40px 40px 30px;
+  text-align: center;
+  position: relative;
+}
+
+.coformacion-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.coformacion-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.logo-graphic {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-u {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #e4022c;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: #273474;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.logo-text h3 {
+  color: #ffffff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.logo-text p {
+  color: #e4022c;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.coformacion-content {
+  padding: 40px;
+  background: #ffffff;
+}
+
+.coformacion-section {
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.coformacion-section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.coformacion-title {
+  color: #273474;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  position: relative;
+}
+
+.coformacion-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #e4022c, #f59e0b);
+  border-radius: 2px;
+}
+
+.coformacion-description {
+  color: #475569;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 0 0 20px 0;
+}
+
+.coformacion-highlight {
+  background: linear-gradient(135deg, #273474, #1e40af);
+  color: #ffffff;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(39, 52, 116, 0.3);
+}
+
+.coformacion-partnership {
+  background: #f8fafc;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  margin-top: 30px;
+}
+
+.partnership-label {
+  display: block;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.partnership-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.partnership-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.partnership-logo .logo-graphic {
+  width: 50px;
+  height: 50px;
+}
+
+.partnership-logo .logo-u {
+  font-size: 2rem;
+}
+
+.partnership-logo .logo-dot {
+  width: 10px;
+  height: 10px;
+}
+
+.partnership-logo span {
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.ccb-logo {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ccb-c {
+  position: absolute;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #e4022c;
+  transform: rotate(-15deg);
+}
+
+.ccb-c:first-child {
+  transform: rotate(-15deg) translateX(-2px);
+}
+
+.ccb-c:last-child {
+  transform: rotate(15deg) translateX(2px);
+}
+
+/* --- RESPONSIVE PARA EL MODAL DE COFORMACIÓN --- */
+@media (max-width: 768px) {
+  .coformacion-modal {
+    max-width: 95%;
+    margin: 20px;
+  }
+  
+  .coformacion-header {
+    padding: 30px 20px 20px;
+  }
+  
+  .coformacion-content {
+    padding: 30px 20px;
+  }
+  
+  .coformacion-title {
+    font-size: 1.5rem;
+  }
+  
+  .coformacion-description {
+    font-size: 1rem;
+  }
+  
+  .coformacion-highlight {
+    font-size: 0.9rem;
+    padding: 12px 16px;
+  }
+  
+  .partnership-logos {
+    gap: 20px;
+  }
+  
+  .coformacion-logo {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .coformacion-header {
+    padding: 25px 15px 15px;
+  }
+  
+  .coformacion-content {
+    padding: 25px 15px;
+  }
+  
+  .coformacion-title {
+    font-size: 1.3rem;
+  }
+  
+  .partnership-logos {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
 @media(max-width: 768px) {
   .tour-section {
-    padding: 60px 15px;
+    padding: 20px 15px;
   }
+  
   .tour-title {
-    /* ANTES: font-size: 2rem; */
-    font-size: clamp(2rem, 8vw, 2.5rem); /* DESPUÉS */
+    font-size: 2.2rem;
   }
+  
   .tour-subtitle {
     font-size: 1rem;
-    margin-bottom: 40px;
   }
+  
   .tour-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 20px;
   }
-
+  
   .tour-card {
-    flex-direction: row; 
-    align-items: center;
-    gap: 16px;
-    padding: 20px;
-    background: #1e293b; 
-    backdrop-filter: none; 
-    border-radius: 12px;
+    /* Ajustes para móvil */
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
   
   .tour-card-image {
-    height: 48px;
-    width: 48px;
-    border: none;
-    border-radius: 50%;
-    background: #0f172a;
+    height: 120px;
   }
   
   .tour-card-icon {
-    font-size: 1.5rem; 
+    font-size: 2.5rem;
   }
-
+  
   .tour-card-content {
-    padding: 0;
-    flex-grow: 1;
+    padding: 20px;
   }
-
+  
   .tour-card-content h3 {
-    font-size: 1.1rem;
-    margin-bottom: 4px;
+    font-size: 1.2rem;
   }
-
+  
   .tour-card-content p {
     font-size: 0.9rem;
-    margin: 0;
   }
-
+  
   .tour-list, .tour-btn {
-    display: none;
+    font-size: 0.85rem;
   }
-
-  /* Estilos móviles para el modal */
+  
   .modal-overlay {
-    padding: 10px;
+    padding: 20px;
   }
-
+  
   .modal-content {
-    max-height: 95vh;
+    max-width: 100%;
   }
-
+  
   .modal-header h2 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
-
+  
   .psicologos-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
   }
-
+  
   .psicologo-card {
     padding: 16px;
   }
-
+  
   .psicologo-header h3 {
     font-size: 1.1rem;
   }

@@ -7,25 +7,25 @@ const programsData = [
     title: "Ingeniería de Software",
     description: "Crea, innova y lidera la revolución digital con proyectos tecnológicos de alto impacto.",
     icon: "💻",
-    link: "#contact"
+    link: "https://uniempresarial.edu.co/programas-virtuales/"
   },
   {
     title: "Ingeniería Industrial",
     description: "Optimiza procesos y sistemas complejos para mejorar la productividad y la eficiencia en cualquier sector.",
     icon: "🏭",
-    link: "#contact"
+    link: "https://uniempresarial.edu.co/ingenieria-industrial-virtual/"
   },
   {
     title: "Marketing",
     description: "Domina las estrategias y herramientas digitales para posicionar marcas en el competitivo mercado actual.",
     icon: "📈",
-    link: "#contact"
+    link: "https://uniempresarial.edu.co/marketing-virtual/"
   },
   {
     title: "Administración de Empresas",
     description: "Desarrolla una visión global y habilidades gerenciales para liderar organizaciones hacia el éxito.",
     icon: "💼",
-    link: "#contact"
+    link: "https://uniempresarial.edu.co/administracion-de-empresas-virtual/"
   }
 ];
 
@@ -105,9 +105,16 @@ export default function Admisiones() {
 
       {/* Sección de Programas - Semi-integrada */}
       <div className="programs-section-integrated">
+        <h1 className="programs-title">Nuestros Programas Virtuales</h1>
         <div className="programs-grid-pro">
           {programsData.map((prog, index) => (
-            <a href={prog.link} key={index} className="program-card-pro">
+            <a 
+              href={prog.link} 
+              key={index} 
+              className="program-card-pro"
+              target={prog.link.startsWith('http') ? '_blank' : undefined}
+              rel={prog.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+            >
               <div className="program-card-icon">{prog.icon}</div>
               <h3 className="program-card-title">{prog.title}</h3>
               <p className="program-card-description">{prog.description}</p>
