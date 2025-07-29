@@ -20,6 +20,20 @@
   background: none;
 }
 
+.admisiones-hero-pro::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(45deg, transparent 30%, rgba(228, 2, 44, 0.05) 50%, transparent 70%),
+    linear-gradient(-45deg, transparent 30%, rgba(39, 52, 116, 0.05) 50%, transparent 70%);
+  z-index: 2;
+  pointer-events: none;
+}
+
 .hero-background {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -29,14 +43,25 @@
 .hero-image {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: brightness(0.3) contrast(1.2);
+  filter: brightness(0.4) contrast(1.1) saturate(1.2);
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(39, 52, 116, 0.4) 50%, rgba(15, 23, 42, 0.95) 100%);
-  backdrop-filter: blur(2px);
+  background: 
+    linear-gradient(135deg, 
+      rgba(15, 23, 42, 0.95) 0%, 
+      rgba(39, 52, 116, 0.7) 25%, 
+      rgba(228, 2, 44, 0.3) 50%, 
+      rgba(39, 52, 116, 0.6) 75%, 
+      rgba(15, 23, 42, 0.9) 100%
+    ),
+    radial-gradient(circle at 20% 80%, rgba(228, 2, 44, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(39, 52, 116, 0.3) 0%, transparent 50%);
+  backdrop-filter: blur(3px);
 }
 
 .hero-content {
@@ -46,6 +71,25 @@
   max-width: 1200px;
   width: 100%;
   animation: heroFadeIn 1.2s ease-out;
+}
+
+.hero-content::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  right: -50px;
+  bottom: -50px;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(228, 2, 44, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(39, 52, 116, 0.1) 0%, transparent 50%);
+  z-index: -1;
+  animation: heroGlow 8s ease-in-out infinite;
+}
+
+@keyframes heroGlow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
 }
 
 @keyframes heroFadeIn {

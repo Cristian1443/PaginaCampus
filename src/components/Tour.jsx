@@ -278,16 +278,11 @@ export default function Tour() {
             
             <div className="coformacion-header">
               <div className="coformacion-logo-section">
-                <div className="coformacion-logo">
-                  <div className="logo-graphic">
-                    <div className="logo-u">U</div>
-                    <div className="logo-dot"></div>
-                  </div>
-                  <div className="logo-text">
-                    <h3>Uniempresarial</h3>
-                    <p>Fundación Universitaria Empresarial</p>
-                  </div>
-                </div>
+                <img 
+                  src="/assets/img/logos/virtuempresarialblanco.png"
+                  alt="Logo VirtuEmpresarial"
+                  className="coformacion-logo-img"
+                />
               </div>
             </div>
 

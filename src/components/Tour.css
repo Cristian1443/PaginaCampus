@@ -422,9 +422,9 @@
 /* --- ESTILOS PARA EL MODAL DE COFORMACIÓN --- */
 .coformacion-modal {
   max-width: 800px;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  border: none;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   position: relative;
 }
@@ -456,60 +456,15 @@
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
 }
 
-.coformacion-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.logo-graphic {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo-u {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: #e4022c;
-  position: relative;
-  z-index: 2;
-}
-
-.logo-dot {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 12px;
-  height: 12px;
-  background: #273474;
-  border-radius: 50%;
-  z-index: 1;
-}
-
-.logo-text h3 {
-  color: #ffffff;
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin: 0 0 4px 0;
-}
-
-.logo-text p {
-  color: #e4022c;
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin: 0;
+.coformacion-logo-img {
+  max-width: 300px;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
 }
 
 .coformacion-content {
   padding: 40px;
-  background: #ffffff;
+  background: #1e293b;
 }
 
 .coformacion-section {
@@ -524,7 +479,7 @@
 }
 
 .coformacion-title {
-  color: #273474;
+  color: #f1f5f9;
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0 0 16px 0;
@@ -538,19 +493,19 @@
   left: 0;
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, #e4022c, #f59e0b);
+  background: #e4022c;
   border-radius: 2px;
 }
 
 .coformacion-description {
-  color: #475569;
+  color: #cbd5e1;
   font-size: 1.1rem;
   line-height: 1.7;
   margin: 0 0 20px 0;
 }
 
 .coformacion-highlight {
-  background: linear-gradient(135deg, #273474, #1e40af);
+  background: linear-gradient(135deg, #e4022c, #dc2626);
   color: #ffffff;
   padding: 16px 24px;
   border-radius: 8px;
@@ -558,20 +513,33 @@
   font-weight: 600;
   text-align: center;
   letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(39, 52, 116, 0.3);
+  box-shadow: 0 4px 12px rgba(228, 2, 44, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .coformacion-partnership {
-  background: #f8fafc;
+  background: rgba(30, 41, 59, 0.6);
   padding: 30px;
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #e4022c;
   margin-top: 30px;
+  position: relative;
+}
+
+.coformacion-partnership::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #e4022c, #dc2626);
+  border-radius: 12px 12px 0 0;
 }
 
 .partnership-label {
   display: block;
-  color: #64748b;
+  color: #e4022c;
   font-size: 0.9rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -610,7 +578,7 @@
 }
 
 .partnership-logo span {
-  color: #475569;
+  color: #cbd5e1;
   font-size: 0.9rem;
   font-weight: 500;
   text-align: center;
