@@ -11,8 +11,8 @@
 /* === HERO SECTION MEJORADO === */
 .admisiones-hero-pro {
   position: relative;
-  min-height: 105vh;
-  padding: 6rem 2rem 2rem;
+  min-height: 100vh;
+  padding: 4rem 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,6 +70,11 @@
   text-align: center;
   max-width: 1200px;
   width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   animation: heroFadeIn 1.2s ease-out;
 }
 
@@ -100,9 +105,12 @@
 /* Logo mejorado */
 .hero-logo-pro {
   max-width: 400px;
+  width: 100%;
+  height: auto;
   margin-bottom: 2.5rem;
   filter: drop-shadow(0 8px 25px rgba(0,0,0,0.6));
   animation: logoFloat 6s ease-in-out infinite;
+  display: block;
 }
 
 @keyframes logoFloat {
@@ -118,6 +126,9 @@
   color: #ffffff;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   letter-spacing: -0.02em;
+  text-align: center;
+  width: 100%;
+  max-width: 900px;
 }
 
 .hero-title .highlight {
@@ -150,9 +161,9 @@
   color: #cbd5e1;
   margin-bottom: 0;
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+   text-align: center;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 100%;
 }
 
 /* === SECCIÓN DE PROGRAMAS SEMI-INTEGRADA === */
