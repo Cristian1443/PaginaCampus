@@ -131,54 +131,7 @@ export default function Hero() {
       detectRetina: true,
   }
 
-  // --- LÓGICA DE TYPING EFFECT (INDEPENDIENTE DE PARTÍCULAS) ---
-  const [typedText, setTypedText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-  const [isTypingActive, setIsTypingActive] = useState(false);
-  const toRotate = ["UE CAMPUS"];
-  const period = 20000; // 10 segundos de pausa
-  const [delta, setDelta] = useState(150 - Math.random() * 100);
 
-  useEffect(() => {
-    // Activar el typing effect después de un pequeño delay
-    const typingTimer = setTimeout(() => {
-      setIsTypingActive(true);
-    }, 500);
-
-    return () => clearTimeout(typingTimer);
-  }, []);
-
-  useEffect(() => {
-    if (!isTypingActive) return;
-    
-    let ticker = setInterval(() => {
-      tick();
-    }, delta);
-    return () => { clearInterval(ticker) };
-  }, [delta, isTypingActive]); // Solo depende de delta y isTypingActive
-
-  const tick = () => {
-    setTypedText(currentText => {
-      const i = loopNum % toRotate.length;
-      const fullText = toRotate[i];
-      const updatedText = isDeleting ? fullText.substring(0, currentText.length - 1) : fullText.substring(0, currentText.length + 1);
-      
-      if (isDeleting) { 
-        setDelta(prevDelta => prevDelta / 2); 
-      }
-      if (!isDeleting && updatedText === fullText) {
-        setIsDeleting(true);
-        setDelta(period);
-      } else if (isDeleting && updatedText === '') {
-        setIsDeleting(false);
-        setLoopNum(prevLoop => prevLoop + 1);
-        setDelta(150 - Math.random() * 100);
-      }
-      
-      return updatedText;
-    });
-  }
 
   // --- NUEVA LÓGICA PARA LA ANIMACIÓN DE CONTEO ---
   const [studentCount, setStudentCount] = useState(0);
@@ -244,19 +197,26 @@ export default function Hero() {
         )}
       
       <div className="hero-content">
+        <div className="hero-logo">
+          <img 
+            src="/assets/img/logos/virtuempresarialblanco.png" 
+            alt="VirtuEmpresarial" 
+            className="hero-logo-img"
+          />
+        </div>
         <h1 className="hero-title">
-          <span className="hero-megacampus typing-effect">{typedText}</span>
+          Tu futuro profesional <span className="hero-accent">comienza ahora</span>
         </h1>
         <p className="hero-subtitle">
-          Bienvenido a una experiencia educativa inmersiva que redefine el aprendizaje en el siglo XXI. Tu futuro comienza ahora.
+          Campus virtual de vanguardia para tu éxito académico
         </p>
         <div className="hero-actions">
-          <a href="#features" className="hero-btn hero-btn-primary">
-            Explorar Campus
+          <a href="#admisiones" className="hero-btn hero-btn-primary">
+            ¡Inscríbete Ya!
           </a>
           <a href="#tour" className="hero-btn hero-btn-secondary">
             <span className="play-icon">▶</span>
-            Ver Demo
+            Conoce el Campus
           </a>
         </div>
         <div className="hero-stats" ref={statsRef}>

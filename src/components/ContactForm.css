@@ -89,15 +89,34 @@
 
 /* --- COLUMNA DERECHA --- */
 .contact-form-panel {
-  background: #1e293b;
-  padding: 40px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  background: #1e293b !important;
+  padding: 40px !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3) !important;
+  min-height: 600px !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .form-group {
-  margin-bottom: 24px;
+  margin-bottom: 24px !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Hacer todos los elementos del formulario más visibles */
+.contact-form {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.clientify-form-wrapper {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .form-label {
@@ -276,5 +295,111 @@
     text-align: left;
     gap: 16px;
     padding: 16px;
+  }
+}
+
+/* --- ESTILOS PARA CLIENTIFY FORM --- */
+.clientify-form-wrapper {
+  width: 100% !important;
+  height: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.clientify-loading {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Spinner de carga */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid #e4022c;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Asegurar que el widget de Clientify ocupe todo el espacio */
+.clientify-form-wrapper iframe,
+.clientify-form-wrapper form,
+.clientify-form-wrapper > div {
+  width: 100% !important;
+  border: none !important;
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Estilos específicos para cuando Clientify se renderiza */
+.clientify-form-wrapper[data-clientify-loaded="true"] .clientify-loading {
+  display: none !important;
+}
+
+/* Forzar estilos para elementos de Clientify */
+.clientify-form-wrapper * {
+  font-family: inherit !important;
+  box-sizing: border-box !important;
+}
+
+/* Asegurar que inputs y elementos del form de Clientify tengan buen estilo */
+.clientify-form-wrapper input,
+.clientify-form-wrapper textarea,
+.clientify-form-wrapper select,
+.clientify-form-wrapper button {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 8px !important;
+  color: #fff !important;
+  padding: 12px !important;
+  font-size: 1rem !important;
+}
+
+.clientify-form-wrapper button {
+  background: linear-gradient(135deg, #273474 0%, #e4022c 100%) !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.clientify-form-wrapper button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3) !important;
+}
+
+/* Responsive para Clientify */
+@media (max-width: 768px) {
+  .clientify-form-wrapper {
+    min-height: 400px !important;
+  }
+  
+  .clientify-loading {
+    padding: 40px 15px !important;
+    min-height: 300px !important;
+  }
+  
+  .clientify-loading h3 {
+    font-size: 1.3rem !important;
+  }
+  
+  .clientify-loading p {
+    font-size: 0.9rem !important;
+  }
+  
+  .clientify-form-wrapper input,
+  .clientify-form-wrapper textarea,
+  .clientify-form-wrapper select,
+  .clientify-form-wrapper button {
+    padding: 10px !important;
+    font-size: 0.9rem !important;
   }
 }

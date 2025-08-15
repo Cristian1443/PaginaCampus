@@ -1,4 +1,5 @@
 /* src/index.css */
+@import './styles/themes.css';
 
 /* --- RESET GLOBAL Y ESTILOS BASE --- */
 *, *::before, *::after {
