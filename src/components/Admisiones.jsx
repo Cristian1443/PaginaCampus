@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
 import './Admisiones.css';
 
-// --- Array de datos para los nuevos programas ---
+// --- Datos de los programas ---
 const programsData = [
   {
     title: "Ingeniería de Software",
@@ -11,13 +10,13 @@ const programsData = [
   },
   {
     title: "Ingeniería Industrial",
-    description: "Optimiza procesos y sistemas complejos para mejorar la productividad y la eficiencia en cualquier sector.",
+    description: "Optimiza procesos y sistemas complejos para mejorar la productividad en cualquier sector.",
     icon: "🏭",
     link: "https://uniempresarial.edu.co/ingenieria-industrial-virtual/"
   },
   {
-    title: "Marketing",
-    description: "Domina las estrategias y herramientas digitales para posicionar marcas en el competitivo mercado actual.",
+    title: "Marketing Digital",
+    description: "Domina las estrategias y herramientas digitales para posicionar marcas en el mercado actual.",
     icon: "📈",
     link: "https://uniempresarial.edu.co/marketing-virtual/"
   },
@@ -30,100 +29,57 @@ const programsData = [
 ];
 
 export default function Admisiones() {
-  const [typedText, setTypedText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const fullText = 'aquí';
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const typeSpeed = isDeleting ? 100 : 200; // Más rápido al borrar
-    const deleteSpeed = 100;
-    const pauseTime = 2000; // Pausa de 2 segundos cuando termina
-
-    if (!isDeleting && currentIndex < fullText.length) {
-      // Escribiendo
-      const timeout = setTimeout(() => {
-        setTypedText(prev => prev + fullText[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      }, typeSpeed);
-
-      return () => clearTimeout(timeout);
-    } else if (!isDeleting && currentIndex === fullText.length) {
-      // Pausa antes de empezar a borrar
-      const timeout = setTimeout(() => {
-        setIsDeleting(true);
-      }, pauseTime);
-
-      return () => clearTimeout(timeout);
-    } else if (isDeleting && typedText.length > 0) {
-      // Borrando
-      const timeout = setTimeout(() => {
-        setTypedText(prev => prev.slice(0, -1));
-      }, deleteSpeed);
-
-      return () => clearTimeout(timeout);
-    } else if (isDeleting && typedText.length === 0) {
-      // Reiniciar ciclo
-      setIsDeleting(false);
-      setCurrentIndex(0);
-    }
-  }, [currentIndex, fullText, isDeleting, typedText]);
-
   return (
-    <section className="admisiones-section-pro" id="admisiones">
-      {/* Hero Section */}
-      <div className="admisiones-hero-pro">
-        <div className="hero-background">
+    <section className="admisiones-section-commercial" id="admisiones">
+      
+      {/* --- HERO SECTION --- */}
+      <div className="hero-commercial">
+        <div className="hero-overlay-commercial"></div>
+        <div className="hero-content-commercial">
           <img 
-            src="/assets/img/imagenes/hero.png" 
-            alt="Campus Virtual UE" 
-            className="hero-image"
-          />
-          <div className="hero-overlay"></div>
-        </div>
-        
-        <div className="hero-content">
-          {/* Logo en el hero */}
-          <img 
-            /* RUTA CORREGIDA: Se quitó "/public" del inicio */
             src="/assets/img/logos/virtuempresarialblanco.png"
             alt="Logo VirtuEmpresarial"
-            className="hero-logo-pro"
+            className="hero-logo-commercial"
           />
-          
-          <h1 className="hero-title">
-            Tu futuro profesional <br/> 
-            comienza <span className="highlight typing-effect"> {typedText}</span>
+          <h1 className="hero-title-commercial">
+            Tu Futuro Profesional Comienza <span className="highlight">Aquí</span>
           </h1>
-          
-          <p className="hero-description">
-            Explora nuestros programas 100% virtuales, diseñados para los líderes del mañana y 
-            acompañados por expertos de la industria.
+          <p className="hero-description-commercial">
+            Explora nuestros programas 100% virtuales, diseñados para los líderes del mañana.
           </p>
         </div>
       </div>
 
-      {/* Sección de Programas - Semi-integrada */}
-      <div className="programs-section-integrated">
-        <h1 className="programs-title">Nuestros Programas Virtuales</h1>
-        <div className="programs-grid-pro">
+      {/* --- PROGRAMS SECTION --- */}
+      <div className="programs-section-commercial">
+        <h2 className="programs-title-commercial">Nuestros Programas Virtuales</h2>
+        <div className="programs-grid-commercial">
           {programsData.map((prog, index) => (
             <a 
               href={prog.link} 
               key={index} 
-              className="program-card-pro"
-              target={prog.link.startsWith('http') ? '_blank' : undefined}
-              rel={prog.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+              className="program-card-commercial"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <div className="program-card-icon">{prog.icon}</div>
-              <h3 className="program-card-title">{prog.title}</h3>
-              <p className="program-card-description">{prog.description}</p>
-              <span className="program-card-cta">
-                Más Información <span className="arrow">→</span>
+              <div className="program-card-icon-commercial">{prog.icon}</div>
+              <h3 className="program-card-title-commercial">{prog.title}</h3>
+              <p className="program-card-description-commercial">{prog.description}</p>
+              <span className="program-card-cta-commercial">
+                Más Información →
               </span>
             </a>
           ))}
         </div>
+      </div>
+      
+      {/* --- FINAL CTA --- */}
+      <div className="final-cta-section">
+        <h2 className="final-cta-title">¿Listo para dar el siguiente paso?</h2>
+        <p className="final-cta-subtitle">Únete a una comunidad de innovadores y transforma tu futuro con nosotros.</p>
+        <a href="#contact" className="final-cta-btn">
+          Inicia tu Proceso Ahora
+        </a>
       </div>
     </section>
   );

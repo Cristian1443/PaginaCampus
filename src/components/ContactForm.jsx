@@ -6,11 +6,6 @@ import { loadSlim } from "@tsparticles/slim";
 export default function ContactForm() {
   const [init, setInit] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
-
-  // Debug: verificar que el componente se está renderizando
-  console.log('ContactForm renderizando...', { init, isMobile, isSubmitting, submitStatus });
 
   useEffect(() => {
     const checkMobile = () => {
@@ -28,104 +23,6 @@ export default function ContactForm() {
       setInit(true);
     });
   }, []);
-
-  // Función para enviar datos a Clientify
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
-    const formData = new FormData(e.target);
-    const data = {
-      nombre: formData.get('nombre'),
-      email: formData.get('email'),
-      telefono: formData.get('telefono'),
-      programa: formData.get('programa'),
-      mensaje: formData.get('mensaje'),
-      origen: 'Campus Virtual Website',
-      formulario_id: '251464'
-    };
-
-    try {
-      // Enviar a Clientify usando el webhook del formulario específico
-      const clientifyResponse = await fetch('https://api.clientify.net/web-marketing/superforms/webhook/251464', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          nombre: data.nombre,
-          email: data.email,
-          telefono: data.telefono,
-          programa_interes: data.programa,
-          mensaje: data.mensaje,
-          origen: data.origen
-        })
-      });
-
-      if (clientifyResponse.ok) {
-        setSubmitStatus('success');
-        e.target.reset();
-      } else {
-        throw new Error('Error al enviar a Clientify');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      
-      // Fallback 1: Usar el script directo de Clientify
-      try {
-        // Cargar script de Clientify si no está presente
-        if (!window.ClientifyForm) {
-          const script = document.createElement('script');
-          script.src = 'https://api.clientify.net/web-marketing/superforms/script/251464.js';
-          document.head.appendChild(script);
-          
-          await new Promise((resolve) => {
-            script.onload = resolve;
-            setTimeout(resolve, 3000); // timeout después de 3 segundos
-          });
-        }
-        
-        // Intentar enviar con Clientify nativo
-        if (window.ClientifyForm && window.ClientifyForm.submit) {
-          window.ClientifyForm.submit(data);
-          setSubmitStatus('success');
-          e.target.reset();
-        } else {
-          throw new Error('Clientify script no disponible');
-        }
-      } catch (fallbackError) {
-        console.error('Error en fallback Clientify:', fallbackError);
-        // Fallback 2: enviar por email
-        try {
-          const emailResponse = await fetch('https://formsubmit.co/admisines@uniempresarial.edu.co', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              ...data,
-              nota: 'Enviado via fallback - verificar integración Clientify'
-            })
-          });
-          
-          if (emailResponse.ok) {
-            setSubmitStatus('success');
-            e.target.reset();
-          } else {
-            setSubmitStatus('error');
-          }
-        } catch (emailError) {
-          console.error('Error en email fallback:', emailError);
-          setSubmitStatus('error');
-        }
-      }
-    }
-
-    setIsSubmitting(false);
-  };
-
-
 
 
 
@@ -193,7 +90,7 @@ export default function ContactForm() {
             ¿Listo para el <span className="contact-title-accent">Futuro</span>?
           </h2>
           <p className="contact-subtitle">
-            Nuestro equipo está listo para resolver todas tus dudas. Completa el formulario o contáctanos directamente a través de estos canales.
+            Nuestro equipo está listo para resolver todas tus dudas. Completa el formulario o contáctanos directamente.
           </p>
           <div className="contact-info-cards">
             <div className="info-card">
@@ -238,160 +135,296 @@ export default function ContactForm() {
           </div>
         </div>
 
-        {/* --- COLUMNA DERECHA: FORMULARIO CLIENTIFY --- */}
+        {/* --- COLUMNA DERECHA: FORMULARIO --- */}
         <div className="contact-form-panel" style={{
           background: '#1e293b',
           padding: '40px',
           borderRadius: '20px',
           border: '1px solid rgba(255, 255, 255, 0.1)',
           boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
-          minHeight: '600px'
+          minHeight: '600px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center'
         }}>
-          <div className="clientify-form-wrapper">
-            <h3 style={{margin: '0 0 20px 0', color: '#fff', fontSize: '2rem', textAlign: 'center', fontWeight: '700'}}>
-              🚀 Solicita Información
-            </h3>
-            <p style={{margin: '0 0 30px 0', color: '#94a3b8', fontSize: '1.1rem', textAlign: 'center', lineHeight: '1.6'}}>
-              Completa el formulario y nuestro equipo se pondrá en contacto contigo
-            </p>
-            
-            {/* Nota de desarrollo - remover en producción */}
-            <div style={{
-              background: 'rgba(34, 197, 94, 0.1)',
-              border: '2px solid rgba(34, 197, 94, 0.3)',
-              color: '#22c55e',
-              padding: '15px',
-              borderRadius: '10px',
-              marginBottom: '25px',
-              fontSize: '1rem',
-              textAlign: 'center',
-              fontWeight: '600'
-            }}>
-              <strong>✅ FORMULARIO ACTIVO:</strong> Conectado a Clientify CRM (ID: 251464)
+          <div className="clientify-form-wrapper" style={{textAlign: 'center', width: '100%'}}>
+            {/* Header con animación */}
+            <div style={{marginBottom: '40px', position: 'relative'}}>
+              <div style={{
+                width: '100px',
+                height: '100px',
+                background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-accent) 100%)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 25px auto',
+                fontSize: '2.5rem',
+                boxShadow: '0 15px 35px rgba(228, 2, 44, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3)',
+                animation: 'pulse 2s infinite',
+                position: 'relative'
+              }}>
+                <span style={{
+                  background: 'linear-gradient(45deg, #fff, #f0f0f0)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))'
+                }}>
+                  🎓
+                </span>
+              </div>
+              
+              <h3 style={{
+                margin: '0 0 15px 0', 
+                color: '#fff', 
+                fontSize: '2.2rem', 
+                fontWeight: '800',
+                background: 'linear-gradient(135deg, #fff 0%, #cbd5e1 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                textShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+              }}>
+                ¡Comienza Tu Futuro!
+              </h3>
+              
+              <p style={{
+                margin: '0 0 30px 0', 
+                color: '#94a3b8', 
+                fontSize: '1.1rem', 
+                lineHeight: '1.7',
+                maxWidth: '350px',
+                
+              }}>
+                Accede a nuestro sistema de admisiones y da el primer paso hacia tu carrera profesional
+              </p>
+              
+              {/* Decoración */}
+              <div style={{
+                position: 'absolute',
+                top: '-20px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '200px',
+                height: '2px',
+                background: 'linear-gradient(90deg, transparent, var(--color-primary), transparent)',
+                borderRadius: '1px'
+              }}></div>
             </div>
             
-            {/* Formulario de Contacto con Integración Clientify */}
-            <form 
-              className="contact-form"
-              onSubmit={handleSubmit}
-              style={{
-                width: '100%',
-                background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))',
-                borderRadius: '15px',
-                border: '2px solid rgba(228, 2, 44, 0.3)',
-                padding: '35px',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
-                position: 'relative'
-              }}
-            >
-              {/* Mensajes de estado */}
-              {submitStatus === 'success' && (
-                <div style={{
-                  background: 'rgba(34, 197, 94, 0.1)',
-                  border: '1px solid rgba(34, 197, 94, 0.3)',
-                  color: '#22c55e',
-                  padding: '12px',
-                  borderRadius: '8px',
-                  marginBottom: '20px',
-                  textAlign: 'center'
-                }}>
-                  ¡Gracias! Tu solicitud ha sido enviada exitosamente a nuestro CRM. Te contactaremos pronto.
-                </div>
-              )}
-              
-              {submitStatus === 'error' && (
-                <div style={{
-                  background: 'rgba(239, 68, 68, 0.1)',
-                  border: '1px solid rgba(239, 68, 68, 0.3)',
-                  color: '#ef4444',
-                  padding: '12px',
-                  borderRadius: '8px',
-                  marginBottom: '20px',
-                  textAlign: 'center'
-                }}>
-                  Hubo un error al enviar tu solicitud. Por favor, inténtalo de nuevo.
-                </div>
-              )}
-              
-              <div className="form-group">
-                <label htmlFor="nombre" className="form-label">Nombre Completo *</label>
-                <input 
-                  type="text" 
-                  id="nombre" 
-                  name="nombre" 
-                  className="form-input" 
-                  placeholder="Escribe tu nombre completo"
-                  required 
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="email" className="form-label">Email *</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  name="email" 
-                  className="form-input" 
-                  placeholder="tu.email@ejemplo.com"
-                  required 
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="telefono" className="form-label">Teléfono</label>
-                <input 
-                  type="tel" 
-                  id="telefono" 
-                  name="telefono" 
-                  className="form-input" 
-                  placeholder="Tu número de teléfono"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="programa" className="form-label">Programa de Interés</label>
-                <select id="programa" name="programa" className="form-select">
-                  <option value="">Selecciona un programa</option>
-                  <option value="ingenieria-sistemas">Ingeniería de Sistemas</option>
-                  <option value="administracion-empresas">Administración de Empresas</option>
-                  <option value="marketing-digital">Marketing Digital</option>
-                  <option value="contaduria">Contaduría Pública</option>
-                  <option value="otro">Otro programa</option>
-                </select>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="mensaje" className="form-label">Mensaje *</label>
-                <textarea 
-                  id="mensaje" 
-                  name="mensaje" 
-                  className="form-textarea" 
-                  rows={4} 
-                  placeholder="Cuéntanos sobre tus intereses académicos y cómo podemos ayudarte..."
-                  required
-                ></textarea>
-              </div>
-
-              <div className="form-group checkbox-group">
-                <label className="checkbox-label">
-                  <input type="checkbox" name="privacidad" className="form-checkbox" required />
-                  <span className="checkmark"></span>
-                  <span>Acepto la <a href="#" className="privacy-link">Política de Privacidad</a> y el tratamiento de mis datos.*</span>
-                </label>
-              </div>
-
-              <button 
-                type="submit" 
-                className="contact-form-btn"
-                disabled={isSubmitting}
+            {/* Botones de Acción Mejorados */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '16px',
+              width: '100%',
+              maxWidth: '420px'
+            }}>
+              {/* Botón Principal - Formulario Clientify */}
+              <a
+                href="https://apps.clientify.net/forms/simpleembed/#/success/twostepformpopup/251464/11299"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="clientify-btn-primary"
                 style={{
-                  opacity: isSubmitting ? 0.7 : 1,
-                  cursor: isSubmitting ? 'not-allowed' : 'pointer'
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '15px',
+                  padding: '20px 35px',
+                  background: 'linear-gradient(135deg, var(--color-primary) 0%, #ff1744 50%, var(--color-secondary) 100%)',
+                  color: '#fff',
+                  fontSize: '1.1rem',
+                  fontWeight: '700',
+                  borderRadius: '16px',
+                  textDecoration: 'none',
+                  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                  boxShadow: '0 10px 30px rgba(228, 2, 44, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                  border: 'none',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'translateY(-4px) scale(1.03)';
+                  e.target.style.boxShadow = '0 15px 40px rgba(228, 2, 44, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                  e.target.style.background = 'linear-gradient(135deg, #ff1744 0%, var(--color-primary) 50%, var(--color-secondary) 100%)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateY(0) scale(1)';
+                  e.target.style.boxShadow = '0 10px 30px rgba(228, 2, 44, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+                  e.target.style.background = 'linear-gradient(135deg, var(--color-primary) 0%, #ff1744 50%, var(--color-secondary) 100%)';
                 }}
               >
-                {isSubmitting ? 'Enviando a Clientify...' : 'Enviar Solicitud'}
-              </button>
-            </form>
+                <span style={{
+                  fontSize: '1.4rem',
+                  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))'
+                }}>🎯</span>
+                <span>Solicitar Admisión</span>
+                <span style={{
+                  fontSize: '1rem',
+                  opacity: '0.8'
+                }}>→</span>
+              </a>
+
+              {/* Botón Secundario - WhatsApp */}
+              <a
+                href="https://wa.me/573808000?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20los%20programas%20virtuales%20de%20Uniempresarial"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="whatsapp-btn"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: '12px',
+                  padding: '16px 28px',
+                  background: 'linear-gradient(135deg, #25d366 0%, #128c7e 100%)',
+                  color: '#fff',
+                  fontSize: '1rem',
+                  fontWeight: '600',
+                  borderRadius: '14px',
+                  textDecoration: 'none',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: '0 8px 25px rgba(37, 211, 102, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'translateY(-3px) scale(1.02)';
+                  e.target.style.boxShadow = '0 12px 35px rgba(37, 211, 102, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                  e.target.style.background = 'linear-gradient(135deg, #128c7e 0%, #25d366 100%)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateY(0) scale(1)';
+                  e.target.style.boxShadow = '0 8px 25px rgba(37, 211, 102, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+                  e.target.style.background = 'linear-gradient(135deg, #25d366 0%, #128c7e 100%)';
+                }}
+              >
+                <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                  <span style={{fontSize: '1.3rem'}}>💬</span>
+                  <span>Chat en WhatsApp</span>
+                </div>
+                <span style={{
+                  background: 'rgba(255, 255, 255, 0.2)',
+                  padding: '4px 8px',
+                  borderRadius: '20px',
+                  fontSize: '0.8rem',
+                  fontWeight: '500'
+                }}>
+                  Respuesta inmediata
+                </span>
+              </a>
+
+              {/* Botones Secundarios en Grid */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '12px',
+                marginTop: '8px'
+              }}>
+                {/* Email */}
+                <a
+                  href="mailto:admisines@uniempresarial.edu.co?subject=Consulta sobre programas virtuales&body=Hola, me interesa conocer más sobre los programas virtuales de Uniempresarial."
+                  className="contact-btn-secondary"
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    padding: '16px 12px',
+                    background: 'rgba(99, 102, 241, 0.15)',
+                    color: '#a5b4fc',
+                    fontSize: '0.9rem',
+                    fontWeight: '600',
+                    borderRadius: '12px',
+                    textDecoration: 'none',
+                    transition: 'all 0.3s ease',
+                    border: '1px solid rgba(99, 102, 241, 0.3)',
+                    textAlign: 'center'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = 'rgba(99, 102, 241, 0.25)';
+                    e.target.style.color = '#c7d2fe';
+                    e.target.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = 'rgba(99, 102, 241, 0.15)';
+                    e.target.style.color = '#a5b4fc';
+                    e.target.style.transform = 'translateY(0)';
+                  }}
+                >
+                  <span style={{fontSize: '1.5rem'}}>📧</span>
+                  <span>Email</span>
+                </a>
+
+                {/* Teléfono */}
+                <a
+                  href="tel:+573808000"
+                  className="phone-btn"
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    padding: '16px 12px',
+                    background: 'rgba(245, 158, 11, 0.15)',
+                    color: '#fbbf24',
+                    fontSize: '0.9rem',
+                    fontWeight: '600',
+                    borderRadius: '12px',
+                    textDecoration: 'none',
+                    transition: 'all 0.3s ease',
+                    border: '1px solid rgba(245, 158, 11, 0.3)',
+                    textAlign: 'center'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = 'rgba(245, 158, 11, 0.25)';
+                    e.target.style.color = '#fcd34d';
+                    e.target.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = 'rgba(245, 158, 11, 0.15)';
+                    e.target.style.color = '#fbbf24';
+                    e.target.style.transform = 'translateY(0)';
+                  }}
+                >
+                  <span style={{fontSize: '1.5rem'}}>📞</span>
+                  <span>Llamar</span>
+                </a>
+              </div>
+
+              {/* Información con mejores estilos */}
+              <div style={{
+                background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%)',
+                border: '1px solid rgba(59, 130, 246, 0.3)',
+                color: '#93c5fd',
+                padding: '18px',
+                borderRadius: '12px',
+                fontSize: '0.9rem',
+                textAlign: 'center',
+                marginTop: '20px',
+                position: 'relative',
+                overflow: 'hidden'
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: '-100%',
+                  width: '100%',
+                  height: '100%',
+                  background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent)',
+                  animation: 'shimmer 3s infinite'
+                }}></div>
+                <div style={{position: 'relative', zIndex: 1}}>
+                  <strong style={{color: '#60a5fa'}}>🔐 Proceso Seguro:</strong> Tu información está protegida con encriptación SSL
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

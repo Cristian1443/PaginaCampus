@@ -26,8 +26,8 @@
   --transition-slow: 0.5s ease;
 }
 
-/* === TEMA OSCURO (DEFAULT) === */
-.dark {
+/* === TEMA OSCURO (ÚNICO) === */
+:root {
   --color-background: #0f172a;
   --color-background-light: #1e293b;
   --color-background-card: rgba(255, 255, 255, 0.1);
@@ -47,26 +47,7 @@
   --backdrop-blur: blur(20px);
 }
 
-/* === TEMA CLARO === */
-.light {
-  --color-background: #ffffff;
-  --color-background-light: #f8fafc;
-  --color-background-card: rgba(0, 0, 0, 0.05);
-  --color-background-hover: rgba(0, 0, 0, 0.1);
-  
-  --color-text-primary: #1e293b;
-  --color-text-secondary: #475569;
-  --color-text-muted: #64748b;
-  
-  --color-border: rgba(0, 0, 0, 0.1);
-  --color-border-hover: rgba(0, 0, 0, 0.2);
-  
-  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.15);
-  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.2);
-  
-  --backdrop-blur: blur(20px);
-}
+
 
 /* === ESTILOS BASE === */
 html {
@@ -80,7 +61,7 @@ body {
 }
 
 /* === OVERRIDES PARA COMPONENTES === */
-.dark .hero-overlay-commercial {
+.hero-overlay-commercial {
   background: 
     linear-gradient(135deg, 
       rgba(15, 23, 42, 0.9) 0%, 
@@ -91,31 +72,20 @@ body {
     );
 }
 
-.light .hero-overlay-commercial {
-  background: 
-    linear-gradient(135deg, 
-      rgba(248, 250, 252, 0.9) 0%, 
-      rgba(241, 245, 249, 0.8) 25%, 
-      rgba(228, 2, 44, 0.3) 50%, 
-      rgba(241, 245, 249, 0.8) 75%, 
-      rgba(248, 250, 252, 0.9) 100%
-    );
+.admisiones-section-commercial {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
 
-.light .admisiones-section-commercial {
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+.programs-section-commercial {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
 }
 
-.light .programs-section-commercial {
-  background: linear-gradient(135deg, #e2e8f0 0%, #f8fafc 100%);
+.final-cta-section {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
 }
 
-.light .final-cta-section {
-  background: linear-gradient(135deg, #e2e8f0 0%, #f8fafc 100%);
-}
-
-.light .admission-process-section-commercial {
-  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+.admission-process-section-commercial {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
 
 /* === ANIMACIÓN DE TRANSICIÓN DE TEMA === */
@@ -125,5 +95,3 @@ body {
               color var(--transition-normal),
               box-shadow var(--transition-normal);
 }
-
-

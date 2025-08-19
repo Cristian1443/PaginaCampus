@@ -30,8 +30,9 @@ function App() {
     <>
       <CursorOrb />
       <Header />
+      
       <Admisiones />
-      <AdmisionesProcess /> {/* <-- 2. AÑADIR EL COMPONENTE */}
+      <AdmisionesProcess />
       <Features />
       <About />
       <Tour />

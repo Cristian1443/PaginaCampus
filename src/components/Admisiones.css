@@ -1,535 +1,214 @@
-/* === ESTILOS MEJORADOS PARA ADMISIONES (PROGRAMAS) === */
+/* === ESTILOS MEJORADOS (UI/UX) PARA ADMISIONES === */
 
-.admisiones-section-pro {
+.admisiones-section-commercial {
   width: 100%;
-  background: linear-gradient(135deg, var(--color-background-dark) 0%, var(--color-background-light) 50%, var(--color-background-dark) 100%);
   position: relative;
   overflow: hidden;
-  padding: 0;
+  background: var(--color-background);
 }
 
-/* === HERO SECTION MEJORADO === */
-.admisiones-hero-pro {
-  position: relative;
+/* --- HERO SECTION --- */
+.hero-commercial {
   min-height: 100vh;
-  padding: 4rem 2rem;
+  padding: 120px 20px 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  background: none;
+  position: relative;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  background-image: url('/assets/img/imagenes/hero.png');
 }
 
-.admisiones-hero-pro::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    linear-gradient(45deg, transparent 30%, rgba(228, 2, 44, 0.05) 50%, transparent 70%),
-    linear-gradient(-45deg, transparent 30%, rgba(39, 52, 116, 0.05) 50%, transparent 70%);
-  z-index: 2;
-  pointer-events: none;
-}
-
-.hero-background {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 1;
-}
-
-.hero-image {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  filter: brightness(0.4) contrast(1.1) saturate(1.2);
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
-}
-
-.hero-overlay {
+.hero-overlay-commercial {
   position: absolute;
   inset: 0;
   background: 
     linear-gradient(135deg, 
-      rgba(15, 23, 42, 0.95) 0%, 
-      rgba(39, 52, 116, 0.7) 25%, 
-      rgba(228, 2, 44, 0.3) 50%, 
+      rgba(15, 23, 42, 0.9) 0%, 
+      rgba(39, 52, 116, 0.6) 25%, 
+      rgba(228, 2, 44, 0.4) 50%, 
       rgba(39, 52, 116, 0.6) 75%, 
       rgba(15, 23, 42, 0.9) 100%
-    ),
-    radial-gradient(circle at 20% 80%, rgba(228, 2, 44, 0.2) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(39, 52, 116, 0.3) 0%, transparent 50%);
-  backdrop-filter: blur(3px);
+    );
 }
 
-.hero-content {
+.hero-content-commercial {
   position: relative;
-  z-index: 3;
-  text-align: center;
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  animation: heroFadeIn 1.2s ease-out;
-}
-
-.hero-content::before {
-  content: '';
-  position: absolute;
-  top: -50px;
-  left: -50px;
-  right: -50px;
-  bottom: -50px;
-  background: 
-    radial-gradient(circle at 25% 25%, rgba(228, 2, 44, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(39, 52, 116, 0.1) 0%, transparent 50%);
-  z-index: -1;
-  animation: heroGlow 8s ease-in-out infinite;
-}
-
-@keyframes heroGlow {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.05); }
-}
-
-@keyframes heroFadeIn {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Logo mejorado */
-.hero-logo-pro {
-  max-width: 400px;
-  width: 100%;
-  height: auto;
-  margin-bottom: 2.5rem;
-  filter: drop-shadow(0 8px 25px rgba(0,0,0,0.6));
-  animation: logoFloat 6s ease-in-out infinite;
-  display: block;
-}
-
-@keyframes logoFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.hero-title {
-  font-size: clamp(2.8rem, 6vw, 4.5rem);
-  font-weight: 800;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-  color: #ffffff;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  letter-spacing: -0.02em;
-  text-align: center;
-  width: 100%;
+  z-index: 2;
   max-width: 900px;
 }
 
-.hero-title .highlight {
-  background: linear-gradient(45deg, var(--color-primary), var(--color-accent), var(--color-primary));
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientShift 4s ease-in-out infinite;
-  margin-left: 0.5rem;
-  display: inline-block;
-}
-
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-/* === EFECTO DE TECLEADO ELEGANTE === */
-.typing-effect {
-  position: relative;
-  display: inline-block;
-  min-width: 80px;
-  text-align: left;
-}
-
-.hero-description {
-  font-size: clamp(1.2rem, 2.5vw, 1.4rem);
-  line-height: 1.6;
-  color: #cbd5e1;
-  margin-bottom: 0;
-  max-width: 800px;
-   text-align: center;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+.hero-logo-commercial {
   width: 100%;
+  max-width: 280px;
+  height: auto;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 8px 25px rgba(0,0,0,0.4));
 }
 
-/* === SECCIÓN DE PROGRAMAS SEMI-INTEGRADA === */
-.programs-section-integrated {
-  padding: 4rem 2rem 6rem;
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-  position: relative;
-  margin-top: -2rem;
-  z-index: 2;
-}
-
-.programs-section-integrated::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-}
-
-.programs-title {
-  text-align: center;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 3rem;
-  background: linear-gradient(45deg, var(--color-primary), var(--color-accent), var(--color-primary));
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientShift 4s ease-in-out infinite;
+.hero-title-commercial {
+  font-size: clamp(2.5rem, 6vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-primary);
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* === GRID DE PROGRAMAS EN UNA SOLA FILA === */
-.programs-grid-pro {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-md);
-  max-width: 1400px;
-  margin: 0 auto;
-  flex-wrap: wrap;
+.hero-title-commercial .highlight {
+  background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.program-card-pro {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
+.hero-description-commercial {
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0 auto 2.5rem auto;
+  max-width: 700px;
+}
+
+/* --- PROGRAMS SECTION --- */
+.programs-section-commercial {
+  padding: 80px 20px;
+  position: relative;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+.programs-title-commercial {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 50px;
+}
+
+.programs-grid-commercial {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.program-card-commercial {
+  background: var(--color-background-light);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-lg);
-  padding: var(--space-lg) var(--space-md);
+  padding: 30px;
   text-align: center;
   text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  transition: var(--transition-smooth);
-  position: relative;
   overflow: hidden;
-  cursor: pointer;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  min-width: 280px;
-  max-width: 320px;
-  flex: 1;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.program-card-pro::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.6s ease;
+.program-card-commercial:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
 }
 
-.program-card-pro:hover::before {
-  left: 100%;
-}
-
-.program-card-pro:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 60px rgba(39, 52, 116, 0.3);
-}
-
-.program-card-icon {
+.program-card-icon-commercial {
   font-size: 3rem;
   margin-bottom: 1.5rem;
+  display: inline-block;
   transition: transform 0.3s ease;
 }
 
-.program-card-pro:hover .program-card-icon {
-  transform: scale(1.1) rotate(5deg);
+.program-card-commercial:hover .program-card-icon-commercial {
+  transform: scale(1.15) rotate(5deg);
 }
 
-.program-card-title {
+.program-card-title-commercial {
   font-size: 1.4rem;
-  font-weight: 700;
-  color: #f8fafc;
+  font-weight: 600;
+  color: var(--color-text-primary);
   margin-bottom: 1rem;
-  line-height: 1.3;
 }
 
-.program-card-description {
-  font-size: 0.95rem;
-  color: #cbd5e1;
+.program-card-description-commercial {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
   line-height: 1.6;
-  flex-grow: 1;
   margin-bottom: 1.5rem;
+  min-height: 80px;
 }
 
-.program-card-cta {
+.program-card-cta-commercial {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.5rem;
-  color: #ffffff;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 2rem;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: var(--border-radius-sm);
   text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.program-card-cta-commercial:hover {
+  background: var(--color-secondary);
+  transform: scale(1.05);
+}
+
+/* --- FINAL CTA --- */
+.final-cta-section {
+  padding: 80px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+.final-cta-title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+}
+
+.final-cta-subtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto 2.5rem auto;
+}
+
+.final-cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 16px 40px;
+  border-radius: var(--border-radius-md);
+  text-decoration: none;
+  box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
 }
 
-.program-card-cta::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
+.final-cta-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: var(--shadow-lg);
 }
 
-.program-card-cta:hover::before {
-  left: 100%;
-}
-
-.program-card-cta:hover {
-  transform: translateY(-2px);
-}
-
-.program-card-cta .arrow {
-  transition: transform 0.3s ease;
-}
-
-.program-card-pro:hover .program-card-cta .arrow {
-  transform: translateX(5px);
-}
-
-/* === COLORES ESPECÍFICOS POR PROGRAMA === */
-/* Ingeniería de Software - Azul MUY CLARO */
-.program-card-pro:nth-child(1) {
-  background: linear-gradient(135deg, rgba(191, 219, 254, 0.15) 0%, rgba(147, 197, 253, 0.08) 100%);
-  border-color: rgba(147, 197, 253, 0.3);
-}
-
-.program-card-pro:nth-child(1) .program-card-icon {
-  background: linear-gradient(135deg, #93c5fd, #60a5fa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 4px 15px rgba(147, 197, 253, 0.4));
-}
-
-.program-card-pro:nth-child(1) .program-card-cta {
-  background: linear-gradient(135deg, #93c5fd, #60a5fa);
-  box-shadow: 0 4px 15px rgba(147, 197, 253, 0.3);
-}
-
-.program-card-pro:nth-child(1) .program-card-cta:hover {
-  background: linear-gradient(135deg, #60a5fa, #93c5fd);
-  box-shadow: 0 6px 20px rgba(147, 197, 253, 0.4);
-}
-
-.program-card-pro:nth-child(1):hover {
-  border-color: rgba(147, 197, 253, 0.5);
-  box-shadow: 0 20px 60px rgba(147, 197, 253, 0.2);
-}
-
-/* Ingeniería Industrial - Azul MUY OSCURO */
-.program-card-pro:nth-child(2) {
-  background: linear-gradient(135deg, rgba(30, 58, 138, 0.15) 0%, rgba(30, 64, 175, 0.08) 100%);
-  border-color: rgba(30, 58, 138, 0.3);
-}
-
-.program-card-pro:nth-child(2) .program-card-icon {
-  background: linear-gradient(135deg, #1e3a8a, #1e40af);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 4px 15px rgba(30, 58, 138, 0.4));
-}
-
-.program-card-pro:nth-child(2) .program-card-cta {
-  background: linear-gradient(135deg, #1e3a8a, #1e40af);
-  box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
-}
-
-.program-card-pro:nth-child(2) .program-card-cta:hover {
-  background: linear-gradient(135deg, #1e40af, #1e3a8a);
-  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
-}
-
-.program-card-pro:nth-child(2):hover {
-  border-color: rgba(30, 58, 138, 0.5);
-  box-shadow: 0 20px 60px rgba(30, 58, 138, 0.2);
-}
-
-/* Marketing Digital - Rosa MUY OSCURO */
-.program-card-pro:nth-child(3) {
-  background: linear-gradient(135deg, rgba(190, 24, 93, 0.15) 0%, rgba(157, 23, 77, 0.08) 100%);
-  border-color: rgba(190, 24, 93, 0.3);
-}
-
-.program-card-pro:nth-child(3) .program-card-icon {
-  background: linear-gradient(135deg, #be185d, #9d174d);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 4px 15px rgba(190, 24, 93, 0.4));
-}
-
-.program-card-pro:nth-child(3) .program-card-cta {
-  background: linear-gradient(135deg, #be185d, #9d174d);
-  box-shadow: 0 4px 15px rgba(190, 24, 93, 0.3);
-}
-
-.program-card-pro:nth-child(3) .program-card-cta:hover {
-  background: linear-gradient(135deg, #9d174d, #be185d);
-  box-shadow: 0 6px 20px rgba(190, 24, 93, 0.4);
-}
-
-.program-card-pro:nth-child(3):hover {
-  border-color: rgba(190, 24, 93, 0.5);
-  box-shadow: 0 20px 60px rgba(190, 24, 93, 0.2);
-}
-
-/* Administración de Empresas - Naranja */
-.program-card-pro:nth-child(4) {
-  background: linear-gradient(135deg, rgba(251, 146, 60, 0.15) 0%, rgba(245, 101, 101, 0.08) 100%);
-  border-color: rgba(245, 101, 101, 0.3);
-}
-
-.program-card-pro:nth-child(4) .program-card-icon {
-  background: linear-gradient(135deg, #f56565, #c53030);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 4px 15px rgba(245, 101, 101, 0.4));
-}
-
-.program-card-pro:nth-child(4) .program-card-cta {
-  background: linear-gradient(135deg, #f56565, #c53030);
-  box-shadow: 0 4px 15px rgba(245, 101, 101, 0.3);
-}
-
-.program-card-pro:nth-child(4) .program-card-cta:hover {
-  background: linear-gradient(135deg, #c53030, #f56565);
-  box-shadow: 0 6px 20px rgba(245, 101, 101, 0.4);
-}
-
-.program-card-pro:nth-child(4):hover {
-  border-color: rgba(245, 101, 101, 0.5);
-  box-shadow: 0 20px 60px rgba(245, 101, 101, 0.2);
-}
-
-/* === RESPONSIVE MEJORADO === */
-@media (max-width: 1200px) {
-  .programs-grid-pro {
-    gap: 1.5rem;
-    padding: 0 1rem;
-  }
-  
-  .program-card-pro {
-    min-width: 250px;
-    max-width: 280px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .programs-grid-pro {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-  }
-
-  .program-card-pro {
-    min-width: 240px;
-    max-width: 260px;
-  }
-  
-  .hero-content {
-    max-width: 1200px;
-  }
-}
-
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-  .admisiones-hero-pro {
-    padding: 4rem 1rem 2rem;
-    min-height: 70vh;
+  .programs-grid-commercial {
+    grid-template-columns: 1fr;
   }
   
-  .hero-logo-pro { 
-    max-width: 220px; 
-    margin-bottom: 2rem;
+  .hero-commercial {
+    padding: 100px 20px 40px;
+    min-height: 80vh;
   }
   
-  .programs-section-integrated {
-    padding: 3rem 1rem 4rem;
-    margin-top: -1rem;
-  }
-
-  .programs-grid-pro { 
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 0 0.5rem;
-  }
-  
-  .program-card-pro {
-    min-width: 100%;
-    max-width: 400px;
-    padding: 2rem 1.5rem;
-  }
-  
-  .program-card-icon {
-    font-size: 2.5rem;
-  }
-  
-  .program-card-title {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .admisiones-hero-pro {
-    padding: 3rem 0.5rem 1.5rem;
-    min-height: 60vh;
-  }
-  
-  .hero-logo-pro { 
-    max-width: 180px; 
-  }
-  
-  .programs-section-integrated {
-    padding: 2rem 0.5rem 3rem;
-  }
-
-  .program-card-pro {
-    padding: 1.5rem 1rem;
-  }
-  
-  .program-card-icon {
-    font-size: 2rem;
-  }
-  
-  .program-card-title {
-    font-size: 1.2rem;
-  }
-  
-  .program-card-description {
-    font-size: 0.9rem;
+  .hero-logo-commercial {
+    max-width: 200px;
   }
 }

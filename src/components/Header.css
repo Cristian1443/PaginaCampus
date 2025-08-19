@@ -15,10 +15,16 @@
 }
 
 /* --- HEADER ADAPTATIVO AL SCROLL --- */
-.header-fixed.scrolled {
+.dark .header-fixed.scrolled {
   background: rgba(15, 23, 42, 0.95);
   border-bottom-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.light .header-fixed.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 .header-nav {
@@ -39,8 +45,16 @@
 .logo-img {
   height: 40px;
   transition: height 0.3s ease-in-out, filter 0.3s ease;
-  filter: brightness(0) invert(1);
 }
+
+/* --- CAMBIO CLAVE: Filtro para el logo --- */
+.dark .logo-img {
+  filter: brightness(0) invert(1); /* Logo blanco en modo oscuro */
+}
+.light .logo-img {
+  filter: brightness(0) invert(0); /* Logo negro en modo claro */
+}
+
 
 .header-fixed.scrolled .logo-img {
   height: 35px;
@@ -57,7 +71,8 @@
 }
 
 .nav-links-desktop a {
-  color: #cbd5e1;
+  /* CAMBIO: Usar variables de color */
+  color: var(--color-text-secondary);
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
@@ -73,14 +88,15 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: #e4022c;
+  background-color: var(--color-primary); /* CAMBIO: Usar variable */
   transform: scaleX(0);
   transform-origin: bottom right;
   transition: transform 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 }
 
 .nav-links-desktop a:hover {
-  color: #fff;
+  /* CAMBIO: Usar variables de color */
+  color: var(--color-text-primary);
 }
 
 .nav-links-desktop a:hover::after,
@@ -94,41 +110,26 @@
   font-weight: 600;
 }
 
-/* --- BOTÓN DE TOGGLE DE TEMA --- */
-.theme-toggle-btn {
-  background: var(--color-background-card);
-  border: 1px solid var(--color-border);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all var(--transition-normal);
+/* --- ESTILOS ESPECÍFICOS PARA MODO CLARO --- */
+.light .nav-links-desktop a {
   color: var(--color-text-secondary);
-  margin-left: 16px;
 }
 
-.theme-toggle-btn:hover {
-  background: var(--color-background-hover);
-  border-color: var(--color-border-hover);
-  color: var(--color-text-primary);
-  transform: scale(1.05);
+.light .nav-links-desktop a:hover,
+.light .nav-links-desktop a.active {
+  color: var(--color-primary);
 }
 
-.theme-toggle-btn:active {
-  transform: scale(0.95);
+.light .support-dropdown-btn {
+  color: var(--color-text-secondary);
 }
 
-/* Responsive para el botón de tema */
-@media (max-width: 768px) {
-  .theme-toggle-btn {
-    width: 36px;
-    height: 36px;
-    margin-left: 12px;
-  }
+.light .support-dropdown-btn:hover,
+.light .support-dropdown-btn.active {
+  color: var(--color-primary);
 }
+
+
 
 /* --- MENÚ DESPLEGABLE DE SOPORTE --- */
 .support-dropdown {
@@ -138,7 +139,8 @@
 .support-dropdown-btn {
   background: none;
   border: none;
-  color: #cbd5e1;
+  /* CAMBIO: Usar variables de color */
+  color: var(--color-text-secondary);
   font-weight: 500;
   font-size: 1rem;
   padding: 8px 4px;
@@ -152,7 +154,8 @@
 
 .support-dropdown-btn:hover,
 .support-dropdown-btn.active {
-  color: #fff;
+  /* CAMBIO: Usar variables de color */
+  color: var(--color-text-primary);
 }
 
 .support-dropdown-btn::after {
@@ -162,7 +165,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: #e4022c;
+  background-color: var(--color-primary); /* CAMBIO: Usar variable */
   transform: scaleX(0);
   transform-origin: bottom right;
   transition: transform 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
@@ -186,14 +189,15 @@
   position: absolute;
   top: 100%;
   left: 0;
-  background: rgba(15, 23, 42, 0.95);
+  /* CAMBIO: Usar variables de color */
+  background: var(--color-background-light);
+  border: 1px solid var(--color-border);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   padding: 8px 0;
   margin-top: 8px;
   min-width: 150px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-md);
   z-index: 1001;
   animation: dropdownFadeIn 0.3s ease;
 }
@@ -216,15 +220,32 @@
 .support-dropdown-menu a {
   display: block;
   padding: 8px 16px;
-  color: #cbd5e1;
+  /* CAMBIO: Usar variables de color */
+  color: var(--color-text-secondary);
   text-decoration: none;
   font-size: 0.9rem;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .support-dropdown-menu a:hover {
-  background-color: rgba(228, 2, 44, 0.2);
-  color: #fff;
+  background-color: var(--color-background-hover);
+  color: var(--color-text-primary);
+}
+
+/* --- ESTILOS ESPECÍFICOS PARA MODO CLARO --- */
+.light .support-dropdown-menu {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.light .support-dropdown-menu a {
+  color: var(--color-text-secondary);
+}
+
+.light .support-dropdown-menu a:hover {
+  background-color: rgba(228, 2, 44, 0.1);
+  color: var(--color-primary);
 }
 
 /* --- MENÚ MÓVIL CON MEJORAS DE UI/UX --- */
@@ -234,7 +255,8 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+  /* CAMBIO: Usar variables de color */
+  background: var(--color-background);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   display: flex;
@@ -242,7 +264,6 @@
   align-items: center;
   z-index: 2000;
   
-  /* --- MEJORA 1: Animación de "Cortina" --- */
   visibility: hidden;
   transform: translateY(-100%);
   transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1), visibility 0.5s;
@@ -267,7 +288,8 @@
 }
 
 .nav-links-mobile a {
-  color: #f1f5f9;
+  /* CAMBIO: Usar variables de color */
+  color: var(--color-text-primary);
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: 500;
@@ -279,8 +301,8 @@
 
 .nav-links-mobile a:hover,
 .nav-links-mobile a.active {
-  background-color: rgba(228, 2, 44, 0.2);
-  color: #fff;
+  background-color: var(--color-background-hover);
+  color: var(--color-primary); /* Resaltar con el color primario */
   letter-spacing: 1px;
 }
 
@@ -288,12 +310,12 @@
 .mobile-support-section {
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--color-border);
 }
 
 .mobile-support-title {
   display: block;
-  color: #94a3b8;
+  color: var(--color-text-muted);
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -302,7 +324,7 @@
 }
 
 .mobile-support-link {
-  color: #cbd5e1 !important;
+  color: var(--color-text-secondary) !important;
   font-size: 1.2rem !important;
   padding: 12px 24px !important;
   margin: 4px 0;
@@ -311,8 +333,8 @@
 }
 
 .mobile-support-link:hover {
-  background-color: rgba(228, 2, 44, 0.2) !important;
-  color: #fff !important;
+  background-color: var(--color-background-hover) !important;
+  color: var(--color-primary) !important;
 }
 
 /* Botón de cerrar del menú móvil */
@@ -322,24 +344,51 @@
   right: 20px;
   width: 44px;
   height: 44px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-border);
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--color-text-primary);
   transition: all 0.3s ease;
   z-index: 2001;
 }
 
 .mobile-close-btn:hover {
-  background: rgba(228, 2, 44, 0.3);
+  background: var(--color-primary);
+  color: white;
   transform: scale(1.1) rotate(90deg);
 }
 
-/* --- MEJORA 3: Animación escalonada --- */
+/* --- ESTILOS ESPECÍFICOS PARA MODO CLARO EN MÓVIL --- */
+.light .nav-links-mobile-container {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.light .nav-links-mobile a {
+  color: var(--color-text-primary);
+}
+
+.light .nav-links-mobile a:hover,
+.light .nav-links-mobile a.active {
+  background-color: rgba(228, 2, 44, 0.1);
+  color: var(--color-primary);
+}
+
+.light .mobile-close-btn {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: var(--color-text-primary);
+}
+
+.light .mobile-close-btn:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* Animación escalonada */
 .nav-links-mobile-container.open li:nth-child(1) { animation-delay: 0.2s; }
 .nav-links-mobile-container.open li:nth-child(2) { animation-delay: 0.25s; }
 .nav-links-mobile-container.open li:nth-child(3) { animation-delay: 0.3s; }
@@ -371,7 +420,8 @@
 .hamburger-line {
   width: 24px;
   height: 2px;
-  background: #fff;
+  /* CAMBIO: Usar variables de color */
+  background: var(--color-text-primary);
   border-radius: 1px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   margin: 3px 0;
@@ -387,6 +437,15 @@
 
 .hamburger.open .hamburger-line:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* --- ESTILOS ESPECÍFICOS PARA BOTÓN HAMBURGUESA EN MODO CLARO --- */
+.light .hamburger-line {
+  background: var(--color-text-primary);
+}
+
+.light .hamburger:hover .hamburger-line {
+  background: var(--color-primary);
 }
 
 /* --- MEDIA QUERIES PARA RESPONSIVE --- */
